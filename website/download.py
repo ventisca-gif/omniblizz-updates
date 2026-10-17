@@ -12,7 +12,7 @@ def download(f):
    assert len(b)==f['bytes'] and hashlib.sha256(b).hexdigest()==f['sha256'],f['path']+' integrity mismatch'
    out=root/str(p);out.parent.mkdir(parents=True,exist_ok=True);out.write_bytes(b);return
   except Exception:
-   if attempt==3:raise
+   if attempt==3:raise RuntimeError("Cannot download "+f["path"]+" from "+url) from None
    time.sleep(2**attempt)
 with concurrent.futures.ThreadPoolExecutor(max_workers=12) as pool:list(pool.map(download,m['files']))
 assert (root/'index.html').is_file() and (root/'play/index.html').is_file()
