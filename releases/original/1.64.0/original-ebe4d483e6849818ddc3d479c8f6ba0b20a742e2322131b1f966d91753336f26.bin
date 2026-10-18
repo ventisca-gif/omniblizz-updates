@@ -1,0 +1,49 @@
+/* OmniBlizz Photon Realtime presence transport. No combat/economy authority. */
+(function(root){'use strict';
+ const APP_ID='5a057925-a80b-4bd3-9dd9-bf2b3eb594e6',APP_VERSION='1.52-system8',LOBBY='omniblizz-156',EVENT_STATE=1;
+ class OmniOnlineClient{
+  constructor(options={}){this.options=options;this.client=null;this.rooms=[];this.remote=new Map();this.status='offline';this.error=null;this.region=options.region||'sa';this.sequence=0;this.elapsed=0;this.now=options.now||(()=>performance.now());this.generation=0;this.pending=false;this.connectAt=0;this.pendingAt=0;this.onChange=()=>{};this.onJoined=()=>{};}
+  changed(){this.onChange(this);}
+  get joined(){return !!this.client?.isJoinedToRoom();}
+  get inLobby(){return !!this.client?.isInLobby();}
+  connect(name='Player',region=this.region){
+   if(this.joined||this.inLobby||this.status==='connecting')return false;
+   const Photon=this.options.Photon||root.Photon;if(!Photon?.LoadBalancing?.LoadBalancingClient){this.error='sdk';this.status='error';this.changed();return false;}
+   this.disconnect();const generation=++this.generation;this.region=['sa','us','eu','asia'].includes(region)?region:'sa';this.error=null;this.status='connecting';this.connectAt=this.now();
+   const c=this.client=new Photon.LoadBalancing.LoadBalancingClient(Photon.ConnectionProtocol.Wss,APP_ID,APP_VERSION),active=()=>generation===this.generation&&this.client===c;
+   c.setLogLevel?.(1);c.setUserId(this.options.userId||('OB-'+Math.random().toString(36).slice(2)+Date.now().toString(36)));c.myActor().setName(String(name||'Player').slice(0,28));
+   // A fixed lobby and region make room discovery deterministic across devices.
+   c.onStateChange=state=>{if(!active())return;const S=Photon.LoadBalancing.LoadBalancingClient.State;if(state===S.JoinedLobby){this.status='lobby';this.pending=false;this.rooms=[];this.remote.clear();}else if(state===S.Joined){this.status='room';this.pending=false;}else if(state===S.Disconnected||state===S.Error){this.status=state===S.Error?'error':'offline';this.pending=false;this.remote.clear();this.rooms=[];}this.changed();};
+   c.onError=(code,message)=>{if(!active())return;this.error=String(code)+': '+String(message||'').slice(0,180);this.status='error';this.pending=false;this.remote.clear();this.changed();};
+   c.onOperationResponse=(code,message)=>{if(!active()||!code)return;this.error=String(code)+': '+String(message||'').slice(0,180);this.pending=false;this.changed();};
+   const list=rooms=>{if(!active()||!Array.isArray(rooms))return;this.rooms=rooms.filter(r=>!r.removed&&r.isVisible!==false&&r.getCustomProperty?.('ob')===1&&r.maxPlayers===10).map(r=>({name:r.name,title:String(r.getCustomProperty?.('title')||r.name).slice(0,48),count:r.playerCount||0,max:r.maxPlayers,open:r.isOpen!==false})).sort((a,b)=>a.title.localeCompare(b.title)).slice(0,100);this.changed();};
+   c.onRoomList=list;c.onRoomListUpdate=rooms=>list(rooms);
+   c.onJoinRoom=()=>{if(!active())return;this.status='room';this.pending=false;this.remote.clear();this.sequence=0;this.elapsed=.1;this.changed();this.onJoined();};
+   c.onActorJoin=()=>{if(active()){this.elapsed=.1;this.changed();}};
+   c.onActorLeave=actor=>{if(active()){this.remote.delete(actor.actorNr);this.changed();}};
+   c.onEvent=(code,data,actorNr)=>{if(active())this.receive(code,data,actorNr);};
+   // Use the public WSS nameserver; game/master hosts are returned by Photon.
+   c.connectToNameServer({region:this.region,lobbyName:LOBBY,lobbyType:0});this.changed();return true;
+  }
+  create(title,visible=true){if(!this.inLobby||this.pending)return false;this.error=null;const a=new Uint8Array(6);root.crypto.getRandomValues(a);const name='OB-'+Array.from(a,x=>x.toString(16).padStart(2,'0')).join('').toUpperCase();this.pending=true;this.pendingAt=this.now();const ok=this.client.createRoom(name,{maxPlayers:10,isVisible:!!visible,isOpen:true,customGameProperties:{ob:1,title:String(title||'OmniBlizz').trim().slice(0,40)||'OmniBlizz'},propsListedInLobby:['ob','title'],lobbyName:LOBBY,lobbyType:0,roomTTL:0,playerTTL:0});if(ok===false)this.pending=false;this.changed();return ok!==false;}
+  join(name){if(!this.inLobby||this.pending||!/^OB-[A-F0-9]{12}$/.test(String(name)))return false;const room=this.rooms.find(r=>r.name===name);if(room&&(!room.open||room.count>=10))return false;this.error=null;this.pending=true;this.pendingAt=this.now();const ok=this.client.joinRoom(name,{createIfNotExists:false});if(ok===false)this.pending=false;this.changed();return ok!==false;}
+  leave(){if(!this.joined)return false;this.pending=true;this.pendingAt=this.now();this.remote.clear();this.client.leaveRoom();this.changed();return true;}
+  disconnect(){++this.generation;const c=this.client;this.client=null;if(c)try{c.disconnect();}catch{}this.pending=false;this.status='offline';this.remote.clear();this.rooms=[];this.changed();}
+  receive(code,data,actorNr){
+   if(code!==EVENT_STATE||!this.joined||!Number.isSafeInteger(actorNr)||actorNr<1||actorNr===this.client.myActor().actorNr||!this.client.myRoomActors()[actorNr]||!data||data.v!==1)return false;
+   if(!Number.isSafeInteger(data.seq)||data.seq<1||!Number.isFinite(data.x)||!Number.isFinite(data.y)||Math.abs(data.x)>100000||Math.abs(data.y)>100000||!Number.isInteger(data.zone)||data.zone<0||typeof data.alienId!=='string'||data.alienId.length>50||!['omni','osmo','anodite','bendy','system148'].includes(data.race)||!Number.isInteger(data.skin)||data.skin<0||data.skin>500||!Number.isFinite(data.hp)||!Number.isFinite(data.max)||data.max<1||data.hp<0||data.hp>data.max)return false;
+   if(this.options.validate&&!this.options.validate(data))return false;
+   const old=this.remote.get(actorNr);if(old&&data.seq<=old.seq)return false;
+   const a=this.client.myRoomActors()[actorNr];this.remote.set(actorNr,{seq:data.seq,targetX:data.x,targetY:data.y,x:old&&old.zone===data.zone?old.x:data.x,y:old&&old.zone===data.zone?old.y:data.y,zone:data.zone,race:data.race,skin:data.skin,alien:!!data.alien,activeAlien:data.alienId,form:['human','fire','acid','wood','stone','electric','ghost','tech62','crystal51','tetramand31','prototype87'].includes(data.form)?data.form:'human',face:data.face===-1?-1:1,dx:Number.isFinite(data.dx)?Math.max(-1,Math.min(1,data.dx)):0,dy:Number.isFinite(data.dy)?Math.max(-1,Math.min(1,data.dy)):1,moving:!!data.moving,anim:Number.isFinite(data.anim)?data.anim%10000:0,jump:Number.isFinite(data.jump)?Math.max(0,Math.min(.75,data.jump)):0,flight:Number.isFinite(data.flight)?Math.max(0,Math.min(20,data.flight)):0,level:Math.max(1,Math.min(150,Number(data.level)||1)),hp:data.hp,max:data.max,busy:!!data.busy,appearance:data.appearance&&this.options.appearance?this.options.appearance(data.appearance):null,name:String(a.name||'Player').slice(0,28),id:actorNr,kind:'onlineGhost145',alive:true,attack:0,walkDir64:data.dy<-.4?'back':data.dy>.4?'front':data.dx<0?'left':'right',playerName93:String(a.name||'Player').slice(0,28),at:this.now()});return true;
+  }
+  tick(dt,state){
+   if(!Number.isFinite(dt)||dt<0)return;
+   if((this.status==='connecting'&&this.now()-this.connectAt>20000)||(this.pending&&this.pendingAt&&this.now()-this.pendingAt>20000)){this.disconnect();this.status='error';this.error='timeout';this.changed();return;}
+   for(const [id,p]of this.remote){if(this.now()-p.at>12000){this.remote.delete(id);continue;}const f=1-Math.exp(-Math.min(dt,.1)*14);p.x+=(p.targetX-p.x)*f;p.y+=(p.targetY-p.y)*f;}
+   if(!this.joined)return;this.elapsed+=Math.min(.25,dt);if(this.elapsed<.1||!state)return;this.elapsed=0;
+   this.client.raiseEvent(EVENT_STATE,{...state,v:1,seq:++this.sequence},{receivers:0,cache:0});
+  }
+ }
+ root.OmniOnlineClient145=OmniOnlineClient;
+ if(typeof module!=='undefined'&&module.exports)module.exports=OmniOnlineClient;
+})(typeof window!=='undefined'?window:globalThis);
