@@ -14,6 +14,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Reconstruct verified Original 1.75 resources
+        run: python3 build-tools/assemble179.py
       - name: Validate signature and prepare release
         id: prepare
         shell: bash
