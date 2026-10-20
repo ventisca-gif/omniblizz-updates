@@ -1,0 +1,268 @@
+{
+  "baseVersion": "1.79.0",
+  "baseGame": "9ba068a482a64d2caf7d12eaee642f97e854372f4f83ce844812d08256fb8a83",
+  "gameSha256": "07bb63563c772c445f0a87bb6c47f1c1a8d953b67d96f95883520c1b7056a5e9",
+  "edits": [
+    [
+      "ki:num(n.ki,100,0,200)",
+      "ki:num(n.ki,100,0,1000000000)"
+    ]
+  ],
+  "files": [
+    {
+      "path": "game-entry147.html",
+      "source": "game-entry147.html",
+      "bytes": 8264,
+      "sha256": "07c963e13168460ada7fd2141836c19826b2cd68481d1f4469de0304d19b05ba"
+    },
+    {
+      "path": "capsule184/actors.webp",
+      "bytes": 1129650,
+      "sha256": "e5480c8ff2e56cda7ed1c06163a97a8af27d2b3ef8cf5c4ff8e833d1437901a1",
+      "encoding": "base64",
+      "parts": [
+        "assets64/actors.000.b64",
+        "assets64/actors.001.b64",
+        "assets64/actors.002.b64",
+        "assets64/actors.003.b64",
+        "assets64/actors.004.b64",
+        "assets64/actors.005.b64",
+        "assets64/actors.006.b64",
+        "assets64/actors.007.b64",
+        "assets64/actors.008.b64",
+        "assets64/actors.009.b64",
+        "assets64/actors.010.b64",
+        "assets64/actors.011.b64",
+        "assets64/actors.012.b64",
+        "assets64/actors.013.b64",
+        "assets64/actors.014.b64",
+        "assets64/actors.015.b64",
+        "assets64/actors.016.b64",
+        "assets64/actors.017.b64",
+        "assets64/actors.018.b64",
+        "assets64/actors.019.b64",
+        "assets64/actors.020.b64",
+        "assets64/actors.021.b64",
+        "assets64/actors.022.b64",
+        "assets64/actors.023.b64",
+        "assets64/actors.024.b64",
+        "assets64/actors.025.b64",
+        "assets64/actors.026.b64",
+        "assets64/actors.027.b64",
+        "assets64/actors.028.b64",
+        "assets64/actors.029.b64",
+        "assets64/actors.030.b64",
+        "assets64/actors.031.b64"
+      ]
+    },
+    {
+      "path": "capsule184/atlas.json",
+      "source": "capsule184/atlas.json",
+      "bytes": 494,
+      "sha256": "19800aef2e6499654226f261cbd5eaf0a15f94609248032f00e62ecb347a93c2"
+    },
+    {
+      "path": "capsule184/corp.webp",
+      "bytes": 374052,
+      "sha256": "d72c181cdcf8d1d1a09543e523fae1829a8be5f2a8b3caba2124944adde439ed",
+      "encoding": "base64",
+      "parts": [
+        "assets64/corp.000.b64",
+        "assets64/corp.001.b64",
+        "assets64/corp.002.b64",
+        "assets64/corp.003.b64",
+        "assets64/corp.004.b64",
+        "assets64/corp.005.b64",
+        "assets64/corp.006.b64",
+        "assets64/corp.007.b64",
+        "assets64/corp.008.b64",
+        "assets64/corp.009.b64",
+        "assets64/corp.010.b64"
+      ]
+    },
+    {
+      "path": "capsule184/intro.webp",
+      "bytes": 808008,
+      "sha256": "4605cc2da70b81136a0d962341d98e3bb19ad4c51ecd529c9e22597b3c6c3b98",
+      "encoding": "base64",
+      "parts": [
+        "assets64/intro.000.b64",
+        "assets64/intro.001.b64",
+        "assets64/intro.002.b64",
+        "assets64/intro.003.b64",
+        "assets64/intro.004.b64",
+        "assets64/intro.005.b64",
+        "assets64/intro.006.b64",
+        "assets64/intro.007.b64",
+        "assets64/intro.008.b64",
+        "assets64/intro.009.b64",
+        "assets64/intro.010.b64",
+        "assets64/intro.011.b64",
+        "assets64/intro.012.b64",
+        "assets64/intro.013.b64",
+        "assets64/intro.014.b64",
+        "assets64/intro.015.b64",
+        "assets64/intro.016.b64",
+        "assets64/intro.017.b64",
+        "assets64/intro.018.b64",
+        "assets64/intro.019.b64",
+        "assets64/intro.020.b64",
+        "assets64/intro.021.b64",
+        "assets64/intro.022.b64"
+      ]
+    },
+    {
+      "path": "capsule184/ship.webp",
+      "bytes": 238334,
+      "sha256": "054eeca67a8a63c1126e3644701f10a6df0798822d0a224151ed33144d5f7dd6",
+      "encoding": "base64",
+      "parts": [
+        "assets64/ship.000.b64",
+        "assets64/ship.001.b64",
+        "assets64/ship.002.b64",
+        "assets64/ship.003.b64",
+        "assets64/ship.004.b64",
+        "assets64/ship.005.b64",
+        "assets64/ship.006.b64"
+      ]
+    },
+    {
+      "path": "capsule184/street0.webp",
+      "bytes": 548990,
+      "sha256": "ce441c77abe0d8abbd456cc5b5c7633f79588bdbe7b9140b478c440e977e70ad",
+      "encoding": "base64",
+      "parts": [
+        "assets64/street0.000.b64",
+        "assets64/street0.001.b64",
+        "assets64/street0.002.b64",
+        "assets64/street0.003.b64",
+        "assets64/street0.004.b64",
+        "assets64/street0.005.b64",
+        "assets64/street0.006.b64",
+        "assets64/street0.007.b64",
+        "assets64/street0.008.b64",
+        "assets64/street0.009.b64",
+        "assets64/street0.010.b64",
+        "assets64/street0.011.b64",
+        "assets64/street0.012.b64",
+        "assets64/street0.013.b64",
+        "assets64/street0.014.b64",
+        "assets64/street0.015.b64"
+      ]
+    },
+    {
+      "path": "capsule184/street1.webp",
+      "bytes": 514360,
+      "sha256": "54949dee344184a5ad869f393d225a8b96b672e3a721d79bf961c4bdb78ac39c",
+      "encoding": "base64",
+      "parts": [
+        "assets64/street1.000.b64",
+        "assets64/street1.001.b64",
+        "assets64/street1.002.b64",
+        "assets64/street1.003.b64",
+        "assets64/street1.004.b64",
+        "assets64/street1.005.b64",
+        "assets64/street1.006.b64",
+        "assets64/street1.007.b64",
+        "assets64/street1.008.b64",
+        "assets64/street1.009.b64",
+        "assets64/street1.010.b64",
+        "assets64/street1.011.b64",
+        "assets64/street1.012.b64",
+        "assets64/street1.013.b64",
+        "assets64/street1.014.b64"
+      ]
+    },
+    {
+      "path": "capsule184/street2.webp",
+      "bytes": 476066,
+      "sha256": "7777033ddc765c21941d5d2e3d7eec538567aa77a78a51983f7576acec37abf0",
+      "encoding": "base64",
+      "parts": [
+        "assets64/street2.000.b64",
+        "assets64/street2.001.b64",
+        "assets64/street2.002.b64",
+        "assets64/street2.003.b64",
+        "assets64/street2.004.b64",
+        "assets64/street2.005.b64",
+        "assets64/street2.006.b64",
+        "assets64/street2.007.b64",
+        "assets64/street2.008.b64",
+        "assets64/street2.009.b64",
+        "assets64/street2.010.b64",
+        "assets64/street2.011.b64",
+        "assets64/street2.012.b64",
+        "assets64/street2.013.b64"
+      ]
+    },
+    {
+      "path": "capsule184/street3.webp",
+      "bytes": 537132,
+      "sha256": "da03fd763439ad91997959c929b3c654badae7a06af96ffa7d4494adabac74c4",
+      "encoding": "base64",
+      "parts": [
+        "assets64/street3.000.b64",
+        "assets64/street3.001.b64",
+        "assets64/street3.002.b64",
+        "assets64/street3.003.b64",
+        "assets64/street3.004.b64",
+        "assets64/street3.005.b64",
+        "assets64/street3.006.b64",
+        "assets64/street3.007.b64",
+        "assets64/street3.008.b64",
+        "assets64/street3.009.b64",
+        "assets64/street3.010.b64",
+        "assets64/street3.011.b64",
+        "assets64/street3.012.b64",
+        "assets64/street3.013.b64",
+        "assets64/street3.014.b64"
+      ]
+    },
+    {
+      "path": "capsule184/street4.webp",
+      "bytes": 495546,
+      "sha256": "42984580b8022cbfcfb6776e722a89cf089ee329fe7fbd6b83214369c3f4f626",
+      "encoding": "base64",
+      "parts": [
+        "assets64/street4.000.b64",
+        "assets64/street4.001.b64",
+        "assets64/street4.002.b64",
+        "assets64/street4.003.b64",
+        "assets64/street4.004.b64",
+        "assets64/street4.005.b64",
+        "assets64/street4.006.b64",
+        "assets64/street4.007.b64",
+        "assets64/street4.008.b64",
+        "assets64/street4.009.b64",
+        "assets64/street4.010.b64",
+        "assets64/street4.011.b64",
+        "assets64/street4.012.b64",
+        "assets64/street4.013.b64"
+      ]
+    },
+    {
+      "path": "capsule184/street5.webp",
+      "bytes": 551208,
+      "sha256": "7183d857698db2a2544c8d874043c429ac1b443d0c0f9ecbfe2adb25b3f79912",
+      "encoding": "base64",
+      "parts": [
+        "assets64/street5.000.b64",
+        "assets64/street5.001.b64",
+        "assets64/street5.002.b64",
+        "assets64/street5.003.b64",
+        "assets64/street5.004.b64",
+        "assets64/street5.005.b64",
+        "assets64/street5.006.b64",
+        "assets64/street5.007.b64",
+        "assets64/street5.008.b64",
+        "assets64/street5.009.b64",
+        "assets64/street5.010.b64",
+        "assets64/street5.011.b64",
+        "assets64/street5.012.b64",
+        "assets64/street5.013.b64",
+        "assets64/street5.014.b64",
+        "assets64/street5.015.b64"
+      ]
+    }
+  ]
+}

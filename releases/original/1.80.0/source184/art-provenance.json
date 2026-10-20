@@ -1,0 +1,21 @@
+{
+  "generation": "Built-in imagegen: six supplied side-view city references cleaned of HUD and Goku; panorama intro; researched Capsule laboratory and spaceship; transparent Bulma and Goku exercise animation atlas.",
+  "referenceFiles": [
+    "30332.png",
+    "30324.png",
+    "30325.png",
+    "30326.png",
+    "30327.png",
+    "30328.png",
+    "30329.png",
+    "30395.jpg",
+    "30396.webp",
+    "30397.jpg"
+  ],
+  "research": [
+    "https://en.dragon-ball-official.com/news/01_2148.html",
+    "https://en.dragon-ball-official.com/news/01_551.html"
+  ],
+  "runtime": "Goku combat/Kamehameha reuses existing art180; generated push-up/weights frames use full alpha bounds and fixed scale.",
+  "encoding": "New environments WebP quality94; actors lossless with original alpha."
+}
