@@ -1,0 +1,202 @@
+[
+  {
+    "path": "city164/buildings.png",
+    "bytesBefore": 3018554,
+    "bytesAfter": 2129926,
+    "sha256": "76f7ba5433bddb241e63e3fd7df6e90c1c5b79382d1df37c58a168a61e2c47b7",
+    "mime": "image/webp",
+    "pixelExact": true
+  },
+  {
+    "path": "city164/paving.png",
+    "bytesBefore": 4123951,
+    "bytesAfter": 2550714,
+    "sha256": "9d90b2c78116f297e58b09bb22dd42e9ed30e65d5b51e8db56edd705a120ee45",
+    "mime": "image/webp",
+    "pixelExact": true
+  },
+  {
+    "path": "city164/props.png",
+    "bytesBefore": 2955464,
+    "bytesAfter": 2101556,
+    "sha256": "b1afa51e19427870f57ad6e777da9ab343125c3f0c38a23bc26767693b8bccc3",
+    "mime": "image/webp",
+    "pixelExact": true
+  },
+  {
+    "path": "system154/cerebron.png",
+    "bytesBefore": 2661202,
+    "bytesAfter": 2159236,
+    "sha256": "4b9c9a37fe7124faab26dc7405a20dc081d0cac1e7bd0311dd0382b68cc16e50",
+    "mime": "image/webp",
+    "pixelExact": true
+  },
+  {
+    "path": "system154/hologram.png",
+    "bytesBefore": 1618844,
+    "bytesAfter": 1142606,
+    "sha256": "ac5c9527a09f34cd0a42da920351c89f5342e93d2c97c7a929c53000c10c5999",
+    "mime": "image/webp",
+    "pixelExact": true
+  },
+  {
+    "path": "system154/shadow-realm.png",
+    "bytesBefore": 2800787,
+    "bytesAfter": 2066696,
+    "sha256": "3ab3619c4e169754ed0f9f9e77914d9ce5356d6914e8d13dca954c074587313f",
+    "mime": "image/webp",
+    "pixelExact": true
+  },
+  {
+    "path": "system155/city.png",
+    "bytesBefore": 2140966,
+    "bytesAfter": 1690604,
+    "sha256": "f4b52aa7863a4b07ce984d2c8442d8f07bff3e83a21470d291245947c5e1826f",
+    "mime": "image/webp",
+    "pixelExact": true
+  },
+  {
+    "path": "system155/informant.png",
+    "bytesBefore": 1160065,
+    "bytesAfter": 867354,
+    "sha256": "d0a4971de23e2ad1586c6f225da232201d088b33023b366ffbafa3a15ad83d06",
+    "mime": "image/webp",
+    "pixelExact": true
+  },
+  {
+    "path": "system155/xenocite.png",
+    "bytesBefore": 1728478,
+    "bytesAfter": 1306960,
+    "sha256": "8c2ef3fb37235ec07044f36ec937cf78db597025b377cea6a592302166739547",
+    "mime": "image/webp",
+    "pixelExact": true
+  },
+  {
+    "path": "system156/races.png",
+    "bytesBefore": 2014166,
+    "bytesAfter": 1658820,
+    "sha256": "51d17c0e54f879ab5c475acfa4c38f13a17de848c591a71bf5c5fb0221e3d1f0",
+    "mime": "image/webp",
+    "pixelExact": true
+  },
+  {
+    "path": "system158/cinema.png",
+    "bytesBefore": 2449729,
+    "bytesAfter": 1974172,
+    "sha256": "e0909526891dc0f9039c8e04140c6b3e0a20f27d91110b8df40d717c00b16ce9",
+    "mime": "image/webp",
+    "pixelExact": true
+  },
+  {
+    "path": "system158/district.png",
+    "bytesBefore": 2720735,
+    "bytesAfter": 2167242,
+    "sha256": "7a063b859344ced5bb35c53ecc7089baf3befad299995add3b79353063d99697",
+    "mime": "image/webp",
+    "pixelExact": true
+  },
+  {
+    "path": "system158/enemies.png",
+    "bytesBefore": 2465540,
+    "bytesAfter": 1893006,
+    "sha256": "0dfe4167d1e326f86764c1931770c1851d84b4d70d37fc5a201e612dbd02d37e",
+    "mime": "image/webp",
+    "pixelExact": true
+  },
+  {
+    "path": "system158/monkey.png",
+    "bytesBefore": 2029366,
+    "bytesAfter": 1523644,
+    "sha256": "ad7358fde02b309041dd2bfe4c3cf5261b3ac7d229f01a0c2ea54b091a86b9c4",
+    "mime": "image/webp",
+    "pixelExact": true
+  },
+  {
+    "path": "system158/ten.png",
+    "bytesBefore": 2023629,
+    "bytesAfter": 1542410,
+    "sha256": "5b5566a28c5fb124ccd3041b3308e65366a27f99641840fcc86a1a1671791491",
+    "mime": "image/webp",
+    "pixelExact": true
+  },
+  {
+    "path": "system159/af-intro.png",
+    "bytesBefore": 2458208,
+    "bytesAfter": 2003474,
+    "sha256": "ca3b0100ad5aae470372a3f2e746b7cd2b37d54f81d0eb3aaec0913366b866cc",
+    "mime": "image/webp",
+    "pixelExact": true
+  },
+  {
+    "path": "walk166/0.png",
+    "bytesBefore": 1304273,
+    "bytesAfter": 972318,
+    "sha256": "c846443c56df41b17381eeffd86713856f8754cf7ef40b482d4c270146337072",
+    "mime": "image/webp",
+    "pixelExact": true
+  },
+  {
+    "path": "walk166/1.png",
+    "bytesBefore": 1099456,
+    "bytesAfter": 911656,
+    "sha256": "bdaa8d31bbb344aaf8a882988a4d1c9e4380f4da37ef08968222e78fb4a266fb",
+    "mime": "image/webp",
+    "pixelExact": true
+  },
+  {
+    "path": "walk166/10.png",
+    "bytesBefore": 1422676,
+    "bytesAfter": 906386,
+    "sha256": "f5a9ac3f83b2512745ec84392db11af28269980381c01e7f96f0d6e6aeea8fe3",
+    "mime": "image/webp",
+    "pixelExact": true
+  },
+  {
+    "path": "walk166/14.png",
+    "bytesBefore": 1559234,
+    "bytesAfter": 1210740,
+    "sha256": "e743f2697c054b951ae7ac21a694250af98c0446ade08e1f37eebda292c787a2",
+    "mime": "image/webp",
+    "pixelExact": true
+  },
+  {
+    "path": "walk166/150.png",
+    "bytesBefore": 1068846,
+    "bytesAfter": 748826,
+    "sha256": "74aaf0d321152703aa88aeba55b9cc892cf200ef26968cba979470c315d3e315",
+    "mime": "image/webp",
+    "pixelExact": true
+  },
+  {
+    "path": "walk166/152.png",
+    "bytesBefore": 1135022,
+    "bytesAfter": 854110,
+    "sha256": "fe522d1ccd818947b4a2b13b3484fd583a5e6ece5223100d5a4e39cff795d9be",
+    "mime": "image/webp",
+    "pixelExact": true
+  },
+  {
+    "path": "walk166/9.png",
+    "bytesBefore": 1189727,
+    "bytesAfter": 826732,
+    "sha256": "30b9be684d3f1d94a6b668c6aabd863f1f56404aa8a7bc4fab61ac142a53f1f8",
+    "mime": "image/webp",
+    "pixelExact": true
+  },
+  {
+    "path": "walk166/sys0.png",
+    "bytesBefore": 1077316,
+    "bytesAfter": 791064,
+    "sha256": "7649dfa7ec0b9548746c57f01b81873632aed4ae78855ddc4c7f1aab9d9e3a33",
+    "mime": "image/webp",
+    "pixelExact": true
+  },
+  {
+    "path": "walk166/sys25.png",
+    "bytesBefore": 1476488,
+    "bytesAfter": 1025892,
+    "sha256": "41555a3eafb84b62f1821788b65826da5451c8e1682900ef75e5647215dabe48",
+    "mime": "image/webp",
+    "pixelExact": true
+  }
+]

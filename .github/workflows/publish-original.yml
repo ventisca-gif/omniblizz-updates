@@ -20,6 +20,10 @@ jobs:
         run: python3 build-tools/assemble180.py
       - name: Reconstruct verified Original 1.77 city
         run: python3 build-tools/assemble181.py
+      - name: Install pinned lossless image encoder
+        run: python3 -m pip install --only-binary=:all: Pillow==12.3.0
+      - name: Derive verified Original 1.78 from public 1.77
+        run: python3 build-tools/assemble182.py
       - name: Validate signature and prepare release
         id: prepare
         shell: bash
