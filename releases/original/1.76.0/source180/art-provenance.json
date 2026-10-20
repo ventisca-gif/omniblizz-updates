@@ -1,0 +1,104 @@
+{
+  "goku": {
+    "generated_png_sha256": "19e61e208b5130ce7f5275778786c677f3999f752ea1af2f733709f6d3f7bf76",
+    "webp_sha256": "eb7b051b83d71928fe4ca96fa763e8b1f0d576b3f500c329147b8295ac67f53a",
+    "bytes": 524210,
+    "type": "sprite"
+  },
+  "motion": {
+    "generated_png_sha256": "438da4df4f9df34aa7004829151e9e143350025614080bc93340eedc9b99b736",
+    "webp_sha256": "986efe64ffe3f8ec50681c7162f11ee264ad4d968a6ff0c1e1355e666607d370",
+    "bytes": 275522,
+    "type": "sprite"
+  },
+  "ash": {
+    "generated_png_sha256": "21b426c321e6d287320b702e68abae9213aa8dab7eb2d22b93f4617a56c6d384",
+    "webp_sha256": "05880081f28744345fa442f90cef1f21b17161697dab5c8a932d65a322933dfc",
+    "bytes": 333354,
+    "type": "sprite"
+  },
+  "enemies": {
+    "generated_png_sha256": "c9eebc297268b6dfc93aa0d5af62dcb1222a9c5befe05afa650437d9e4e23c6c",
+    "webp_sha256": "6cb82f48681ceb20fb949233855d24003ad77dfafdc547c90e2630cb74764545",
+    "bytes": 729332,
+    "type": "sprite"
+  },
+  "allies": {
+    "generated_png_sha256": "aecf4c4c4811225effbfec7ede0be6dfec165948d162443adcb10b4ae63a6b85",
+    "webp_sha256": "83d955924f51d2cb0484702dcfd25804074cfb6e25dcfdba5291d3b2370866ed",
+    "bytes": 487078,
+    "type": "sprite"
+  },
+  "npcs": {
+    "generated_png_sha256": "4eae5b9fd2853f1bb8a618bd49227fc272091a88d2ed955d22f892ed1fef30c1",
+    "webp_sha256": "e379312a2fd0acd9c53d3da38464ce680961e8ca5aecbd5e6af170cfcacf4e00",
+    "bytes": 383972,
+    "type": "sprite"
+  },
+  "aura": {
+    "generated_png_sha256": "13d42db60deb75415df2b15c2ae38b2e48cea9306eca41e78ee42e58505c7050",
+    "webp_sha256": "4db6abc1ee5bc7ba6dd339a3ae0f2e8473f4942c2ff0c47017bad2302ca7bb9f",
+    "bytes": 540864,
+    "type": "sprite"
+  },
+  "kame": {
+    "generated_png_sha256": "40701b87a077950bf342a996c4ea026c162b8de5807780d57ddde09013cdebc8",
+    "webp_sha256": "45872924a32c301fd159ae8a0ade148142e193c00b3a86d4112f6b9e7c366438",
+    "bytes": 596614,
+    "type": "background"
+  },
+  "river": {
+    "generated_png_sha256": "cbd19c86987a3f2457b02f988cd0f65317d31fafb0ce89f7eff23bd0a0fe6147",
+    "webp_sha256": "15d5a8b8a07c317ac9db51693c0c471f6aa040983379127755a9af01fc56c047",
+    "bytes": 657614,
+    "type": "background"
+  },
+  "valley": {
+    "generated_png_sha256": "287db97b93abe4fabd46af9935791fa74bd9f1375f35e4ec5793f7008c074b16",
+    "webp_sha256": "85de111193c513022405e21536fbb06b19f36f1e11a7baedf0057446584619e9",
+    "bytes": 472576,
+    "type": "background"
+  },
+  "dojo": {
+    "generated_png_sha256": "756a4f5e1e30d76d8bf96b1822c29ef23e029df575a011a8e4d159f09e11b23f",
+    "webp_sha256": "ebd953316c4157c3ed848b57cfc4027ebed74f80309e240e6f04cbb92ffd7c95",
+    "bytes": 643118,
+    "type": "background"
+  },
+  "crater": {
+    "generated_png_sha256": "f707e85c286f86ce8b180d2733f3bca024a007dc59893cc94d5fb55b5b66a62e",
+    "webp_sha256": "4145c1058f2ae49fa81f5706e414c7ee9bf8157f33eb4a29ba88980efd08fd84",
+    "bytes": 584956,
+    "type": "background"
+  },
+  "palace": {
+    "generated_png_sha256": "c49e39b98a6bb266f46caf2638551e081ef3651ab81c7073d3457ab9ba64fc9b",
+    "webp_sha256": "5511005964b346b4ba73851550174ec45576bb570bad3d9be296c1e2f9967783",
+    "bytes": 302970,
+    "type": "background"
+  },
+  "office": {
+    "generated_png_sha256": "b70a89fa3e1466300f3aa05e20f16af91af809e59e6fa5f3ccc90caa49ff78a0",
+    "webp_sha256": "a66a30e5b213ee8d8cea4e97e75c4c8652ead5f4ae131e7915c12fc75749eea6",
+    "bytes": 338668,
+    "type": "background"
+  },
+  "clouds": {
+    "generated_png_sha256": "6b54a838942676a971403300e1a11a4e362171d24ebc2c9b83eb60ed98a4234d",
+    "webp_sha256": "0a818524398f9637a2b2c99a00596c3204f779051d5f6a5d20ea2ee1d1bfb5b7",
+    "bytes": 199890,
+    "type": "background"
+  },
+  "kaio": {
+    "generated_png_sha256": "dec79a1ada677fc150fbd56ccb99d220820fcd5d99cd5573a1777fd6e583d0aa",
+    "webp_sha256": "9fe1ca6adacece48084b20562897072b46408a6f60d64f8fbe7166e4b7956714",
+    "bytes": 515676,
+    "type": "background"
+  },
+  "canyon": {
+    "generated_png_sha256": "33bfa3cdca582217d401187b348c9e982dc553b841341c3dfffafd24cb861120",
+    "webp_sha256": "224090710b9f3ce163e1ec31d93f98efb17e1935bbcdc106e31a3099316a2251",
+    "bytes": 386442,
+    "type": "background"
+  }
+}

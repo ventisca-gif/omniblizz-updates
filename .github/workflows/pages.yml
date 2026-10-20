@@ -18,6 +18,8 @@ jobs:
       - uses: actions/checkout@v4
       - name: Reconstruct verified Original 1.75 resources
         run: python3 build-tools/assemble179.py
+      - name: Reconstruct verified Original 1.76 artwork
+        run: python3 build-tools/assemble180.py
       - name: Download and verify the public web build
         run: python3 website/download.py
       - uses: actions/upload-pages-artifact@v3

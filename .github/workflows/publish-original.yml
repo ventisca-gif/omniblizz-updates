@@ -16,6 +16,8 @@ jobs:
       - uses: actions/checkout@v4
       - name: Reconstruct verified Original 1.75 resources
         run: python3 build-tools/assemble179.py
+      - name: Reconstruct verified Original 1.76 artwork
+        run: python3 build-tools/assemble180.py
       - name: Validate signature and prepare release
         id: prepare
         shell: bash
