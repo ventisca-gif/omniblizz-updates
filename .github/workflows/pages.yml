@@ -26,6 +26,8 @@ jobs:
         run: 'python3 -m pip install --only-binary=:all: Pillow==12.3.0'
       - name: Derive verified Original 1.78 from public 1.77
         run: python3 build-tools/assemble182.py
+      - name: Reconstruct verified Original1.79 Saiyan and Capsule City
+        run: python3 build-tools/assemble183.py
       - name: Download and verify the public web build
         run: python3 website/download.py
       - uses: actions/upload-pages-artifact@v3

@@ -1,0 +1,3 @@
+# OmniBlizz Original1.79.0
+
+Saiyan: Raditz automático a los 3 s; aura blanca animada al cargar ki; botón de hablar visible. Ciudad Cápsula conectada al cráter, exclusiva de Saiyan, cámara alejada y edificios sólidos. / Saiyan: automatic Raditz after 3 s; animated white charging aura; visible talk button. Saiyan-only Capsule City linked to the crater, wider camera and solid buildings. / Saiyan: Raditz automático em 3 s; aura branca animada ao carregar ki; botão de falar visível. Cidade Cápsula exclusiva de Saiyan ligada à cratera, câmera afastada e prédios sólidos. / Saiyan: 3 sn sonra otomatik Raditz; ki doldururken hareketli beyaz aura; görünür konuş düğmesi. Kratere bağlı, yalnız Saiyan için Kapsül Şehri; uzak kamera ve katı binalar.

@@ -1,0 +1,21 @@
+{
+  "asset": "capsule183/world.webp",
+  "request": "User requested to unite eight supplied Capsule City images, remove HUD, connect crater, Saiyan only.",
+  "generation": "Built-in imagegen reference compositing of the eight user-supplied districts. Single coherent map with no UI.",
+  "references": [
+    "30350.png",
+    "30358.png",
+    "30357.png",
+    "30356.png",
+    "30355.png",
+    "30354.png",
+    "30353.png",
+    "30352.png"
+  ],
+  "dimensions": [
+    1536,
+    1024
+  ],
+  "encoding": "WebP lossless, exact RGBA",
+  "sha256": "bcb1b4cec9a2be975077ac9599452e837d2ea7d54e5cf3f93b892b4ccdb23e73"
+}

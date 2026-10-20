@@ -1,0 +1,33 @@
+{
+  "baseVersion": "1.78.0",
+  "baseGame": "3bb7ebfd3c877e7274727f221a3314c6d1d3d9653b1497d91aafb7925a78bdff",
+  "gameSha256": "9ba068a482a64d2caf7d12eaee642f97e854372f4f83ce844812d08256fb8a83",
+  "edits": [
+    [
+      "SAI_ZONES167=Object.freeze([REGIONS.length,REGIONS.length+1,REGIONS.length+2,REGIONS.length+3,REGIONS.length+4])",
+      "SAI_ZONES167=[REGIONS.length,REGIONS.length+1,REGIONS.length+2,REGIONS.length+3,REGIONS.length+4]"
+    ]
+  ],
+  "files": [
+    {
+      "path": "game-entry147.html",
+      "source": "game-entry147.html",
+      "bytes": 8264,
+      "sha256": "3054faf9edf4a0851ba5de796118ce333f4e33539929b531c2553f1fb2912203"
+    },
+    {
+      "path": "capsule183/world.webp",
+      "parts": [
+        "capsule-world.webp.part000",
+        "capsule-world.webp.part001",
+        "capsule-world.webp.part002",
+        "capsule-world.webp.part003",
+        "capsule-world.webp.part004",
+        "capsule-world.webp.part005",
+        "capsule-world.webp.part006"
+      ],
+      "bytes": 3390576,
+      "sha256": "bcb1b4cec9a2be975077ac9599452e837d2ea7d54e5cf3f93b892b4ccdb23e73"
+    }
+  ]
+}
