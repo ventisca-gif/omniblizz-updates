@@ -1,0 +1,52 @@
+{
+  "central": {
+    "sourcePNG": "1cee27a69af03a88fe5cfb9be5a4a1d538cbe8c8f65568d23cf25679d1208826",
+    "webpSHA256": "0a365baa60461780266d74790be27165848da33dd40276390b553e3009dc8c54",
+    "bytes": 398796
+  },
+  "civic": {
+    "sourcePNG": "640c8457eb9b11b709562d079d5788fe4125b14a805f3fd23017b7cdabe6c125",
+    "webpSHA256": "6b3589982b64666b00a5e15c06bef62cae396799d93150d12e744560df93aeac",
+    "bytes": 481482
+  },
+  "park": {
+    "sourcePNG": "04c7cf6522b744b9a09e16f43112bcaafc39b3f2e6e0a16b5b2c50933189cc9d",
+    "webpSHA256": "ba26acd81221289192636986a6351aca822893cfd914abbd8c815492d10ddd0d",
+    "bytes": 521590
+  },
+  "aquarium": {
+    "sourcePNG": "09381f0f26a23693009a32dcc63db26b853bdc804d9c25e2f1a0b959f3affb1c",
+    "webpSHA256": "fdcbe4a2249b554c195ef94bca62e0128cf261fd0a694638620bde85942b5678",
+    "bytes": 499292
+  },
+  "bouman": {
+    "sourcePNG": "9c170217adcecf5b0ca3666c183e3ac8ce6d0c7ba8263384ec7b5d624c387194",
+    "webpSHA256": "52e59250a3a2fce68de62972212be0e62f8cb4043520da0288c74b6dee4ea399",
+    "bytes": 467280
+  },
+  "smoothie": {
+    "sourcePNG": "3d21a691954ed6b2b2b0cce7b2010d0e9f4c0e0438f57929c4bf6da671db1416",
+    "webpSHA256": "46cd442390c6303fa5c6053c661acfaf6b684dd48c2e06ff26f9cb708c3a82f0",
+    "bytes": 538184
+  },
+  "concert": {
+    "sourcePNG": "8603b9cf6bdefb4a6cd9422b0f98db78465c13cbeef50f4c1eca2904879980c3",
+    "webpSHA256": "70ea8cf6bcd7ad4d33b64672f14a3f312487e8eeaf674c73310cd50ffaee6bcc",
+    "bytes": 542798
+  },
+  "casino": {
+    "sourcePNG": "835f2cca192d693ebcd453264b42ce6a004b3bb56355eb8163c8d5703afd18d6",
+    "webpSHA256": "7413e46542e079a2be15e616bb2c4f61d7dc6a71c6502215da5c06aef225ee28",
+    "bytes": 539924
+  },
+  "traffic": {
+    "sourcePNG": "c9e059c93a544bc9ba9e6379776288e886bec6663143c17949af0080b7a79f3e",
+    "webpSHA256": "0c8494a8eee4f6a3d69a76e8bfad1436482c060e2fa6accb557c391302268e5b",
+    "bytes": 469482
+  },
+  "world": {
+    "sourcePNG": "2754ce4b5993b316219a89e997a7707de80eeb2b4c7009c862bfc3c331a5fea6",
+    "webpSHA256": "d1045c71af78f815fee8fa3c66a53712b521500e04936e68660788544b1b0ffa",
+    "bytes": 1049494
+  }
+}

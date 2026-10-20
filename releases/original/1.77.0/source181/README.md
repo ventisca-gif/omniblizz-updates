@@ -1,0 +1,1 @@
+Authorized public Original1.77 code and generated city artwork. Run assemble179.py, assemble180.py and assemble181.py in order. Each joined resource is checked against the original RSA-signed manifest. No private keys, profiles or private source ZIPs are present.
