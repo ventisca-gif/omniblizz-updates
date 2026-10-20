@@ -1,0 +1,59 @@
+{
+  "baseVersion": "1.80.0",
+  "baseGame": "07bb63563c772c445f0a87bb6c47f1c1a8d953b67d96f95883520c1b7056a5e9",
+  "gameSha256": "0fa5aa51ef6cdc5654249033220096690c451df3a56871cf805b5f75b40f88b0",
+  "edits": [
+    [
+      "saiTrain167(70);s.sessions++;",
+      "const powerBefore185=n.power;saiTrain167(70);n.power=Math.min(1e12,powerBefore185+70);s.sessions++;"
+    ],
+    [
+      "+70 de entrenamiento",
+      "+70 Power Level"
+    ],
+    [
+      "+70 training",
+      "+70 Power Level"
+    ],
+    [
+      "+70 de treino",
+      "+70 Power Level"
+    ],
+    [
+      "+70 eğitim",
+      "+70 Power Level"
+    ],
+    [
+      "ENTRENAMIENTO +70",
+      "POWER LEVEL +70"
+    ],
+    [
+      "TRAINING +70",
+      "POWER LEVEL +70"
+    ],
+    [
+      "TREINO +70",
+      "POWER LEVEL +70"
+    ],
+    [
+      "EĞİTİM +70",
+      "POWER LEVEL +70"
+    ],
+    [
+      "Serie completada · +70 entrenamiento",
+      "Serie completada · +70 Power Level"
+    ],
+    [
+      "Série concluída · +70 treino",
+      "Série concluída · +70 Power Level"
+    ]
+  ],
+  "files": [
+    {
+      "path": "game-entry147.html",
+      "source": "game-entry147.html",
+      "bytes": 8264,
+      "sha256": "e28e9a7c648e277ec1feb4a4fc9c8db9cc4140cc3631b367135bd7ac9a16288e"
+    }
+  ]
+}

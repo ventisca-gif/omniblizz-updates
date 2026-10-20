@@ -30,6 +30,8 @@ jobs:
         run: python3 build-tools/assemble183.py
       - name: Reconstruct verified Original1.80 Kaioken and Namek preparations
         run: python3 build-tools/assemble184.py
+      - name: Reconstruct verified Original1.81 training fixes
+        run: python3 build-tools/assemble185.py
       - name: Download and verify the public web build
         run: python3 website/download.py
       - uses: actions/upload-pages-artifact@v3
