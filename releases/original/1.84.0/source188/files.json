@@ -1,0 +1,14 @@
+{
+  "baseVersion": "1.83.0",
+  "baseGame": "da4cd47813ec24e9d62741cdb385131e8f6d706708da15b2f1becf1e1eca3442",
+  "gameSha256": "3fd5c6147cee7e052e98b4b43fb017180e43c7f8a25d0212e7c735b382632b67",
+  "edits": [],
+  "files": [
+    {
+      "path": "game-entry147.html",
+      "source": "game-entry147.html",
+      "bytes": 8264,
+      "sha256": "e7949045a65246fda3d14bc7466f650c5ed2c1140e889a3a9c7d953881e30b4f"
+    }
+  ]
+}
