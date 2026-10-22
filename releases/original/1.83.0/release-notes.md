@@ -1,0 +1,9 @@
+OmniBlizz Original 1.83.0 — Maná y fuerza
+
+ES: Nivel máximo200 para Omnitrix,Osmosiano,Anodita,Bendy ySistema con la fórmula existente. Saiyan yAsh conservan su progresión. Cuatro Brazos AF en recalibrado nivel145:1400HP base,puño150,roca218,aplauso225,ráfaga de rocas220 por impacto yroca colosal215 por contacto/cd25s. Vídeo original conaudio ydobletoque para saltar. Cinco técnicas anoditas a niveles60/65/70/80/90,mejorables con puntos. FormaGwenAF al90:1300HP,rayos150 ycuatro técnicas216/230/220/215. Interfaces verde/magenta renovadas. Omnipedia conocida/silueta negra. Conserva partidas,Ten ymodo offline.
+
+EN: Level200 for Omnitrix,Osmosian,Anodite,Bendy andSystem with the existing formula. Saiyan/Ash unchanged. Recalibrated Four ArmsAF at145:1400baseHP,150punch,218boulder,225clap,220per barrage rock and215per rolling-rock contact/25sCD. Supplied transformation video withaudio/doubletap skip. Five upgradeable Anodite skills at60/65/70/80/90. GwenAF at90:1300HP,150bolts,four skills216/230/220/215. New green/magentaHUD,locked Omnipedia silhouettes. Saves,Ten bonuses andoffline play retained.
+
+PT: Nível200 paraOmnitrix,Osmosiano,Anodita,Bendy eSistema; fórmula preservada,Saiyan/Ash inalterados. QuatroBraçosAF no recalibrado145:1400HP,animações próprias,rochas,palma sônica evídeo comáudio/toque duplo. Cinco técnicas anoditas melhoráveis nosníveis60/65/70/80/90. GwenAF90:1300HP,raios150 equatro técnicas. HUDverde/magenta,Omnipedia comsilhuetas. Saves,melhorias deTen emodo offline mantidos.
+
+TR: Omnitrix,Osmosian,Anodit,Bendy veSistem için aynı formülle seviye200;Saiyan/Ash değişmez. Yenidenkalibre saatte145.seviye DörtKolAF:1400temelcan,özel animasyonlar,kayalar,sonikalkış,sesli video veçiftdokunuşlaatlama.60/65/70/80/90.seviyelerde beşgeliştirilebilir Anodityeteneği.90.seviyede GwenAF:1300can,150hasarlıışınlar vedörtyetenek.Yeşil/morHUD,siluetliOmnipedia.Kayıtlar,Tenbonusları veçevrimdışıoyun korunur.

@@ -1,0 +1,380 @@
+{
+  "baseVersion": "1.82.0",
+  "baseGame": "aa429229c58cf3b5429d2c38030a6c3d3ac4455375c9c46de83d87dfe9a3a056",
+  "gameSha256": "da4cd47813ec24e9d62741cdb385131e8f6d706708da15b2f1becf1e1eca3442",
+  "edits": [
+    [
+      "const MAX_LEVEL25=150,",
+      "const MAX_LEVEL25=200,"
+    ],
+    [
+      "player.level=clamp(player.level||1,1,150)",
+      "player.level=clamp(player.level||1,1,200)"
+    ],
+    [
+      "player.level=clamp(Math.floor(Number(player.level)||1),1,150)",
+      "player.level=clamp(Math.floor(Number(player.level)||1),1,200)"
+    ],
+    [
+      "s.player.level<=150",
+      "s.player.level<=200"
+    ],
+    [
+      "player.level=Math.min(150,player.level);if(player.level>=150)player.xp=0",
+      "player.level=Math.min(200,player.level);if(player.level>=200)player.xp=0"
+    ],
+    [
+      "function xp(amount){if(net.source==='guest'){lanSend({type:'reward',xp:amount});return;}if(player.level>=150)return;player.xp+=amount;let up=false;while(player.level<150&&player.xp>=xpNeed()){player.xp-=xpNeed();player.level++;player.points++;up=true;}if(player.level>=150)player.xp=0;if(up){toast('¡Nivel '+player.level+'! Tus ataques son más fuertes.');burst(player.x,player.y-40,35,'#c3ff8a');tone(880,.35); }save();}",
+      "function xp(amount){if(net.source==='guest'){lanSend({type:'reward',xp:amount});return;}if(player.level>=200)return;player.xp+=amount;let up=false;while(player.level<200&&player.xp>=xpNeed()){player.xp-=xpNeed();player.level++;player.points++;up=true;}if(player.level>=200)player.xp=0;if(up){toast('¡Nivel '+player.level+'! Tus ataques son más fuertes.');burst(player.x,player.y-40,35,'#c3ff8a');tone(880,.35); }save();}"
+    ],
+    [
+      "const xpBefore116=xp;xp=function(amount){if(!CREATOR116&&player.level>=150){player.xp=0;return;}const r=xpBefore116(amount);if(!CREATOR116&&player.level>=150){player.level=150;player.xp=0;}return r;};",
+      "const xpBefore116=xp;xp=function(amount){if(!CREATOR116&&player.level>=200){player.xp=0;return;}const r=xpBefore116(amount);if(!CREATOR116&&player.level>=200){player.level=200;player.xp=0;}return r;};"
+    ],
+    [
+      "function claimPatrol158(){const q=patrol158();if(zone!==ALLEY158||!solo158()||q.state!=='return'||q.kills.length!==4)return false;q.state='idle';q.completions++;let amount=0;if(player.level>=120&&player.level<150){const remaining=Math.max(0,xpNeed()-player.xp);amount=q.turn===2?remaining:Math.floor(remaining/(3-q.turn));q.turn=(q.turn+1)%3;if(amount>0)xp(amount);}else q.turn=0;enemies=enemies.filter(e=>!e.quest158);save();return amount;}",
+      "function claimPatrol158(){const q=patrol158();if(zone!==ALLEY158||!solo158()||q.state!=='return'||q.kills.length!==4)return false;q.state='idle';q.completions++;let amount=0;if(player.level>=120&&player.level<200){const remaining=Math.max(0,xpNeed()-player.xp);amount=q.turn===2?remaining:Math.floor(remaining/(3-q.turn));q.turn=(q.turn+1)%3;if(amount>0)xp(amount);}else q.turn=0;enemies=enemies.filter(e=>!e.quest158);save();return amount;}"
+    ],
+    [
+      "function claimStory158(){const q=story158();if(zone!==NIGHT155||!solo158()||player.level<89||q.claimed||q.stage!==6)return false;q.claimed=true;q.stage=7;let levels=0;while(levels<3&&player.level<150){xp(Math.max(1,xpNeed()-player.xp));levels++;}save();toast('+'+levels+' '+L148('niveles','levels','níveis','seviye'));return levels;}",
+      "function claimStory158(){const q=story158();if(zone!==NIGHT155||!solo158()||player.level<89||q.claimed||q.stage!==6)return false;q.claimed=true;q.stage=7;let levels=0;while(levels<3&&player.level<200){xp(Math.max(1,xpNeed()-player.xp));levels++;}save();toast('+'+levels+' '+L148('niveles','levels','níveis','seviye'));return levels;}"
+    ],
+    [
+      "function claimStory170(){const q=story170();if(zone!==NIGHT155||!canStory170()||q.stage!==6||q.claimed)return false;q.claimed=true;q.stage=7;let n=0;while(n<3&&player.level<150){xp(Math.max(1,xpNeed()-player.xp));n++;}save();return n;}",
+      "function claimStory170(){const q=story170();if(zone!==NIGHT155||!canStory170()||q.stage!==6||q.claimed)return false;q.claimed=true;q.stage=7;let n=0;while(n<3&&player.level<200){xp(Math.max(1,xpNeed()-player.xp));n++;}save();return n;}"
+    ],
+    [
+      "Number(id===race?player.level:profiles[id]?.player?.level)||1),1,150)",
+      "Number(id===race?player.level:profiles[id]?.player?.level)||1),1,200)"
+    ],
+    [
+      "const equipBefore115=equipWatch73;equipWatch73=function(id){if(id==='recalibrated115'&&player.level<150){toast(words97('Requiere nivel 150','Requires level 150','Requer nível 150','150. seviye gerekli'));return false;}const oldCap=omniCap53(),ratio=player.battery/oldCap;const ok=equipBefore115(id);if(ok){player.watchOpen=false;player.selected=id==='recalibrated115'?SWAMP115:player.selected===SWAMP115?'heatblast':player.selected;player.battery=clamp(ratio*omniCap53(),0,omniCap53());stop115('open');stop115('turn');hud();save();}return ok;};",
+      "const equipBefore115=equipWatch73;equipWatch73=function(id){if(id==='recalibrated115'&&player.level<145){toast(words97('Requiere nivel 150','Requires level 150','Requer nível 150','150. seviye gerekli'));return false;}const oldCap=omniCap53(),ratio=player.battery/oldCap;const ok=equipBefore115(id);if(ok){player.watchOpen=false;player.selected=id==='recalibrated115'?SWAMP115:player.selected===SWAMP115?'heatblast':player.selected;player.battery=clamp(ratio*omniCap53(),0,omniCap53());stop115('open');stop115('turn');hud();save();}return ok;};"
+    ],
+    [
+      "const equipBefore116=equipWatch73;equipWatch73=function(id){if(id==='recalibrated115'&&player.level<150){toast(words97('Bloqueado: todavía no se puede conseguir con Max Tennyson.','Locked: cannot be obtained from Max Tennyson yet.','Bloqueado: ainda não pode ser obtido com Max Tennyson.','Kilitli: henüz Max Tennyson’dan alınamaz.'));return false;}return equipBefore116(id);};",
+      "const equipBefore116=equipWatch73;equipWatch73=function(id){if(id==='recalibrated115'&&player.level<145){toast(words97('Bloqueado: todavía no se puede conseguir con Max Tennyson.','Locked: cannot be obtained from Max Tennyson yet.','Bloqueado: ainda não pode ser obtido com Max Tennyson.','Kilitli: henüz Max Tennyson’dan alınamaz.'));return false;}return equipBefore116(id);};"
+    ],
+    [
+      "if(recal115()&&player.level<150)player.equippedWatch73='original'",
+      "if(recal115()&&player.level<145)player.equippedWatch73='original'"
+    ],
+    [
+      "if(player.level<150&&player.equippedWatch73==='recalibrated115')",
+      "if(player.level<145&&player.equippedWatch73==='recalibrated115')"
+    ],
+    [
+      "if(player.level<150&&recal115()){player.equippedWatch73='original'",
+      "if(player.level<145&&recal115()){player.equippedWatch73='original'"
+    ],
+    [
+      "id==='original'?1:150",
+      "id==='original'?1:145"
+    ],
+    [
+      "showDialog('MAX TENNYSON · ALIEN FORCE',words97('Inventario de Omnitrix','Omnitrix inventory','Inventário de Omnitrix','Omnitrix envanteri'),'<div data-no-i18n class=\"watches115\">'+ids.map(id=>'<section><canvas data-watch115=\"'+id+'\" width=\"180\" height=\"160\"></canvas><h3>'+watchName115(id)+'</h3><p>'+words97('Requisito: nivel','Requirement: level','Requisito: nível','Gereken seviye')+' '+(id==='original'?1:145)+'</p><p>'+(id==='original'?words97('Tus ADN y mejoras se conservan.','Your DNA and upgrades are retained.','Seu DNA e melhorias são mantidos.','DNA ve yükseltmelerin korunur.'):(!CREATOR116?words97('Se obtiene con Max Tennyson al nivel 150.','Obtain it from Max Tennyson at level 150.','Obtido com Max Tennyson no nível 150.','150. seviyede Max Tennyson’dan alınır.')+'<br>':'')+words97('Fuego Pantanoso · 200 batería · 180 s · recarga 60 s','Swampfire · 200 battery · 180 s · 60 s recharge','Fogo Fátuo · 200 bateria · 180 s · recarga 60 s','Bataklık Ateşi · 200 pil · 180 sn · 60 sn şarj'))+'</p><button data-equip115=\"'+id+'\" '+(player.level<(id==='original'?1:145)||id==='recalibrated115'&&player.level<150?'disabled':'')+'>'+(id==='recalibrated115'&&player.level<150?words97('BLOQUEADO','LOCKED','BLOQUEADO','KİLİTLİ'):player.equippedWatch73===id?words97('EQUIPADO','EQUIPPED','EQUIPADO','TAKILI'):label)+'</button></section>').join('')+'</div>',[[words97('DESEQUIPAR','UNEQUIP','DESEQUIPAR','ÇIKAR'),()=>{if(equipWatch73(null))watchInventory73();}],[words97('VOLVER','BACK','VOLTAR','GERİ'),maxTalk58],[words97('CERRAR','CLOSE','FECHAR','KAPAT'),closeDialog]]);",
+      "showDialog('MAX TENNYSON · ALIEN FORCE',words97('Inventario de Omnitrix','Omnitrix inventory','Inventário de Omnitrix','Omnitrix envanteri'),'<div data-no-i18n class=\"watches115\">'+ids.map(id=>'<section><canvas data-watch115=\"'+id+'\" width=\"180\" height=\"160\"></canvas><h3>'+watchName115(id)+'</h3><p>'+words97('Requisito: nivel','Requirement: level','Requisito: nível','Gereken seviye')+' '+(id==='original'?1:145)+'</p><p>'+(id==='original'?words97('Tus ADN y mejoras se conservan.','Your DNA and upgrades are retained.','Seu DNA e melhorias são mantidos.','DNA ve yükseltmelerin korunur.'):(!CREATOR116?words97('Se obtiene con Max Tennyson al nivel 145.','Obtain it from Max Tennyson at level 145.','Obtido com Max Tennyson no nível 145.','145. seviyede Max Tennyson’dan alınır.')+'<br>':'')+words97('Fuego Pantanoso · 200 batería · 180 s · recarga 60 s','Swampfire · 200 battery · 180 s · 60 s recharge','Fogo Fátuo · 200 bateria · 180 s · recarga 60 s','Bataklık Ateşi · 200 pil · 180 sn · 60 sn şarj'))+'</p><button data-equip115=\"'+id+'\" '+(player.level<(id==='original'?1:145)||id==='recalibrated115'&&player.level<145?'disabled':'')+'>'+(id==='recalibrated115'&&player.level<145?words97('BLOQUEADO','LOCKED','BLOQUEADO','KİLİTLİ'):player.equippedWatch73===id?words97('EQUIPADO','EQUIPPED','EQUIPADO','TAKILI'):label)+'</button></section>').join('')+'</div>',[[words97('DESEQUIPAR','UNEQUIP','DESEQUIPAR','ÇIKAR'),()=>{if(equipWatch73(null))watchInventory73();}],[words97('VOLVER','BACK','VOLTAR','GERİ'),maxTalk58],[words97('CERRAR','CLOSE','FECHAR','KAPAT'),closeDialog]]);"
+    ],
+    [
+      "icon:'assets/recal115/ui.png',level:150",
+      "icon:'assets/recal115/ui.png',level:145"
+    ],
+    [
+      "id==='cerebron154'?",
+      "id==='fourarmsaf187'?fourOwned187(omni):id==='cerebron154'?"
+    ],
+    [
+      "else if((a.kind==='player'||a.kind==='remote')&&drawShipActor134(o)){}",
+      "else if((a.kind==='player'||a.kind==='remote')&&draw187Actor(o)){}\n else if((a.kind==='player'||a.kind==='remote')&&drawShipActor134(o)){}"
+    ],
+    [
+      "Nivel máximo 150",
+      "Nivel máximo 200"
+    ],
+    [
+      "Maximum level 150",
+      "Maximum level 200"
+    ],
+    [
+      "Nível máximo 150",
+      "Nível máximo 200"
+    ],
+    [
+      "En yüksek seviye 150",
+      "En yüksek seviye 200"
+    ],
+    [
+      "function patrolMenu158(){const q=patrol158();showDialog(T158('monkey'),T158('patrol'),'<div data-no-i18n><p>'+L148('Derrota las cuatro variantes del barrio: 40 000 HP y 200 de daño por ataque. Tres entregas completan un nivel entre 120 y 150; a partir de 150 no se entrega XP. Misión individual.','Defeat the four neighborhood variants: 40,000 HP and 200 damage per attack. Three turn-ins complete a level from 120 to 150; no XP at 150 or higher. Solo mission.','Derrote as quatro variantes do bairro: 40.000 HP e 200 de dano por ataque. Três entregas completam um nível entre 120 e 150; sem XP a partir de 150. Missão individual.','Mahallenin dört türünü yen: 40.000 can ve saldırı başına 200 hasar. 120–150 arasında üç teslim bir seviye tamamlar; 150 ve üstünde XP yok. Tek kişilik görev.')+'</p><p>'+q.kills.length+'/4 · '+q.turn+'/3</p></div>',[[q.state==='return'?L148('ENTREGAR','TURN IN','ENTREGAR','TESLİM ET'):q.state==='active'?T158('continue'):L148('INICIAR','START','INICIAR','BAŞLAT'),()=>{if(q.state==='return'){claimPatrol158();patrolMenu158();}else if(q.state==='active')closeDialog();else if(!startPatrol158())toast(L148('Requiere nivel 120–150 y modo individual.','Requires level 120–150 and solo mode.','Requer nível 120–150 e modo individual.','120–150 seviyesi ve tek kişilik mod gerekir.'));}],[T158('close'),closeDialog]]);}",
+      "function patrolMenu158(){const q=patrol158();showDialog(T158('monkey'),T158('patrol'),'<div data-no-i18n><p>'+L148('Derrota las cuatro variantes del barrio: 40 000 HP y 200 de daño por ataque. Tres entregas completan un nivel entre 120 y 200; a partir de 200 no se entrega XP. Misión individual.','Defeat the four neighborhood variants: 40,000 HP and 200 damage per attack. Three turn-ins complete a level from 120 to 200; no XP at 200 or higher. Solo mission.','Derrote as quatro variantes do bairro: 40.000 HP e 200 de dano por ataque. Três entregas completam um nível entre 120 e 200; sem XP a partir de 200. Missão individual.','Mahallenin dört türünü yen: 40.000 can ve saldırı başına 200 hasar. 120–200 arasında üç teslim bir seviye tamamlar; 200 ve üstünde XP yok. Tek kişilik görev.')+'</p><p>'+q.kills.length+'/4 · '+q.turn+'/3</p></div>',[[q.state==='return'?L148('ENTREGAR','TURN IN','ENTREGAR','TESLİM ET'):q.state==='active'?T158('continue'):L148('INICIAR','START','INICIAR','BAŞLAT'),()=>{if(q.state==='return'){claimPatrol158();patrolMenu158();}else if(q.state==='active')closeDialog();else if(!startPatrol158())toast(L148('Requiere nivel 120–200 y modo individual.','Requires level 120–200 and solo mode.','Requer nível 120–200 e modo individual.','120–200 seviyesi ve tek kişilik mod gerekir.'));}],[T158('close'),closeDialog]]);}"
+    ],
+    [
+      "function tenMenu158(){const q=story158();showDialog('TEN AF',T158('episode'),'<div data-no-i18n><p>'+L148(...text158.objectives[q.stage])+'</p><p>'+L148('Grabación, investigación, sabotaje y emboscada. Recompensa única: 3 niveles; límite global 150. Tu raza, Omnitrix y desbloqueos se conservan.','Recording, investigation, sabotage and ambush. One-time reward: 3 levels; global cap 150. Your race, Omnitrix and unlocks are preserved.','Gravação, investigação, sabotagem e emboscada. Recompensa única: 3 níveis; limite global 150. Sua raça, Omnitrix e desbloqueios são preservados.','Kayıt, araştırma, sabotaj ve pusu. Tek seferlik ödül: 3 seviye; genel sınır 150. Irkın, Omnitrix’in ve açtıkların korunur.')+'</p><p>'+L148('Parte 2 · Disponible en el menú de Ten AF','Part 2 · Available in Ten AF’s menu','Parte 2 · Disponível no menu de Ten AF','Bölüm 2 · Ten AF menüsünde mevcut')+'</p></div>',[...(!q.claimed?[[q.stage===6?L148('RECIBIR 3 NIVELES','CLAIM 3 LEVELS','RECEBER 3 NÍVEIS','3 SEVİYE AL'):q.stage?T158('continue'):L148('INICIAR HISTORIA','START STORY','INICIAR HISTÓRIA','HİKÂYEYİ BAŞLAT'),()=>{if(q.stage===6){claimStory158();tenMenu158();}else if(!startStory158())toast(L148('Sal de la sala para jugar esta historia.','Leave the room to play this story.','Saia da sala para jogar esta história.','Hikâyeyi oynamak için odadan ayrıl.'));}]]:text158.films.map((_,i)=>[L148('RECORDAR ESCENA','REPLAY SCENE','REVER CENA','SAHNEYİ İZLE')+' '+(i+1),()=>film158(i,tenMenu158)])),[T158('close'),closeDialog]]);}",
+      "function tenMenu158(){const q=story158();showDialog('TEN AF',T158('episode'),'<div data-no-i18n><p>'+L148(...text158.objectives[q.stage])+'</p><p>'+L148('Grabación, investigación, sabotaje y emboscada. Recompensa única: 3 niveles; límite global 200. Tu raza, Omnitrix y desbloqueos se conservan.','Recording, investigation, sabotage and ambush. One-time reward: 3 levels; global cap 200. Your race, Omnitrix and unlocks are preserved.','Gravação, investigação, sabotagem e emboscada. Recompensa única: 3 níveis; limite global 200. Sua raça, Omnitrix e desbloqueios são preservados.','Kayıt, araştırma, sabotaj ve pusu. Tek seferlik ödül: 3 seviye; genel sınır 200. Irkın, Omnitrix’in ve açtıkların korunur.')+'</p><p>'+L148('Parte 2 · Disponible en el menú de Ten AF','Part 2 · Available in Ten AF’s menu','Parte 2 · Disponível no menu de Ten AF','Bölüm 2 · Ten AF menüsünde mevcut')+'</p></div>',[...(!q.claimed?[[q.stage===6?L148('RECIBIR 3 NIVELES','CLAIM 3 LEVELS','RECEBER 3 NÍVEIS','3 SEVİYE AL'):q.stage?T158('continue'):L148('INICIAR HISTORIA','START STORY','INICIAR HISTÓRIA','HİKÂYEYİ BAŞLAT'),()=>{if(q.stage===6){claimStory158();tenMenu158();}else if(!startStory158())toast(L148('Sal de la sala para jugar esta historia.','Leave the room to play this story.','Saia da sala para jogar esta história.','Hikâyeyi oynamak için odadan ayrıl.'));}]]:text158.films.map((_,i)=>[L148('RECORDAR ESCENA','REPLAY SCENE','REVER CENA','SAHNEYİ İZLE')+' '+(i+1),()=>film158(i,tenMenu158)])),[T158('close'),closeDialog]]);}"
+    ]
+  ],
+  "files": [
+    {
+      "path": "content187/atlas.json",
+      "bytes": 2015,
+      "sha256": "76b19f860c24bcdac71be43388dc30035dbe0394d3add45703d4c886f9d69e50",
+      "encoding": "base64",
+      "parts": [
+        "assets64/atlas.json.000.b64"
+      ]
+    },
+    {
+      "path": "content187/four-transform.mp4",
+      "bytes": 1221554,
+      "sha256": "06503cf9b14c8a2b00478f25a10e59aff46719bd6b073bdbef9a79eb5ea5eac5",
+      "encoding": "base64",
+      "parts": [
+        "assets64/four-transform.mp4.000.b64",
+        "assets64/four-transform.mp4.001.b64",
+        "assets64/four-transform.mp4.002.b64",
+        "assets64/four-transform.mp4.003.b64",
+        "assets64/four-transform.mp4.004.b64",
+        "assets64/four-transform.mp4.005.b64",
+        "assets64/four-transform.mp4.006.b64",
+        "assets64/four-transform.mp4.007.b64",
+        "assets64/four-transform.mp4.008.b64",
+        "assets64/four-transform.mp4.009.b64",
+        "assets64/four-transform.mp4.010.b64",
+        "assets64/four-transform.mp4.011.b64",
+        "assets64/four-transform.mp4.012.b64",
+        "assets64/four-transform.mp4.013.b64",
+        "assets64/four-transform.mp4.014.b64",
+        "assets64/four-transform.mp4.015.b64",
+        "assets64/four-transform.mp4.016.b64",
+        "assets64/four-transform.mp4.017.b64",
+        "assets64/four-transform.mp4.018.b64",
+        "assets64/four-transform.mp4.019.b64",
+        "assets64/four-transform.mp4.020.b64",
+        "assets64/four-transform.mp4.021.b64",
+        "assets64/four-transform.mp4.022.b64",
+        "assets64/four-transform.mp4.023.b64",
+        "assets64/four-transform.mp4.024.b64",
+        "assets64/four-transform.mp4.025.b64",
+        "assets64/four-transform.mp4.026.b64",
+        "assets64/four-transform.mp4.027.b64",
+        "assets64/four-transform.mp4.028.b64",
+        "assets64/four-transform.mp4.029.b64",
+        "assets64/four-transform.mp4.030.b64",
+        "assets64/four-transform.mp4.031.b64",
+        "assets64/four-transform.mp4.032.b64",
+        "assets64/four-transform.mp4.033.b64"
+      ]
+    },
+    {
+      "path": "content187/four.webp",
+      "bytes": 1825422,
+      "sha256": "9469c85365d963cfe8439a55204b269ea898cec0865502e7827a02471f112d09",
+      "encoding": "base64",
+      "parts": [
+        "assets64/four.webp.000.b64",
+        "assets64/four.webp.001.b64",
+        "assets64/four.webp.002.b64",
+        "assets64/four.webp.003.b64",
+        "assets64/four.webp.004.b64",
+        "assets64/four.webp.005.b64",
+        "assets64/four.webp.006.b64",
+        "assets64/four.webp.007.b64",
+        "assets64/four.webp.008.b64",
+        "assets64/four.webp.009.b64",
+        "assets64/four.webp.010.b64",
+        "assets64/four.webp.011.b64",
+        "assets64/four.webp.012.b64",
+        "assets64/four.webp.013.b64",
+        "assets64/four.webp.014.b64",
+        "assets64/four.webp.015.b64",
+        "assets64/four.webp.016.b64",
+        "assets64/four.webp.017.b64",
+        "assets64/four.webp.018.b64",
+        "assets64/four.webp.019.b64",
+        "assets64/four.webp.020.b64",
+        "assets64/four.webp.021.b64",
+        "assets64/four.webp.022.b64",
+        "assets64/four.webp.023.b64",
+        "assets64/four.webp.024.b64",
+        "assets64/four.webp.025.b64",
+        "assets64/four.webp.026.b64",
+        "assets64/four.webp.027.b64",
+        "assets64/four.webp.028.b64",
+        "assets64/four.webp.029.b64",
+        "assets64/four.webp.030.b64",
+        "assets64/four.webp.031.b64",
+        "assets64/four.webp.032.b64",
+        "assets64/four.webp.033.b64",
+        "assets64/four.webp.034.b64",
+        "assets64/four.webp.035.b64",
+        "assets64/four.webp.036.b64",
+        "assets64/four.webp.037.b64",
+        "assets64/four.webp.038.b64",
+        "assets64/four.webp.039.b64",
+        "assets64/four.webp.040.b64",
+        "assets64/four.webp.041.b64",
+        "assets64/four.webp.042.b64",
+        "assets64/four.webp.043.b64",
+        "assets64/four.webp.044.b64",
+        "assets64/four.webp.045.b64",
+        "assets64/four.webp.046.b64",
+        "assets64/four.webp.047.b64",
+        "assets64/four.webp.048.b64",
+        "assets64/four.webp.049.b64",
+        "assets64/four.webp.050.b64"
+      ]
+    },
+    {
+      "path": "content187/gwen.webp",
+      "bytes": 1305322,
+      "sha256": "2fd8004ae249e9572d9f5d3717e96f82dbe247e8edc14ea5ede972a74e251619",
+      "encoding": "base64",
+      "parts": [
+        "assets64/gwen.webp.000.b64",
+        "assets64/gwen.webp.001.b64",
+        "assets64/gwen.webp.002.b64",
+        "assets64/gwen.webp.003.b64",
+        "assets64/gwen.webp.004.b64",
+        "assets64/gwen.webp.005.b64",
+        "assets64/gwen.webp.006.b64",
+        "assets64/gwen.webp.007.b64",
+        "assets64/gwen.webp.008.b64",
+        "assets64/gwen.webp.009.b64",
+        "assets64/gwen.webp.010.b64",
+        "assets64/gwen.webp.011.b64",
+        "assets64/gwen.webp.012.b64",
+        "assets64/gwen.webp.013.b64",
+        "assets64/gwen.webp.014.b64",
+        "assets64/gwen.webp.015.b64",
+        "assets64/gwen.webp.016.b64",
+        "assets64/gwen.webp.017.b64",
+        "assets64/gwen.webp.018.b64",
+        "assets64/gwen.webp.019.b64",
+        "assets64/gwen.webp.020.b64",
+        "assets64/gwen.webp.021.b64",
+        "assets64/gwen.webp.022.b64",
+        "assets64/gwen.webp.023.b64",
+        "assets64/gwen.webp.024.b64",
+        "assets64/gwen.webp.025.b64",
+        "assets64/gwen.webp.026.b64",
+        "assets64/gwen.webp.027.b64",
+        "assets64/gwen.webp.028.b64",
+        "assets64/gwen.webp.029.b64",
+        "assets64/gwen.webp.030.b64",
+        "assets64/gwen.webp.031.b64",
+        "assets64/gwen.webp.032.b64",
+        "assets64/gwen.webp.033.b64",
+        "assets64/gwen.webp.034.b64",
+        "assets64/gwen.webp.035.b64",
+        "assets64/gwen.webp.036.b64"
+      ]
+    },
+    {
+      "path": "content187/holo.webp",
+      "bytes": 1145486,
+      "sha256": "d4d27c4568dbbacac6496bba5f735a676a7277c7b447f67e9a5a584344622294",
+      "encoding": "base64",
+      "parts": [
+        "assets64/holo.webp.000.b64",
+        "assets64/holo.webp.001.b64",
+        "assets64/holo.webp.002.b64",
+        "assets64/holo.webp.003.b64",
+        "assets64/holo.webp.004.b64",
+        "assets64/holo.webp.005.b64",
+        "assets64/holo.webp.006.b64",
+        "assets64/holo.webp.007.b64",
+        "assets64/holo.webp.008.b64",
+        "assets64/holo.webp.009.b64",
+        "assets64/holo.webp.010.b64",
+        "assets64/holo.webp.011.b64",
+        "assets64/holo.webp.012.b64",
+        "assets64/holo.webp.013.b64",
+        "assets64/holo.webp.014.b64",
+        "assets64/holo.webp.015.b64",
+        "assets64/holo.webp.016.b64",
+        "assets64/holo.webp.017.b64",
+        "assets64/holo.webp.018.b64",
+        "assets64/holo.webp.019.b64",
+        "assets64/holo.webp.020.b64",
+        "assets64/holo.webp.021.b64",
+        "assets64/holo.webp.022.b64",
+        "assets64/holo.webp.023.b64",
+        "assets64/holo.webp.024.b64",
+        "assets64/holo.webp.025.b64",
+        "assets64/holo.webp.026.b64",
+        "assets64/holo.webp.027.b64",
+        "assets64/holo.webp.028.b64",
+        "assets64/holo.webp.029.b64",
+        "assets64/holo.webp.030.b64",
+        "assets64/holo.webp.031.b64"
+      ]
+    },
+    {
+      "path": "content187/vfx.webp",
+      "bytes": 1917052,
+      "sha256": "9e7a8f294ed74dbbfd65f17dd9384c24bd0493875b5ce082d549f3becc01ee3f",
+      "encoding": "base64",
+      "parts": [
+        "assets64/vfx.webp.000.b64",
+        "assets64/vfx.webp.001.b64",
+        "assets64/vfx.webp.002.b64",
+        "assets64/vfx.webp.003.b64",
+        "assets64/vfx.webp.004.b64",
+        "assets64/vfx.webp.005.b64",
+        "assets64/vfx.webp.006.b64",
+        "assets64/vfx.webp.007.b64",
+        "assets64/vfx.webp.008.b64",
+        "assets64/vfx.webp.009.b64",
+        "assets64/vfx.webp.010.b64",
+        "assets64/vfx.webp.011.b64",
+        "assets64/vfx.webp.012.b64",
+        "assets64/vfx.webp.013.b64",
+        "assets64/vfx.webp.014.b64",
+        "assets64/vfx.webp.015.b64",
+        "assets64/vfx.webp.016.b64",
+        "assets64/vfx.webp.017.b64",
+        "assets64/vfx.webp.018.b64",
+        "assets64/vfx.webp.019.b64",
+        "assets64/vfx.webp.020.b64",
+        "assets64/vfx.webp.021.b64",
+        "assets64/vfx.webp.022.b64",
+        "assets64/vfx.webp.023.b64",
+        "assets64/vfx.webp.024.b64",
+        "assets64/vfx.webp.025.b64",
+        "assets64/vfx.webp.026.b64",
+        "assets64/vfx.webp.027.b64",
+        "assets64/vfx.webp.028.b64",
+        "assets64/vfx.webp.029.b64",
+        "assets64/vfx.webp.030.b64",
+        "assets64/vfx.webp.031.b64",
+        "assets64/vfx.webp.032.b64",
+        "assets64/vfx.webp.033.b64",
+        "assets64/vfx.webp.034.b64",
+        "assets64/vfx.webp.035.b64",
+        "assets64/vfx.webp.036.b64",
+        "assets64/vfx.webp.037.b64",
+        "assets64/vfx.webp.038.b64",
+        "assets64/vfx.webp.039.b64",
+        "assets64/vfx.webp.040.b64",
+        "assets64/vfx.webp.041.b64",
+        "assets64/vfx.webp.042.b64",
+        "assets64/vfx.webp.043.b64",
+        "assets64/vfx.webp.044.b64",
+        "assets64/vfx.webp.045.b64",
+        "assets64/vfx.webp.046.b64",
+        "assets64/vfx.webp.047.b64",
+        "assets64/vfx.webp.048.b64",
+        "assets64/vfx.webp.049.b64",
+        "assets64/vfx.webp.050.b64",
+        "assets64/vfx.webp.051.b64",
+        "assets64/vfx.webp.052.b64",
+        "assets64/vfx.webp.053.b64"
+      ]
+    },
+    {
+      "path": "game-entry147.html",
+      "bytes": 8264,
+      "sha256": "c6a9387474481c71e8797ac86ec149180bcd84655ae06745235effd3054ff44d",
+      "source": "game-entry147.html"
+    }
+  ]
+}

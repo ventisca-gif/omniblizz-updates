@@ -32,6 +32,8 @@ jobs:
         run: python3 build-tools/assemble185.py
       - name: Reconstruct verified Original1.82 Namek
         run: python3 build-tools/assemble186.py
+      - name: Reconstruct verified Original1.83 Anodite and Four Arms AF
+        run: python3 build-tools/assemble187.py
       - name: Validate signature and prepare release
         id: prepare
         shell: bash
