@@ -1,0 +1,279 @@
+{
+  "baseGame": "d1c9b1e373342358daded4bbe4d459699de029dae6927993dc82b5cfe67ed5a0",
+  "gameSha256": "c91ab75867236e605857eb513832f6c1b1f6e17bf3edd6b4a6afc1cd79988163",
+  "renderNeedle": "else if(a.kind==='player'&&sys148())",
+  "renderReplacement": "else if(a.kind==='player'&&(fourForm187()||gwenForm187())){draw187Actor(player);}\n else if(a.kind==='player'&&sys148())",
+  "files": [
+    {
+      "path": "game-entry147.html",
+      "bytes": 8264,
+      "sha256": "e181faff2e8e25d54a0c9bc1c33b60ca1b0fa709b72ecd6afe72700cbacde782",
+      "mime": "text/html",
+      "offset": 3338978,
+      "pack": "632f8dcd19a41880a3e9adf54e31ae21329e3324daa7927adee87683afaed425",
+      "source": "game-entry147.html"
+    },
+    {
+      "path": "content190/anodite-frame.svg",
+      "bytes": 1025,
+      "sha256": "2e440f5c97a58827e935bee15b9ac99eb921015728f9f0ae36072e08033ba79a",
+      "mime": "image/svg+xml",
+      "offset": 3347242,
+      "pack": "632f8dcd19a41880a3e9adf54e31ae21329e3324daa7927adee87683afaed425",
+      "source": "content190/anodite-frame.svg"
+    },
+    {
+      "path": "content190/anodite-joy.svg",
+      "bytes": 2802,
+      "sha256": "17534a0a1f690a94c0f481659e89fbd2c032e80e43013d373c72a0fd74aa86ab",
+      "mime": "image/svg+xml",
+      "offset": 3348267,
+      "pack": "632f8dcd19a41880a3e9adf54e31ae21329e3324daa7927adee87683afaed425",
+      "source": "content190/anodite-joy.svg"
+    },
+    {
+      "path": "content190/atlas.json",
+      "bytes": 1491,
+      "sha256": "5cf90dccfc2b5b4ece37169f91117a8381456ace4e638ece61c8d1a088e6f5c8",
+      "mime": "application/json",
+      "offset": 3351069,
+      "pack": "632f8dcd19a41880a3e9adf54e31ae21329e3324daa7927adee87683afaed425",
+      "source": "content190/atlas.json"
+    },
+    {
+      "path": "content190/four.webp",
+      "bytes": 1210246,
+      "sha256": "0c0f670367a3f9cf810e3bbf3ace5c0db4e5f26353ef2035adb91602d1671920",
+      "mime": "image/webp",
+      "offset": 3352560,
+      "pack": "632f8dcd19a41880a3e9adf54e31ae21329e3324daa7927adee87683afaed425",
+      "source": "content190/four.webp"
+    },
+    {
+      "path": "content190/hud.css",
+      "bytes": 13294,
+      "sha256": "63bd331e9f71a31fef6f2fc6e8bc21f3808492387f86c84e6ec27304dc674549",
+      "mime": "text/css",
+      "offset": 4562806,
+      "pack": "632f8dcd19a41880a3e9adf54e31ae21329e3324daa7927adee87683afaed425",
+      "source": "content190/hud.css"
+    },
+    {
+      "path": "content190/omni-frame.svg",
+      "bytes": 1025,
+      "sha256": "c0995e622c0d5efa33bc58e3085b39a6c10b96142ba98ac176e91bde07397ac7",
+      "mime": "image/svg+xml",
+      "offset": 4576100,
+      "pack": "632f8dcd19a41880a3e9adf54e31ae21329e3324daa7927adee87683afaed425",
+      "source": "content190/omni-frame.svg"
+    },
+    {
+      "path": "content190/omni-joy.svg",
+      "bytes": 2305,
+      "sha256": "823f8ac2e19038c0ceadda017b358fac96681f129b268649630e5428b41959bd",
+      "mime": "image/svg+xml",
+      "offset": 4577125,
+      "pack": "632f8dcd19a41880a3e9adf54e31ae21329e3324daa7927adee87683afaed425",
+      "source": "content190/omni-joy.svg"
+    },
+    {
+      "path": "content191/anodite-frame.svg",
+      "bytes": 2089,
+      "sha256": "049f08d5e5e227ab1fce80ad68b358fdc980f563b22948e99db730bd9ce6cbe9",
+      "mime": "image/svg+xml",
+      "offset": 4579430,
+      "pack": "632f8dcd19a41880a3e9adf54e31ae21329e3324daa7927adee87683afaed425",
+      "source": "content191/anodite-frame.svg"
+    },
+    {
+      "path": "content191/anodite-joy.svg",
+      "bytes": 6842,
+      "sha256": "d762864cd58a63c8e0ace5b711898f671e74bc1d70cf7d3ffc444ae578df2d87",
+      "mime": "image/svg+xml",
+      "offset": 4581519,
+      "pack": "632f8dcd19a41880a3e9adf54e31ae21329e3324daa7927adee87683afaed425",
+      "source": "content191/anodite-joy.svg"
+    },
+    {
+      "path": "content191/bolt.svg",
+      "bytes": 326,
+      "sha256": "06a73322f9c08536af6729d03cc7bd82202e81d50f203ae5a55f486a79eed7e4",
+      "mime": "image/svg+xml",
+      "offset": 4588361,
+      "pack": "632f8dcd19a41880a3e9adf54e31ae21329e3324daa7927adee87683afaed425",
+      "source": "content191/bolt.svg"
+    },
+    {
+      "path": "content191/clover.svg",
+      "bytes": 467,
+      "sha256": "e28afa430d9d7ecb1743f5064fbac9b89b3c43f9aff4ca4e110bd3c273046d3d",
+      "mime": "image/svg+xml",
+      "offset": 4588687,
+      "pack": "632f8dcd19a41880a3e9adf54e31ae21329e3324daa7927adee87683afaed425",
+      "source": "content191/clover.svg"
+    },
+    {
+      "path": "content191/hud.css",
+      "bytes": 34405,
+      "sha256": "53576c222b4e47a1dca768919e1ea31c48f3fbda1f431af3365369fa150a73f2",
+      "mime": "text/css",
+      "offset": 4589154,
+      "pack": "632f8dcd19a41880a3e9adf54e31ae21329e3324daa7927adee87683afaed425",
+      "source": "content191/hud.css"
+    },
+    {
+      "path": "content191/mana.svg",
+      "bytes": 371,
+      "sha256": "90dda9915ee58b1481086fb95aeb617b0edfb80a0d656272a78693bbdf1f6b54",
+      "mime": "image/svg+xml",
+      "offset": 4623559,
+      "pack": "632f8dcd19a41880a3e9adf54e31ae21329e3324daa7927adee87683afaed425",
+      "source": "content191/mana.svg"
+    },
+    {
+      "path": "content191/omni-frame.svg",
+      "bytes": 1283,
+      "sha256": "c24392db37f9ab86eea5899f2fbcbedb06950fee383377a0e92fab4875171282",
+      "mime": "image/svg+xml",
+      "offset": 4623930,
+      "pack": "632f8dcd19a41880a3e9adf54e31ae21329e3324daa7927adee87683afaed425",
+      "source": "content191/omni-frame.svg"
+    },
+    {
+      "path": "content191/omni-joy.svg",
+      "bytes": 2305,
+      "sha256": "823f8ac2e19038c0ceadda017b358fac96681f129b268649630e5428b41959bd",
+      "mime": "image/svg+xml",
+      "offset": 4625213,
+      "pack": "632f8dcd19a41880a3e9adf54e31ae21329e3324daa7927adee87683afaed425",
+      "source": "content191/omni-joy.svg"
+    },
+    {
+      "path": "content191/orb.svg",
+      "bytes": 514,
+      "sha256": "b0dc98af361084db9638021ddb4e33ae7a44d1134c1c6c6644771047c91f40a3",
+      "mime": "image/svg+xml",
+      "offset": 4627518,
+      "pack": "632f8dcd19a41880a3e9adf54e31ae21329e3324daa7927adee87683afaed425",
+      "source": "content191/orb.svg"
+    },
+    {
+      "path": "content191/shards.svg",
+      "bytes": 356,
+      "sha256": "9981c7eb03de1bfebd172078e7d171ffea1a2153d3eb5db253af3f7d8b67b886",
+      "mime": "image/svg+xml",
+      "offset": 4628032,
+      "pack": "632f8dcd19a41880a3e9adf54e31ae21329e3324daa7927adee87683afaed425",
+      "source": "content191/shards.svg"
+    },
+    {
+      "path": "content191/star.svg",
+      "bytes": 345,
+      "sha256": "e69090e9441146b1b94a7938c4dfcff99b20543a4af6498d833fb4ac5217acb9",
+      "mime": "image/svg+xml",
+      "offset": 4628388,
+      "pack": "632f8dcd19a41880a3e9adf54e31ae21329e3324daa7927adee87683afaed425",
+      "source": "content191/star.svg"
+    },
+    {
+      "path": "content192/anodite-frame.svg",
+      "bytes": 2089,
+      "sha256": "049f08d5e5e227ab1fce80ad68b358fdc980f563b22948e99db730bd9ce6cbe9",
+      "mime": "image/svg+xml",
+      "offset": 4628733,
+      "pack": "632f8dcd19a41880a3e9adf54e31ae21329e3324daa7927adee87683afaed425",
+      "source": "content192/anodite-frame.svg"
+    },
+    {
+      "path": "content192/anodite-joy.svg",
+      "bytes": 6842,
+      "sha256": "d762864cd58a63c8e0ace5b711898f671e74bc1d70cf7d3ffc444ae578df2d87",
+      "mime": "image/svg+xml",
+      "offset": 4630822,
+      "pack": "632f8dcd19a41880a3e9adf54e31ae21329e3324daa7927adee87683afaed425",
+      "source": "content192/anodite-joy.svg"
+    },
+    {
+      "path": "content192/bolt.svg",
+      "bytes": 326,
+      "sha256": "06a73322f9c08536af6729d03cc7bd82202e81d50f203ae5a55f486a79eed7e4",
+      "mime": "image/svg+xml",
+      "offset": 4637664,
+      "pack": "632f8dcd19a41880a3e9adf54e31ae21329e3324daa7927adee87683afaed425",
+      "source": "content192/bolt.svg"
+    },
+    {
+      "path": "content192/clover.svg",
+      "bytes": 467,
+      "sha256": "e28afa430d9d7ecb1743f5064fbac9b89b3c43f9aff4ca4e110bd3c273046d3d",
+      "mime": "image/svg+xml",
+      "offset": 4637990,
+      "pack": "632f8dcd19a41880a3e9adf54e31ae21329e3324daa7927adee87683afaed425",
+      "source": "content192/clover.svg"
+    },
+    {
+      "path": "content192/hud.css",
+      "bytes": 38262,
+      "sha256": "f3cca36da8640b7a4e74e0c13dcb5eee7e68f137e20ff956b69f50efe1e41747",
+      "mime": "text/css",
+      "offset": 4638457,
+      "pack": "632f8dcd19a41880a3e9adf54e31ae21329e3324daa7927adee87683afaed425",
+      "source": "content192/hud.css"
+    },
+    {
+      "path": "content192/mana.svg",
+      "bytes": 371,
+      "sha256": "90dda9915ee58b1481086fb95aeb617b0edfb80a0d656272a78693bbdf1f6b54",
+      "mime": "image/svg+xml",
+      "offset": 4676719,
+      "pack": "632f8dcd19a41880a3e9adf54e31ae21329e3324daa7927adee87683afaed425",
+      "source": "content192/mana.svg"
+    },
+    {
+      "path": "content192/omni-frame.svg",
+      "bytes": 1283,
+      "sha256": "c24392db37f9ab86eea5899f2fbcbedb06950fee383377a0e92fab4875171282",
+      "mime": "image/svg+xml",
+      "offset": 4677090,
+      "pack": "632f8dcd19a41880a3e9adf54e31ae21329e3324daa7927adee87683afaed425",
+      "source": "content192/omni-frame.svg"
+    },
+    {
+      "path": "content192/omni-joy.svg",
+      "bytes": 2305,
+      "sha256": "823f8ac2e19038c0ceadda017b358fac96681f129b268649630e5428b41959bd",
+      "mime": "image/svg+xml",
+      "offset": 4678373,
+      "pack": "632f8dcd19a41880a3e9adf54e31ae21329e3324daa7927adee87683afaed425",
+      "source": "content192/omni-joy.svg"
+    },
+    {
+      "path": "content192/orb.svg",
+      "bytes": 514,
+      "sha256": "b0dc98af361084db9638021ddb4e33ae7a44d1134c1c6c6644771047c91f40a3",
+      "mime": "image/svg+xml",
+      "offset": 4680678,
+      "pack": "632f8dcd19a41880a3e9adf54e31ae21329e3324daa7927adee87683afaed425",
+      "source": "content192/orb.svg"
+    },
+    {
+      "path": "content192/shards.svg",
+      "bytes": 356,
+      "sha256": "9981c7eb03de1bfebd172078e7d171ffea1a2153d3eb5db253af3f7d8b67b886",
+      "mime": "image/svg+xml",
+      "offset": 4681192,
+      "pack": "632f8dcd19a41880a3e9adf54e31ae21329e3324daa7927adee87683afaed425",
+      "source": "content192/shards.svg"
+    },
+    {
+      "path": "content192/star.svg",
+      "bytes": 345,
+      "sha256": "e69090e9441146b1b94a7938c4dfcff99b20543a4af6498d833fb4ac5217acb9",
+      "mime": "image/svg+xml",
+      "offset": 4681548,
+      "pack": "632f8dcd19a41880a3e9adf54e31ae21329e3324daa7927adee87683afaed425",
+      "source": "content192/star.svg"
+    }
+  ],
+  "newPack": "632f8dcd19a41880a3e9adf54e31ae21329e3324daa7927adee87683afaed425"
+}
