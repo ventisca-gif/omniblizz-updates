@@ -1,0 +1,39 @@
+{
+  "baseGame": "8836eca5ffce52e91d48f201f6ecfca13ac48b087bf1d05dc49555efde44d1f3",
+  "gameSha256": "17f7d41f64424ac970cf5adbaf7da08159775275994626a58f50e98f6b1078b2",
+  "newPack": "7ac0c8d132cb3636bf7479772f0928a96d46d97dad1d9b8c1ce189b3d053fcb1",
+  "files": [
+    {
+      "path": "game.js",
+      "bytes": 3345875,
+      "sha256": "17f7d41f64424ac970cf5adbaf7da08159775275994626a58f50e98f6b1078b2",
+      "mime": "text/javascript",
+      "offset": 0,
+      "pack": "7ac0c8d132cb3636bf7479772f0928a96d46d97dad1d9b8c1ce189b3d053fcb1"
+    },
+    {
+      "path": "game-entry147.html",
+      "bytes": 8264,
+      "sha256": "c0d1d18cbc3c442e2e2beb525494504b587f3fa463229ecbf4cb32dabbd63c65",
+      "mime": "text/html",
+      "offset": 3345875,
+      "pack": "7ac0c8d132cb3636bf7479772f0928a96d46d97dad1d9b8c1ce189b3d053fcb1"
+    },
+    {
+      "path": "cooking.js",
+      "bytes": 10300,
+      "sha256": "89829f9d38e8fb68944a15629b144b0e23b0a924072a6fb3017d216e11d147f0",
+      "mime": "text/javascript",
+      "offset": 3354139,
+      "pack": "7ac0c8d132cb3636bf7479772f0928a96d46d97dad1d9b8c1ce189b3d053fcb1"
+    },
+    {
+      "path": "rhythm.js",
+      "bytes": 12058,
+      "sha256": "aaa5b2213b6d19e0c19652e5fa6f8ec86c827d73136c9fd85e4fefc1a0b60888",
+      "mime": "text/javascript",
+      "offset": 3364439,
+      "pack": "7ac0c8d132cb3636bf7479772f0928a96d46d97dad1d9b8c1ce189b3d053fcb1"
+    }
+  ]
+}

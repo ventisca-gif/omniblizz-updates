@@ -42,6 +42,8 @@ jobs:
         run: python3 build-tools/assemble192.py
       - name: Reconstruct verified Original1.89 performance fixes
         run: python3 build-tools/assemble193.py
+      - name: Reconstruct verified Original1.90 deep performance fixes
+        run: python3 build-tools/assemble194.py
       - name: Validate signature and prepare release
         id: prepare
         shell: bash
