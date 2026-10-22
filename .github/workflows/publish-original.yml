@@ -2,7 +2,7 @@ name: Publish Original content
 on:
   push:
     branches: [main]
-    paths: ['releases/original/**']
+    paths: ['releases/original/**', 'build-tools/**', '.github/workflows/publish-original.yml']
   workflow_dispatch:
 permissions:
   contents: write

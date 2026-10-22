@@ -2,7 +2,7 @@ name: Publish OmniBlizz website
 on:
   push:
     branches: [main]
-    paths: ['website/**', '.github/workflows/pages.yml']
+    paths: ['website/**', 'build-tools/**', '.github/workflows/pages.yml']
   workflow_dispatch:
 permissions:
   contents: read

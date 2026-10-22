@@ -51,7 +51,12 @@ def sourceWeb(name,digest):
  if name.startswith('walk166/')and name.endswith('.png')or name in ['city164/buildings.png','city164/props.png','city164/paving.png']:names.append('play/'+name[:-4]+'.webp')
  for key in names:
   f=wf.get(key)
-  if f and f['sha256']==digest:return fetch(web['origin']+'/'+urllib.parse.quote(key,safe='/'),f['bytes'],digest)
+  if f and f['sha256']==digest:
+   localWeb=R/'website/static'/key
+   if localWeb.is_file():
+    b=localWeb.read_bytes()
+    if len(b)==f['bytes']and sha(b)==digest:return b
+   return fetch(web['origin']+'/'+urllib.parse.quote(key,safe='/'),f['bytes'],digest)
  raise AssertionError('No verified public baseline for '+name)
 def derive(f):
  name=f['path'];expected=f['sha256'];cached=cache/expected

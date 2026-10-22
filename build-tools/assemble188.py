@@ -13,6 +13,13 @@ def derive(f):
  s=f['source'];cached=D/('original-'+f['sha256']+'.bin')
  if cached.exists():
   b=cached.read_bytes();assert sha(b)==f['sha256']and len(b)==f['bytes'];return f['path'],b
+ # Reuse the already-published immutable bytes when available; the exact digest
+ # is the same one checked by the original pixel-equivalence proof below.
+ try:
+  url='https://github.com/ventisca-gif/omniblizz-updates/releases/download/v1.84.0/original-'+f['sha256']+'.bin'
+  with urllib.request.urlopen(urllib.request.Request(url,headers={'User-Agent':'OmniBlizz-content189','Accept-Encoding':'identity'}),timeout=30)as response:b=response.read(f['bytes']+1)
+  if len(b)==f['bytes']and sha(b)==f['sha256']:return f['path'],b
+ except Exception:pass
  if 'release'in s:original=(R/'releases/original'/s['release']/('original-'+s['sha256']+'.bin')).read_bytes()
  else:
   assert s['url'].startswith('https://omniblizz-ventisca-sergio.pokeventiscapoke.chatgpt.site/play/')
