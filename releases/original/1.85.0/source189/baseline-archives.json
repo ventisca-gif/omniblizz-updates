@@ -1,0 +1,415 @@
+[
+  {
+    "path": "baseline/part-000.zip",
+    "bytes": 4166182,
+    "sha256": "6cd4a6e637398e4c7dda484647c8dc0fbeb33a70a007feb82bb336cce2aed5ae",
+    "files": 7,
+    "url": "https://omniblizz-original-resources185.ventisca.chatgpt.site/original-source189/part-000.zip"
+  },
+  {
+    "path": "baseline/part-001.zip",
+    "bytes": 3753648,
+    "sha256": "983c7ac1b85bc5578b07be8bc30ad59a8e2da5f92e808e0f043675e45d086dc0",
+    "files": 8,
+    "url": "https://omniblizz-original-resources185.ventisca.chatgpt.site/original-source189/part-001.zip"
+  },
+  {
+    "path": "baseline/part-002.zip",
+    "bytes": 3515974,
+    "sha256": "b58f246fcc75dc580cd9597af24ef0fdf5d322fbe50fa569a9c69f517255bd3b",
+    "files": 8,
+    "url": "https://omniblizz-original-resources185.ventisca.chatgpt.site/original-source189/part-002.zip"
+  },
+  {
+    "path": "baseline/part-003.zip",
+    "bytes": 3969840,
+    "sha256": "fad6eb5748b37790b32b149f94e4f34df453430b957dee730a1a1e542c806895",
+    "files": 11,
+    "url": "https://omniblizz-original-resources185.ventisca.chatgpt.site/original-source189/part-003.zip"
+  },
+  {
+    "path": "baseline/part-004.zip",
+    "bytes": 3945688,
+    "sha256": "7c809ed19230eb53697874d9871b08964ee29e268691c275e108ec588277525b",
+    "files": 5,
+    "url": "https://omniblizz-original-resources185.ventisca.chatgpt.site/original-source189/part-004.zip"
+  },
+  {
+    "path": "baseline/part-005.zip",
+    "bytes": 4120184,
+    "sha256": "062ee6f0550960c81f2891259aa68252218c636543b4e22174d0203a195e2322",
+    "files": 8,
+    "url": "https://omniblizz-original-resources185.ventisca.chatgpt.site/original-source189/part-005.zip"
+  },
+  {
+    "path": "baseline/part-006.zip",
+    "bytes": 3791330,
+    "sha256": "37880d0c71b1bc1a477981edb0b7e6d3d106db01f546cb94a164ac525ed6099b",
+    "files": 9,
+    "url": "https://omniblizz-original-resources185.ventisca.chatgpt.site/original-source189/part-006.zip"
+  },
+  {
+    "path": "baseline/part-007.zip",
+    "bytes": 4172102,
+    "sha256": "2d92c555aa62a0789fbf9c783807fa6070bc1d2e1d9158ca819f8722a52e7887",
+    "files": 9,
+    "url": "https://omniblizz-original-resources185.ventisca.chatgpt.site/original-source189/part-007.zip"
+  },
+  {
+    "path": "baseline/part-008.zip",
+    "bytes": 3915446,
+    "sha256": "6a8e6f9d7fe88258235feb339507c7af2f0ba6bfd76a5a8ffbd40cf91218fe0e",
+    "files": 10,
+    "url": "https://omniblizz-original-resources185.ventisca.chatgpt.site/original-source189/part-008.zip"
+  },
+  {
+    "path": "baseline/part-009.zip",
+    "bytes": 4163278,
+    "sha256": "e64c4a92dceebc991d2c5035a380c51c8e9e75f984bcd3c2d698cc8cbd51ac60",
+    "files": 10,
+    "url": "https://omniblizz-original-resources185.ventisca.chatgpt.site/original-source189/part-009.zip"
+  },
+  {
+    "path": "baseline/part-010.zip",
+    "bytes": 3860394,
+    "sha256": "49a395dd5243cc7b45357d984f8ab247be5c77ed601b7f7a74426ea50ae2ad86",
+    "files": 10,
+    "url": "https://omniblizz-original-resources185.ventisca.chatgpt.site/original-source189/part-010.zip"
+  },
+  {
+    "path": "baseline/part-011.zip",
+    "bytes": 4102562,
+    "sha256": "e985b0d7db9309d4010a1b5cdf1ed20b79cf6e9c476384796207adcd88f3e89b",
+    "files": 10,
+    "url": "https://omniblizz-original-resources185.ventisca.chatgpt.site/original-source189/part-011.zip"
+  },
+  {
+    "path": "baseline/part-012.zip",
+    "bytes": 3967838,
+    "sha256": "83f38511cbfd8bcf25ae0ebfe54714b581f5d1abe3d9f97e3293af2480c836dc",
+    "files": 10,
+    "url": "https://omniblizz-original-resources185.ventisca.chatgpt.site/original-source189/part-012.zip"
+  },
+  {
+    "path": "baseline/part-013.zip",
+    "bytes": 4066016,
+    "sha256": "cdac42ec432e955a62a894b45fc31cfd95446e1b1233536209accf0f2ec656a5",
+    "files": 11,
+    "url": "https://omniblizz-original-resources185.ventisca.chatgpt.site/original-source189/part-013.zip"
+  },
+  {
+    "path": "baseline/part-014.zip",
+    "bytes": 3542726,
+    "sha256": "583e5cd01a9c0d0342d4b924a5fe298f1954fdb458263b64651118d26cdfe99f",
+    "files": 8,
+    "url": "https://omniblizz-original-resources185.ventisca.chatgpt.site/original-source189/part-014.zip"
+  },
+  {
+    "path": "baseline/part-015.zip",
+    "bytes": 3818066,
+    "sha256": "cf14c831f037dd344d646b2cef12070efefcafa364c928d683b13adbb829c689",
+    "files": 25,
+    "url": "https://omniblizz-original-resources185.ventisca.chatgpt.site/original-source189/part-015.zip"
+  },
+  {
+    "path": "baseline/part-016.zip",
+    "bytes": 4164204,
+    "sha256": "bf2315bad1d2777600344db715949531fcc843bf17556c3b4217514951294c9c",
+    "files": 17,
+    "url": "https://omniblizz-original-resources185.ventisca.chatgpt.site/original-source189/part-016.zip"
+  },
+  {
+    "path": "baseline/part-017.zip",
+    "bytes": 4152796,
+    "sha256": "e81ea2245097ef02714b9c3375d3bf6204df37bc4e3b5074123718056543dc45",
+    "files": 33,
+    "url": "https://omniblizz-original-resources185.ventisca.chatgpt.site/original-source189/part-017.zip"
+  },
+  {
+    "path": "baseline/part-018.zip",
+    "bytes": 4085046,
+    "sha256": "d65b61696d88ea208ef7e8368fcb0ae27adf72faf56710e1c64e76777d6de56c",
+    "files": 60,
+    "url": "https://omniblizz-original-resources185.ventisca.chatgpt.site/original-source189/part-018.zip"
+  },
+  {
+    "path": "baseline/part-019.zip",
+    "bytes": 3792962,
+    "sha256": "06e08e41992f69d7f0d5de1f819780b6dbe6102fd63c33d946caeca34cdbf57e",
+    "files": 7,
+    "url": "https://omniblizz-original-resources185.ventisca.chatgpt.site/original-source189/part-019.zip"
+  },
+  {
+    "path": "baseline/part-020.zip",
+    "bytes": 4164002,
+    "sha256": "f46de6b9678beb50989a6ea91d8035feee97b2ecf984f8b47e00984513bbd4bb",
+    "files": 8,
+    "url": "https://omniblizz-original-resources185.ventisca.chatgpt.site/original-source189/part-020.zip"
+  },
+  {
+    "path": "baseline/part-021.zip",
+    "bytes": 3614294,
+    "sha256": "b6988eb724c9689531a536cd97c95080d7e29ddb31b1ad80a08ed8c2f0ec596c",
+    "files": 9,
+    "url": "https://omniblizz-original-resources185.ventisca.chatgpt.site/original-source189/part-021.zip"
+  },
+  {
+    "path": "baseline/part-022.zip",
+    "bytes": 3995386,
+    "sha256": "007781ba7ceeff051478a5ad91b49f8b14092d8e5bb2f6019f949c1a427059c7",
+    "files": 6,
+    "url": "https://omniblizz-original-resources185.ventisca.chatgpt.site/original-source189/part-022.zip"
+  },
+  {
+    "path": "baseline/part-023.zip",
+    "bytes": 2899290,
+    "sha256": "da3358c23af1666b181f5d988e4b0e3954ae76aab99e791d46faada2b5403a9b",
+    "files": 5,
+    "url": "https://omniblizz-original-resources185.ventisca.chatgpt.site/original-source189/part-023.zip"
+  },
+  {
+    "path": "baseline/part-024.zip",
+    "bytes": 3685512,
+    "sha256": "4bbd8f25ea1c03c100a9e752831f1fc211d03104c85ed5aa360a7fa529745656",
+    "files": 5,
+    "url": "https://omniblizz-original-resources185.ventisca.chatgpt.site/original-source189/part-024.zip"
+  },
+  {
+    "path": "baseline/part-025.zip",
+    "bytes": 4189674,
+    "sha256": "ea234888d17f6307f9ca7656e9cd01a87a3d7d02fe820ff8dab30ef2b4f66040",
+    "files": 14,
+    "url": "https://omniblizz-original-resources185.ventisca.chatgpt.site/original-source189/part-025.zip"
+  },
+  {
+    "path": "baseline/part-026.zip",
+    "bytes": 3842168,
+    "sha256": "0834f2acfa0bf18d42da09bd0551553d4e6dd3879d93f3b04107f17236694cfd",
+    "files": 5,
+    "url": "https://omniblizz-original-resources185.ventisca.chatgpt.site/original-source189/part-026.zip"
+  },
+  {
+    "path": "baseline/part-027.zip",
+    "bytes": 3988656,
+    "sha256": "d3baa5fc19c34c132794896deaf939e9ed86048aee6047d47b1691000e85fe5a",
+    "files": 7,
+    "url": "https://omniblizz-original-resources185.ventisca.chatgpt.site/original-source189/part-027.zip"
+  },
+  {
+    "path": "baseline/part-028.zip",
+    "bytes": 3491148,
+    "sha256": "17276b0851f745b0fd18bbaa15e45ef4552e5f8a02c4b468640de4e0201b0ec9",
+    "files": 7,
+    "url": "https://omniblizz-original-resources185.ventisca.chatgpt.site/original-source189/part-028.zip"
+  },
+  {
+    "path": "baseline/part-029.zip",
+    "bytes": 4010882,
+    "sha256": "464141ed9c16dc95550b72cb4fe3995a87e66ab80eba2e4536faeea93ed0843b",
+    "files": 8,
+    "url": "https://omniblizz-original-resources185.ventisca.chatgpt.site/original-source189/part-029.zip"
+  },
+  {
+    "path": "baseline/part-030.zip",
+    "bytes": 3939608,
+    "sha256": "d40f887d7da47e26785d84e030de5772f9f2d3fe4a58a9a47412fbd581329a75",
+    "files": 11,
+    "url": "https://omniblizz-original-resources185.ventisca.chatgpt.site/original-source189/part-030.zip"
+  },
+  {
+    "path": "baseline/part-031.zip",
+    "bytes": 3597092,
+    "sha256": "c4b77c9816bcf4b020378b27e0e8c62d18f18de647d6bdbd6b0d14b05a86b562",
+    "files": 8,
+    "url": "https://omniblizz-original-resources185.ventisca.chatgpt.site/original-source189/part-031.zip"
+  },
+  {
+    "path": "baseline/part-032.zip",
+    "bytes": 3846764,
+    "sha256": "e50cc556fec3053153b4e6e2fccbf7a5227e95af4e1953e0cb5bdad47e109610",
+    "files": 188,
+    "url": "https://omniblizz-original-resources185.ventisca.chatgpt.site/original-source189/part-032.zip"
+  },
+  {
+    "path": "baseline/part-033.zip",
+    "bytes": 3728112,
+    "sha256": "813d7671008fbe7599ee27cfe6dfb4b68d1cd2e3a2237c74eb5dd0aa82c75444",
+    "files": 8,
+    "url": "https://omniblizz-original-resources185.ventisca.chatgpt.site/original-source189/part-033.zip"
+  },
+  {
+    "path": "baseline/part-034.zip",
+    "bytes": 3903918,
+    "sha256": "9b639380bc8fb4f475136c76b17881e11a044415b0095a6d6a488012ba5b415c",
+    "files": 9,
+    "url": "https://omniblizz-original-resources185.ventisca.chatgpt.site/original-source189/part-034.zip"
+  },
+  {
+    "path": "baseline/part-035.zip",
+    "bytes": 3822772,
+    "sha256": "637cc1fe521ff5d7948ba0d33cde333473e0b3a0531af77e872bf7a47e88d546",
+    "files": 9,
+    "url": "https://omniblizz-original-resources185.ventisca.chatgpt.site/original-source189/part-035.zip"
+  },
+  {
+    "path": "baseline/part-036.zip",
+    "bytes": 4132650,
+    "sha256": "306bc48e0e41b5fbc7182e808cd6871ea6338fe7ee44dc787968c33c632cd5ce",
+    "files": 8,
+    "url": "https://omniblizz-original-resources185.ventisca.chatgpt.site/original-source189/part-036.zip"
+  },
+  {
+    "path": "baseline/part-037.zip",
+    "bytes": 3431500,
+    "sha256": "7b826f7bf06c2de158e82c074572b7607a4a821bfc3c3c92070f5b8c7070c05b",
+    "files": 4,
+    "url": "https://omniblizz-original-resources185.ventisca.chatgpt.site/original-source189/part-037.zip"
+  },
+  {
+    "path": "baseline/part-038.zip",
+    "bytes": 3976596,
+    "sha256": "dba5d976985d7cb90f827a5fe7532183733fe6e868878f791a8a502399f414c8",
+    "files": 3,
+    "url": "https://omniblizz-original-resources185.ventisca.chatgpt.site/original-source189/part-038.zip"
+  },
+  {
+    "path": "baseline/part-039.zip",
+    "bytes": 3565928,
+    "sha256": "ecfac135f4fea91099c257dbe4c1c25421e0e19e041400554e004de3728da81d",
+    "files": 3,
+    "url": "https://omniblizz-original-resources185.ventisca.chatgpt.site/original-source189/part-039.zip"
+  },
+  {
+    "path": "baseline/part-040.zip",
+    "bytes": 3198466,
+    "sha256": "bfb281a89a6944c634fe48ef635a443b6c80fd4fc5fdb9334032a78099c991a9",
+    "files": 3,
+    "url": "https://omniblizz-original-resources185.ventisca.chatgpt.site/original-source189/part-040.zip"
+  },
+  {
+    "path": "baseline/part-041.zip",
+    "bytes": 2966392,
+    "sha256": "8eb56bdcd869c99873d9380abd35b3a9f76930f8879f681fa39e9548d9d283c2",
+    "files": 2,
+    "url": "https://omniblizz-original-resources185.ventisca.chatgpt.site/original-source189/part-041.zip"
+  },
+  {
+    "path": "baseline/part-042.zip",
+    "bytes": 3805274,
+    "sha256": "53f74930121bf5cd1665ef21bc1aecf91be1859958cff69c7693dd33e36b221a",
+    "files": 3,
+    "url": "https://omniblizz-original-resources185.ventisca.chatgpt.site/original-source189/part-042.zip"
+  },
+  {
+    "path": "baseline/part-043.zip",
+    "bytes": 3577938,
+    "sha256": "ca981124847b1ec51df545ef70d0ff3aca5f0efe37d430fb8d19b2c8712e70b0",
+    "files": 3,
+    "url": "https://omniblizz-original-resources185.ventisca.chatgpt.site/original-source189/part-043.zip"
+  },
+  {
+    "path": "baseline/part-044.zip",
+    "bytes": 3614860,
+    "sha256": "ba3d9dd2769eb9c0daf32f9a2545be730063c3e46c4d195c2f1e4f1f584f31ee",
+    "files": 3,
+    "url": "https://omniblizz-original-resources185.ventisca.chatgpt.site/original-source189/part-044.zip"
+  },
+  {
+    "path": "baseline/part-045.zip",
+    "bytes": 4184142,
+    "sha256": "e76dd1180029f2982a0a418d3aa7e4a98ba5cc88f447fddad9221ed19481b616",
+    "files": 5,
+    "url": "https://omniblizz-original-resources185.ventisca.chatgpt.site/original-source189/part-045.zip"
+  },
+  {
+    "path": "baseline/part-046.zip",
+    "bytes": 3800930,
+    "sha256": "4188d7b1f6cd0c56da428eefe187e05f259164347f6a5d01cc8fb65251a33efe",
+    "files": 6,
+    "url": "https://omniblizz-original-resources185.ventisca.chatgpt.site/original-source189/part-046.zip"
+  },
+  {
+    "path": "baseline/part-047.zip",
+    "bytes": 3187196,
+    "sha256": "b685380afc957eb6933774909b9e2b5536e737e0c128cabcf9f54179498836d2",
+    "files": 5,
+    "url": "https://omniblizz-original-resources185.ventisca.chatgpt.site/original-source189/part-047.zip"
+  },
+  {
+    "path": "baseline/part-048.zip",
+    "bytes": 3386050,
+    "sha256": "8e14cdc5b44ff55bfd19c58412830b2f96e4a921676847c3658ffb3b981a18a2",
+    "files": 3,
+    "url": "https://omniblizz-original-resources185.ventisca.chatgpt.site/original-source189/part-048.zip"
+  },
+  {
+    "path": "baseline/part-049.zip",
+    "bytes": 3522402,
+    "sha256": "15d9eed50cd463d0ed82d2cd5acae43009e40db57e2b14d871dda874cce9153d",
+    "files": 3,
+    "url": "https://omniblizz-original-resources185.ventisca.chatgpt.site/original-source189/part-049.zip"
+  },
+  {
+    "path": "baseline/part-050.zip",
+    "bytes": 3488064,
+    "sha256": "ab40fddfc6de7689ba96f6cc028b897606de4e6dc3dc8d867b3c3c14f2a60703",
+    "files": 4,
+    "url": "https://omniblizz-original-resources185.ventisca.chatgpt.site/original-source189/part-050.zip"
+  },
+  {
+    "path": "baseline/part-051.zip",
+    "bytes": 3892534,
+    "sha256": "d7312eb6c16deafdc1f63add5d7b5334b4ce794d3da6b23b2f9eed812b7f61a0",
+    "files": 9,
+    "url": "https://omniblizz-original-resources185.ventisca.chatgpt.site/original-source189/part-051.zip"
+  },
+  {
+    "path": "baseline/part-052.zip",
+    "bytes": 4071528,
+    "sha256": "d3c3db06e485f84c5ee76f6a96257aa1c5aa13154c2cec17d8ef7201e39599f4",
+    "files": 7,
+    "url": "https://omniblizz-original-resources185.ventisca.chatgpt.site/original-source189/part-052.zip"
+  },
+  {
+    "path": "baseline/part-053.zip",
+    "bytes": 3290314,
+    "sha256": "9bcf799b5dc81642cd00a2020ad51a561da4bee08d86b2552a5d82d80aee70ef",
+    "files": 25,
+    "url": "https://omniblizz-original-resources185.ventisca.chatgpt.site/original-source189/part-053.zip"
+  },
+  {
+    "path": "baseline/part-054.zip",
+    "bytes": 3906710,
+    "sha256": "0318dc500e3bb0a7120e59ae8e9e80320fd440311952119e244e9fdc20665baa",
+    "files": 6,
+    "url": "https://omniblizz-original-resources185.ventisca.chatgpt.site/original-source189/part-054.zip"
+  },
+  {
+    "path": "baseline/part-055.zip",
+    "bytes": 4094922,
+    "sha256": "fa50e881c00c466d6765ed582b8352d2e4b984003b0b928b3a2b55e772bb8a1e",
+    "files": 4,
+    "url": "https://omniblizz-original-resources185.ventisca.chatgpt.site/original-source189/part-055.zip"
+  },
+  {
+    "path": "baseline/part-056.zip",
+    "bytes": 3219518,
+    "sha256": "95c6ba00a4ceeb18029b1efa08542a50cd914cb73c7a30d7174b1600712d2d98",
+    "files": 9,
+    "url": "https://omniblizz-original-resources185.ventisca.chatgpt.site/original-source189/part-056.zip"
+  },
+  {
+    "path": "baseline/part-057.zip",
+    "bytes": 3956420,
+    "sha256": "ab5746e38c7f93d036367b02a64093afebd894ac5627173bfdf2f81f23c86b66",
+    "files": 5,
+    "url": "https://omniblizz-original-resources185.ventisca.chatgpt.site/original-source189/part-057.zip"
+  },
+  {
+    "path": "baseline/part-058.zip",
+    "bytes": 907404,
+    "sha256": "95fbbc013f50c0d4a300b3f31cd071049b49421fab4d4466da6df3246a350520",
+    "files": 2,
+    "url": "https://omniblizz-original-resources185.ventisca.chatgpt.site/original-source189/part-058.zip"
+  }
+]

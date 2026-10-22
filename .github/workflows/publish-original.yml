@@ -36,6 +36,8 @@ jobs:
         run: python3 build-tools/assemble187.py
       - name: Derive verified Original 1.84 lossless optimization
         run: python3 build-tools/assemble188.py
+      - name: Reconstruct verified Original 1.85 full downloadable content
+        run: python3 build-tools/assemble189.py
       - name: Validate signature and prepare release
         id: prepare
         shell: bash
@@ -78,7 +80,7 @@ jobs:
             echo 'Release already exists; immutable publication is left unchanged.'
             exit 0
           fi
-          gh release create "$RELEASE_TAG" "$RELEASE_DIRECTORY/original-manifest.json" "$RELEASE_DIRECTORY/release-notes.md" --target "$GITHUB_SHA" --title "OmniBlizz Original $RELEASE_VERSION" --notes-file "$RELEASE_DIRECTORY/release-notes.md" --draft
+          gh release create "$RELEASE_TAG" "$RELEASE_DIRECTORY/original-manifest.json" "$RELEASE_DIRECTORY/original-content-manifest.json" "$RELEASE_DIRECTORY/release-notes.md" --target "$GITHUB_SHA" --title "OmniBlizz Original $RELEASE_VERSION" --notes-file "$RELEASE_DIRECTORY/release-notes.md" --draft
           shopt -s nullglob
           assets=("$RELEASE_DIRECTORY"/*.bin)
           if ((${#assets[@]})); then

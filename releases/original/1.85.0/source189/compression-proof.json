@@ -1,0 +1,986 @@
+[
+  {
+    "path": "assets/soto132/slam.webp",
+    "before": 817282,
+    "bytes": 801404,
+    "sha256": "4e66f98401b3b1d9adaab13272df54cdc669218a56321d63adee9413cf9d23ed",
+    "rgbaSha256": "d0ba1284cc2aae49fd2c8f3df43bf572b67d4d9990b84c2a7fb0467943156682",
+    "size": [
+      1528,
+      1404
+    ],
+    "mime": "image/webp"
+  },
+  {
+    "path": "assets/mono137/props.webp",
+    "before": 471376,
+    "bytes": 453292,
+    "sha256": "5a2b50e2251040ee1c3cba7f6cec6dc02e3b62223e333e98013d809bb1a9d95e",
+    "rgbaSha256": "245f49ad633128db1d1b93aed9f4a2b5dd0547dd677e08e0100ae39044bb39fc",
+    "size": [
+      1024,
+      1024
+    ],
+    "mime": "image/webp"
+  },
+  {
+    "path": "assets/mono137/tetrax.webp",
+    "before": 454106,
+    "bytes": 418682,
+    "sha256": "c9ed534ddd554919f9c8c7602fe72204aff9be1fedf198e80c59799d90cf099f",
+    "rgbaSha256": "faa9999bab9ccd1f2aa98a9ea453e2d466bf39a1c8550975c60ab31a48be7518",
+    "size": [
+      1024,
+      1024
+    ],
+    "mime": "image/webp"
+  },
+  {
+    "path": "assets/mono137/walk.webp",
+    "before": 576298,
+    "bytes": 537920,
+    "sha256": "9d3f1930297ff7dcd7ef96f580b2b5736992277bbc676d909f304c96e37be96b",
+    "rgbaSha256": "3cf430c59b31f3f616e710793113f7cfce1d5d60698f5357e03cf675a8ba527c",
+    "size": [
+      1024,
+      1024
+    ],
+    "mime": "image/webp"
+  },
+  {
+    "path": "assets/mono137/jetAttack.webp",
+    "before": 474158,
+    "bytes": 430612,
+    "sha256": "e7905bcfbafc9d8d4eb5116e77483c2ff803a8d91fa6ea8c8ca99e3fdbabd2a5",
+    "rgbaSha256": "9d168cc1136f7b8690afd4497ad306bc8e16e9a4d951f9b6e9a757a34eda3841",
+    "size": [
+      1024,
+      1024
+    ],
+    "mime": "image/webp"
+  },
+  {
+    "path": "assets/mono137/cinema.webp",
+    "before": 519770,
+    "bytes": 504490,
+    "sha256": "a936d595d1bdb8f315a0fee94e3f82647ac61131301c771346aae6977ba1ac4a",
+    "rgbaSha256": "fd09eab9148cbef3f49e0d775ea4f9e3e88f20eacd98167935c58e51f4c469e1",
+    "size": [
+      1024,
+      1024
+    ],
+    "mime": "image/webp"
+  },
+  {
+    "path": "assets/mono137/attack.webp",
+    "before": 472886,
+    "bytes": 448312,
+    "sha256": "21946c386f7b20cf4a7d8af25fb8c306d07f2bbc4a09c0e30bf673e713e6f9d6",
+    "rgbaSha256": "1bdb56e503899b34c186520a5629c9efc27a55769a41cd793a4fc83ced0d50e8",
+    "size": [
+      1024,
+      1280
+    ],
+    "mime": "image/webp"
+  },
+  {
+    "path": "assets/mono137/maps.webp",
+    "before": 569528,
+    "bytes": 560670,
+    "sha256": "b5f78b605243e0bcc737ff8b5bb6bfcdda0b2873781a35f257e035711c0f1503",
+    "rgbaSha256": "2a1ab0a4e43df16caa20662674b4786bb695a2cb75084fe723909dab558e6805",
+    "size": [
+      1024,
+      1024
+    ],
+    "mime": "image/webp"
+  },
+  {
+    "path": "assets/season125/walk.webp",
+    "before": 777684,
+    "bytes": 758402,
+    "sha256": "ddc517aead78e7ad6bb06e6a159281518288c0d95f9a6a9ff0f99fa4fdce629e",
+    "rgbaSha256": "83ba4e18586452b389ec88e312cf661d2f66dec3464eae6b62d083310a891732",
+    "size": [
+      1052,
+      1260
+    ],
+    "mime": "image/webp"
+  },
+  {
+    "path": "assets/season125/vfx.webp",
+    "before": 1067878,
+    "bytes": 1050562,
+    "sha256": "b93339324f1c352575018dc134c9edc686551f180c84bd5176f24f1bb366664d",
+    "rgbaSha256": "6d89ca0aea94ca3cffc16f9114d11806e15f3de89693bfa1688dab6e0dba967c",
+    "size": [
+      1600,
+      1105
+    ],
+    "mime": "image/webp"
+  },
+  {
+    "path": "assets/season125/cinema.webp",
+    "before": 1670680,
+    "bytes": 1651756,
+    "sha256": "170ad5c1e9850c801e05d2774deeec251677c471addfae9be62d04b022068de2",
+    "rgbaSha256": "5ff04af2e114c6df37df3d27727f85553a175ec2037c65c354e3eb6a6759f056",
+    "size": [
+      1536,
+      1024
+    ],
+    "mime": "image/webp"
+  },
+  {
+    "path": "assets/season125/attack.webp",
+    "before": 958542,
+    "bytes": 924140,
+    "sha256": "65bd0487552d161d4bd07ff2d9c029636a112233202f0fcc8704a6c8e2853b20",
+    "rgbaSha256": "e1600e454c0c06ad6fa781c83f23d72e93d8d3f45e6a86546aef395c53d9c818",
+    "size": [
+      1148,
+      1686
+    ],
+    "mime": "image/webp"
+  },
+  {
+    "path": "assets/season125/maps.webp",
+    "before": 1401640,
+    "bytes": 1389098,
+    "sha256": "6f5e312e88f24d393c7d6e9be05a93b5feefef7f26989850338e2cad156df2ce",
+    "rgbaSha256": "af0f6b82b2032f42c249e4dd2decfdee90a581a0cb9caace0b00e5187972ccc7",
+    "size": [
+      724,
+      2172
+    ],
+    "mime": "image/webp"
+  },
+  {
+    "path": "assets/season125/enemies.webp",
+    "before": 1010812,
+    "bytes": 989612,
+    "sha256": "23949597b72f69811612b3662be0d94f415edd931aa209691d232fe744fc12f3",
+    "rgbaSha256": "5bbedf9c977735ef05878264c150d3ee3394868cbb00bbc271f515262f9d8421",
+    "size": [
+      1220,
+      1374
+    ],
+    "mime": "image/webp"
+  },
+  {
+    "path": "assets/recal115/ui.webp",
+    "before": 532326,
+    "bytes": 528358,
+    "sha256": "0cbfd0272e93f27d4d1fec690b7b1d63599bf33ad41f897c5405ffc62bee48f8",
+    "rgbaSha256": "cc0d66338dada18a9c554b0cb17208ec7fdb9085a822867b37cf362ae1c24a63",
+    "size": [
+      1225,
+      1284
+    ],
+    "mime": "image/webp"
+  },
+  {
+    "path": "assets/recal115/swampfire.webp",
+    "before": 751608,
+    "bytes": 723646,
+    "sha256": "6bd97eb185f2697984ee6c4d717c97fa447076856bb9e9d3292ed3816ce5d2eb",
+    "rgbaSha256": "7576b73939b15160e70cab7b3715bf66df58167ec4853a6e00a0f38b2b772a3b",
+    "size": [
+      1024,
+      1536
+    ],
+    "mime": "image/webp"
+  },
+  {
+    "path": "assets/soto130/walk.webp",
+    "before": 696564,
+    "bytes": 683800,
+    "sha256": "3170e7b0c8fc34bc4b25c6252954707ea3d49c8256e60415277670223f5c7fcc",
+    "rgbaSha256": "7d63df4ebb8481fee5f2a6b55335e8c864b7ded927335a03d7ccd068f9d6158e",
+    "size": [
+      988,
+      1404
+    ],
+    "mime": "image/webp"
+  },
+  {
+    "path": "assets/soto130/vfx.webp",
+    "before": 1182576,
+    "bytes": 1161936,
+    "sha256": "ee61753f8606896135066b0722c28449cf09713736fe45b189297386f605c964",
+    "rgbaSha256": "02fda73bf8b5b7cb393272515742600c16b4f132632d2b0a6a5c46e887a48fd1",
+    "size": [
+      1632,
+      1120
+    ],
+    "mime": "image/webp"
+  },
+  {
+    "path": "assets/soto130/attack.webp",
+    "before": 759684,
+    "bytes": 739708,
+    "sha256": "1f07d43cdc70436cc78e21dd6b152aacd6673819364b6afcb5fef5c89af0ea03",
+    "rgbaSha256": "c0a5d2256e5b36b935c41b9afdd8c2cc2b77feeb827905442cf5b9e1c3072940",
+    "size": [
+      1492,
+      1272
+    ],
+    "mime": "image/webp"
+  },
+  {
+    "path": "assets/soto130/cinemaA.webp",
+    "before": 1158492,
+    "bytes": 1143118,
+    "sha256": "715e58c10674da87c6072d4073d0d6ce9530f20a1cf7b181ae1118c707dc910b",
+    "rgbaSha256": "d09c737f98773c9a6d1261178e483cd946a13cf04a21be2da13108be7fa19ad3",
+    "size": [
+      1774,
+      887
+    ],
+    "mime": "image/webp"
+  },
+  {
+    "path": "assets/soto130/cinemaB.webp",
+    "before": 1281346,
+    "bytes": 1262598,
+    "sha256": "42a6127a054f83edc145d93047af2ec1fc7af68dd3eb8dead80255b319fb7138",
+    "rgbaSha256": "4eb4b5f5923e48027e49d529416e18976c2b821e8c506c98270aa0dd38b808f7",
+    "size": [
+      1024,
+      1536
+    ],
+    "mime": "image/webp"
+  },
+  {
+    "path": "assets/soto130/npcs.webp",
+    "before": 935360,
+    "bytes": 921662,
+    "sha256": "627cd135fb2433116ee6d2b04c472be475de941d9f5e7284a8c0eab46cc94302",
+    "rgbaSha256": "695a3777e40b70307464d836828ee2f4b4df9cc4ebcf26298c002946946b395d",
+    "size": [
+      1604,
+      1468
+    ],
+    "mime": "image/webp"
+  },
+  {
+    "path": "assets/soto130/cinemaC.webp",
+    "before": 1167250,
+    "bytes": 1156372,
+    "sha256": "30aee4917ab7800a7c9990ba06ce7afb1a6435c0cde750908ad59fbd6b92413f",
+    "rgbaSha256": "5fad12c738c810eafc75bf47edcf1fab23a9db90900e7c907da39e32389c1016",
+    "size": [
+      1774,
+      887
+    ],
+    "mime": "image/webp"
+  },
+  {
+    "path": "assets/soto130/maps.webp",
+    "before": 1556784,
+    "bytes": 1547454,
+    "sha256": "1b02d1facb7d0e4f6a518606267d9ad80b33bd61576ebcfedebe2a5628161022",
+    "rgbaSha256": "e2c70c428942669dfc62249a02269a032ec24cb256564b0d7955681a372c8a63",
+    "size": [
+      1024,
+      1536
+    ],
+    "mime": "image/webp"
+  },
+  {
+    "path": "assets/soto130/enemies.webp",
+    "before": 992004,
+    "bytes": 966668,
+    "sha256": "7683e52a82751672d1416d9884cb34acef11756c401132fb21cf59d13647cb35",
+    "rgbaSha256": "8d0a200a57bec51ac247a29ad645aa507dbd363a09649d182b2a6ee07c26992a",
+    "size": [
+      1672,
+      1325
+    ],
+    "mime": "image/webp"
+  },
+  {
+    "path": "assets/soto130/extra.webp",
+    "before": 1070788,
+    "bytes": 1052890,
+    "sha256": "54f680f2f118c2c0774912e9ebf60606eaccf24944266eb75689f4947d3c1832",
+    "rgbaSha256": "c8fab13695a8fad14827c797088d931992900449b4576b7582a7c67d8404e7ab",
+    "size": [
+      1632,
+      1120
+    ],
+    "mime": "image/webp"
+  },
+  {
+    "path": "assets/season128/walk.webp",
+    "before": 765772,
+    "bytes": 760402,
+    "sha256": "696dea68b3645e834829ae857d0cc575462731159472b1f18a0fbd90d0cfc4ec",
+    "rgbaSha256": "dcbc6137e1509dcff2c945d967c1eac7a0c1362baad9de6e9fae01d6caab644c",
+    "size": [
+      1172,
+      1260
+    ],
+    "mime": "image/webp"
+  },
+  {
+    "path": "assets/season128/vfx.webp",
+    "before": 1130826,
+    "bytes": 1107950,
+    "sha256": "66fb044db6ea6796303fd4753151c09798d6b264b647bffc7eb37549acd87d93",
+    "rgbaSha256": "62d7866a285a7e875937204252a5ae2fc5e03d066fe0d1487c8d99d3492d6e0a",
+    "size": [
+      1632,
+      1120
+    ],
+    "mime": "image/webp"
+  },
+  {
+    "path": "assets/season128/chapter23.webp",
+    "before": 1166098,
+    "bytes": 1152506,
+    "sha256": "82dc5611e3994a917ec6517d10e99d832040ab6707e7a07eb2e722638b520463",
+    "rgbaSha256": "a324f42cda71887913c15dc16c636a20ffa5b7e43fb26752949cb96cad6ec94a",
+    "size": [
+      1536,
+      1024
+    ],
+    "mime": "image/webp"
+  },
+  {
+    "path": "assets/season128/chapter24.webp",
+    "before": 1251666,
+    "bytes": 1241564,
+    "sha256": "c39cb930930a364b710cc4cfeb0a8b78caa18a9c50201e3d4cb5f3178f0c4f36",
+    "rgbaSha256": "05991bc6d022064de435327f983624c774cef8663e5fd9e25994d04d05ef6c6e",
+    "size": [
+      1536,
+      1024
+    ],
+    "mime": "image/webp"
+  },
+  {
+    "path": "assets/season128/attack.webp",
+    "before": 962748,
+    "bytes": 948542,
+    "sha256": "d125d605410ebb88b6fab9e5b1d961144135d5785917da1e7fe6c17d91181f70",
+    "rgbaSha256": "3ecf1315bdc5c9acd5de8dbf89278e1e95e34b954e7ba0b754613d68ef77d639",
+    "size": [
+      1632,
+      1285
+    ],
+    "mime": "image/webp"
+  },
+  {
+    "path": "assets/season128/chapter25.webp",
+    "before": 1197984,
+    "bytes": 1183432,
+    "sha256": "1edbc1399b7c8f565505e6892ea694478a4ad4bc203ca93eb0d35dcc894ebe61",
+    "rgbaSha256": "d457c1431ccf76ae22c8a7a0b10171b9190a2516d8c0d5dbfb4a89baaf65b7bd",
+    "size": [
+      1536,
+      1024
+    ],
+    "mime": "image/webp"
+  },
+  {
+    "path": "assets/season128/maps.webp",
+    "before": 1520280,
+    "bytes": 1507304,
+    "sha256": "d72a1fef8a401dd3aa42f74f2429e029c516c7354a731516cc0e54032890cf3e",
+    "rgbaSha256": "d97ce9df362f5c49c72bd4f343b904bd88158e2a39b7b3879dacbd1587f5254b",
+    "size": [
+      1024,
+      1536
+    ],
+    "mime": "image/webp"
+  },
+  {
+    "path": "assets/season128/chapter26.webp",
+    "before": 1416176,
+    "bytes": 1405388,
+    "sha256": "335acdf4dbdadbd61bc213c27683e35bf4c5b72a1e9a944231c1b0e5a9270def",
+    "rgbaSha256": "ee3f85969aedf31949c457654a3c9226e04b72e8c4fbb8ed71dc67aa2293b985",
+    "size": [
+      1536,
+      1024
+    ],
+    "mime": "image/webp"
+  },
+  {
+    "path": "assets/season128/enemies.webp",
+    "before": 1217274,
+    "bytes": 1190612,
+    "sha256": "4a50c670a04a3ef1bc711fda735fc1f2e061be8532cd547f12875d42477aeb76",
+    "rgbaSha256": "dc882c8cc3c4c2812e5df2c7a43d04d2e2fad0acdf994855f2a64911688d5e27",
+    "size": [
+      1368,
+      1968
+    ],
+    "mime": "image/webp"
+  },
+  {
+    "path": "assets/season128/enemyvfx.webp",
+    "before": 1042440,
+    "bytes": 1018430,
+    "sha256": "86e984be615088c6750c13064f32157028f3df2128007635a58d388004c80a5c",
+    "rgbaSha256": "4571d183eccc6f27888199eadb76156cdde4be9799c09cdf10210dddd8abaccb",
+    "size": [
+      1632,
+      1120
+    ],
+    "mime": "image/webp"
+  },
+  {
+    "path": "assets/season128/chapter22.webp",
+    "before": 1578820,
+    "bytes": 1573690,
+    "sha256": "3379992ce8fdcca8d73869cae11aaf80267f11e436276481561d2de50c807412",
+    "rgbaSha256": "0231c6a69b7159ed48d5057b4ef852ed04242cdb03ddfbbfdbdf67ad128244d9",
+    "size": [
+      1536,
+      1024
+    ],
+    "mime": "image/webp"
+  },
+  {
+    "path": "assets/season121/villain.webp",
+    "before": 646642,
+    "bytes": 629642,
+    "sha256": "bd270b8d80c9976d876f34fb68594b876063369a585b3e7ce1bbce85871e5450",
+    "rgbaSha256": "6ccb86ee41f9534f93306e46f0e523f05e5d75dfef05c1b5ed55d4adb1949f27",
+    "size": [
+      1840,
+      1134
+    ],
+    "mime": "image/webp"
+  },
+  {
+    "path": "assets/season121/cinema.webp",
+    "before": 1238094,
+    "bytes": 1227400,
+    "sha256": "6195b587780e38f82e2107e31c0e17b532b8f90bb4b5399f2314250b9e7535eb",
+    "rgbaSha256": "20fec153ffca7808957d4166f067095c5363a9eb7151921ee36fdbdd2ad8b40a",
+    "size": [
+      1536,
+      1024
+    ],
+    "mime": "image/webp"
+  },
+  {
+    "path": "assets/season121/maps.webp",
+    "before": 1505694,
+    "bytes": 1493892,
+    "sha256": "c7f18a25d4ed2c5346ef25c96d1bc81acc236894b8e0ea7ef75461c16e93e1d3",
+    "rgbaSha256": "6c3f0167a07360c5c4df5ba9c58d456349ecfc36e8e7acbc097ab59a329fe68d",
+    "size": [
+      1263,
+      1245
+    ],
+    "mime": "image/webp"
+  },
+  {
+    "path": "assets/season121/sprites.webp",
+    "before": 1778618,
+    "bytes": 1766350,
+    "sha256": "ab8cfad930987ddd0fa7225b2f3305754f7b84334544c2711ef3e191e8929c2a",
+    "rgbaSha256": "387871ca610daab0ec1f7764625e3b407a949247520b82edf4f1b4932b78fa71",
+    "size": [
+      1440,
+      3531
+    ],
+    "mime": "image/webp"
+  },
+  {
+    "path": "assets/companions113/ship-ship.webp",
+    "before": 498592,
+    "bytes": 490906,
+    "sha256": "f389a1e8c1f124b9b89af01d373a891db21751be676c55a4245bcc697645a876",
+    "rgbaSha256": "e16e5dc82242e344fe97e129426e51934edb56330263753efbc3a991ec191b7c",
+    "size": [
+      1254,
+      1254
+    ],
+    "mime": "image/webp"
+  },
+  {
+    "path": "assets/companions113/mount.webp",
+    "before": 916268,
+    "bytes": 901212,
+    "sha256": "608344bc9e88858e40441b068f1fec6ea837ebf979217b0a7d161db78005b308",
+    "rgbaSha256": "eb9d6aa5f02e2a4a68aa25e10e0f5377a6f7740567fb0fe5d5b5a0a80cfbab3e",
+    "size": [
+      1254,
+      1254
+    ],
+    "mime": "image/webp"
+  },
+  {
+    "path": "assets/jet136/walk.webp",
+    "before": 712868,
+    "bytes": 674268,
+    "sha256": "2fc1a5c977185fbddcb4b0db8302acb2b59623b047d35a9ed42d7529abb011c5",
+    "rgbaSha256": "6308d79a15d4bf678002b3762dc93218b432adbfdb1e185505a2d61b2cc1c4d7",
+    "size": [
+      2048,
+      2048
+    ],
+    "mime": "image/webp"
+  },
+  {
+    "path": "assets/jet136/monkey.webp",
+    "before": 240028,
+    "bytes": 235264,
+    "sha256": "dcb03d6ab144d2bc60ddd977bed08c842f6a48b44406cab7bc8388b9923e9da6",
+    "rgbaSha256": "64554a31a302a84b12d879b3a41570267b10cea2ddc7ca4edce05d0cedecdaec",
+    "size": [
+      567,
+      850
+    ],
+    "mime": "image/webp"
+  },
+  {
+    "path": "assets/jet136/vfx.webp",
+    "before": 688346,
+    "bytes": 676804,
+    "sha256": "786c8e2f170f077cd475fbfb2c177d88fc80df36454276ff80f164619d87ecf8",
+    "rgbaSha256": "fda5d20068425755796bacd169fcf8f204cb360093daeee1d01009ec35d561f4",
+    "size": [
+      2048,
+      2048
+    ],
+    "mime": "image/webp"
+  },
+  {
+    "path": "assets/jet136/cinema.webp",
+    "before": 1069030,
+    "bytes": 1060928,
+    "sha256": "b749704f9e215e1bcc8b21dfc259c839c6a01d2776a4f1446b37523ff4bf75f1",
+    "rgbaSha256": "f7bc1b2cfeaad004bdf389da769d53542ec29b403391e5dd725d10ac75f6743b",
+    "size": [
+      2048,
+      2048
+    ],
+    "mime": "image/webp"
+  },
+  {
+    "path": "assets/jet136/attack.webp",
+    "before": 769424,
+    "bytes": 715810,
+    "sha256": "3b553973f193e20ca402e49a46c0c4bb0ec1c9cd499fdb084f9e64e3c584e475",
+    "rgbaSha256": "72c262c48d43f115f60c10737da752f09a44c0c82704589d8b3281f0ab5ee6db",
+    "size": [
+      2048,
+      2048
+    ],
+    "mime": "image/webp"
+  },
+  {
+    "path": "assets/jet136/hologram.webp",
+    "before": 230890,
+    "bytes": 224960,
+    "sha256": "c16646c5ffea3138ffe439869af0b8dc95bd9996caa00e0acbdbf6857d7a45b0",
+    "rgbaSha256": "2a224e42e010afa31248ef844700cf8785fccc4bf9e669c9924e24b3c50fcc51",
+    "size": [
+      567,
+      850
+    ],
+    "mime": "image/webp"
+  },
+  {
+    "path": "assets/bellwood133/buildings.webp",
+    "before": 611352,
+    "bytes": 598154,
+    "sha256": "33f7f49964c80768f3f957749e21c87e75334159e5465c598885e9c3e4e646d5",
+    "rgbaSha256": "9b97704f92453d51cec3844c700ff979dd57b38b0590f991363201725bd4d1e4",
+    "size": [
+      2048,
+      2048
+    ],
+    "mime": "image/webp"
+  },
+  {
+    "path": "assets/af141/vfx.webp",
+    "before": 972664,
+    "bytes": 953734,
+    "sha256": "59fb27153cf81b03710795135ab920534848bd7cacd8e4c7738cd573d9025ca6",
+    "rgbaSha256": "eade3a48ead8b1cdcb2dd4b8903dde7de01f6a2c0cbeb6e32431433ab7316a50",
+    "size": [
+      1024,
+      1024
+    ],
+    "mime": "image/webp"
+  },
+  {
+    "path": "assets/af141/cinema.webp",
+    "before": 871104,
+    "bytes": 855740,
+    "sha256": "9604c01eeab6f882b3b6ee3c5313c819a66b671041e0b12f66e75453f16d3a3a",
+    "rgbaSha256": "210270c69b7c5e13808df17c0e6e2a7d222646426ec98df9b42983aed0ef2a98",
+    "size": [
+      1024,
+      1024
+    ],
+    "mime": "image/webp"
+  },
+  {
+    "path": "assets/af141/ghost.webp",
+    "before": 587730,
+    "bytes": 560934,
+    "sha256": "d33ae88bd0d5d9efa4b2b1e408c7367188be6e612782918d3057e67996243735",
+    "rgbaSha256": "f256cc22d9c9399405d622e7d17e475bb7bc0d906344bb4f947dd5b886a22c67",
+    "size": [
+      1024,
+      1024
+    ],
+    "mime": "image/webp"
+  },
+  {
+    "path": "assets/af141/attack.webp",
+    "before": 604076,
+    "bytes": 565300,
+    "sha256": "a75b698977f6aba4dc7dd36d599977af8c390ddea9b9a00df265c48a8af9c7ca",
+    "rgbaSha256": "4f500326352973495d0e9586ff97bf8b33db36d51769128fe354ad3b23122c07",
+    "size": [
+      1024,
+      1024
+    ],
+    "mime": "image/webp"
+  },
+  {
+    "path": "assets/af141/stone.webp",
+    "before": 384478,
+    "bytes": 359224,
+    "sha256": "756ca699c3520c81af9d289cb73d4546a86c96a4a615165bd1482dc5b3432f57",
+    "rgbaSha256": "b607a98c5927c825f1a3c8ef96d730b8e3c0b13835379b22e635d4f7026ee649",
+    "size": [
+      1024,
+      1024
+    ],
+    "mime": "image/webp"
+  },
+  {
+    "path": "assets/chill140/walk.webp",
+    "before": 372182,
+    "bytes": 341974,
+    "sha256": "05bfc5bb8c24facfd26b4dd8b8029166380c7c23cff24fbba8a67c81bef0e4a8",
+    "rgbaSha256": "c0551a082e7792b65b9d00e76c59d6dac2c08655d90f4887572cab6b71df90cb",
+    "size": [
+      1024,
+      1024
+    ],
+    "mime": "image/webp"
+  },
+  {
+    "path": "assets/chill140/vfx.webp",
+    "before": 869916,
+    "bytes": 856974,
+    "sha256": "1becb37bad1b1abb1b6a748b82c37af7387613c152a78a023d6f18c0c9e498ad",
+    "rgbaSha256": "25443d3796117a34004043001de40b2a7b8d6e447ad88d44066c73504f4070a3",
+    "size": [
+      1024,
+      1024
+    ],
+    "mime": "image/webp"
+  },
+  {
+    "path": "assets/chill140/attack.webp",
+    "before": 572396,
+    "bytes": 509912,
+    "sha256": "cfb10b6551d07fe467a3673fd72d2b3897c39975cfc3a62567ad8d1860efd20c",
+    "rgbaSha256": "a1d3f9be6cf94dde7243f00b2ceba0787dd6e8e2be44095b24772407718d5434",
+    "size": [
+      1024,
+      1024
+    ],
+    "mime": "image/webp"
+  },
+  {
+    "path": "assets/hum129/walk.webp",
+    "before": 798908,
+    "bytes": 779866,
+    "sha256": "b898d526abdb8ad5588b974d3ec1db658beb6aea88d3952dc70f5f4529bfc0ec",
+    "rgbaSha256": "d1281fabe193051a45a2a8a132e25be45b5e0c30eabc2fa36bc15fd4574105ea",
+    "size": [
+      1332,
+      1308
+    ],
+    "mime": "image/webp"
+  },
+  {
+    "path": "assets/hum129/vfx.webp",
+    "before": 914352,
+    "bytes": 887978,
+    "sha256": "14940bc2cd41df3631812946d0c30dd11fd9119bf9f00295a94a2a0401bbe60d",
+    "rgbaSha256": "72b0863f903346360fcf4c660dc28771ed3ae418565d5b6d2b1fdb723ae8c1b8",
+    "size": [
+      1632,
+      1120
+    ],
+    "mime": "image/webp"
+  },
+  {
+    "path": "assets/hum129/cinema.webp",
+    "before": 1222836,
+    "bytes": 1217306,
+    "sha256": "40a9c1bb8a24c402aa9f20f1500764f0eac60e86db1e454866cfacc12a9c0986",
+    "rgbaSha256": "61068214978ee31f891188f04457f0f091402990d1982e3fb92e730752026635",
+    "size": [
+      1024,
+      1536
+    ],
+    "mime": "image/webp"
+  },
+  {
+    "path": "assets/hum129/grown.webp",
+    "before": 972520,
+    "bytes": 955136,
+    "sha256": "7377144605bb17cea327d20a6e649fb1bf7ddf2101cd4e3b75482bbe63be59f5",
+    "rgbaSha256": "804032208f23c7dcdc1193666b081e2b07a99e0aefe7f18a391d390801ac2292",
+    "size": [
+      1396,
+      1344
+    ],
+    "mime": "image/webp"
+  },
+  {
+    "path": "assets/hum129/attack.webp",
+    "before": 801316,
+    "bytes": 782850,
+    "sha256": "769c928e9edce2ddff66ca0f1a86161c567df8faf621eeb243b9881f9e37555c",
+    "rgbaSha256": "69f54f95ca0b9f05d96fe79b809ccceea135e2ca2b1c4fdc02770de629201246",
+    "size": [
+      1532,
+      1338
+    ],
+    "mime": "image/webp"
+  },
+  {
+    "path": "assets/hum129/charge.webp",
+    "before": 934736,
+    "bytes": 905346,
+    "sha256": "d0f16d0cf2e954c54ca8f880d8399d285e66d5e4849a1ae23f658dd508bd654b",
+    "rgbaSha256": "b82d72ffb54491832af65f1b2c17aab12891ce63208916e3d0f67c8d419627e6",
+    "size": [
+      2008,
+      1132
+    ],
+    "mime": "image/webp"
+  },
+  {
+    "path": "assets/hum129/hologram.webp",
+    "before": 573958,
+    "bytes": 559848,
+    "sha256": "1c0f6b97835bc8bd49e56b6e7eb5209095415e9974bc3c373be6486583011ba3",
+    "rgbaSha256": "ca1f36006b59929996747498b475ce6b1cf408c849f9c33760fd7ff8db9f808d",
+    "size": [
+      1024,
+      1536
+    ],
+    "mime": "image/webp"
+  },
+  {
+    "path": "assets/season126/chapter21.webp",
+    "before": 1297530,
+    "bytes": 1282612,
+    "sha256": "eee3bcdd6f9edd94125fc9eb9d2916ffb0b64bb5935e09fa4f215ad01abadd6d",
+    "rgbaSha256": "d1308306f3b23037f564bb1bcfb166394de35555f50e8f404be2ed39588603a6",
+    "size": [
+      1672,
+      941
+    ],
+    "mime": "image/webp"
+  },
+  {
+    "path": "assets/season126/chapter19.webp",
+    "before": 1578850,
+    "bytes": 1568420,
+    "sha256": "f85d0ef71ea4956f887a6d3bbfec5018a77493ac48958e5860ac0e58e6397498",
+    "rgbaSha256": "fb3e42567203bb06d2bca6189900a3c854a91218db146367562e9236bb7ccc8e",
+    "size": [
+      1672,
+      941
+    ],
+    "mime": "image/webp"
+  },
+  {
+    "path": "assets/season126/chapter20.webp",
+    "before": 1407104,
+    "bytes": 1397674,
+    "sha256": "58b8b3ed95b9b5a48b67930aa3a7f0460fc221c3ce096e14622a68e33b71be23",
+    "rgbaSha256": "ce404ea2d4843ec2032dcd33363a90540db4a85b4a539b4009be38752c67fb94",
+    "size": [
+      1672,
+      941
+    ],
+    "mime": "image/webp"
+  },
+  {
+    "path": "assets/space134/space.webp",
+    "before": 867430,
+    "bytes": 851094,
+    "sha256": "cd039bad1f3c52c5f4d42b238a058461ec42351822c579a8bb967e44e28093d8",
+    "rgbaSha256": "4ce1224eb2f413650fff967ca5231bad4b219b1c7872b62a1bca6ec9a9697644",
+    "size": [
+      2048,
+      1536
+    ],
+    "mime": "image/webp"
+  },
+  {
+    "path": "assets/space134/city.webp",
+    "before": 858932,
+    "bytes": 840406,
+    "sha256": "11b3e0618486ad0278ee53a3737d9840184d4eb8a8a6ac87b44588a8777d1213",
+    "rgbaSha256": "90ff4e563689f5232305c7f10c8de21a6b64fba766f09d2a4862d7b2790e73de",
+    "size": [
+      2048,
+      1536
+    ],
+    "mime": "image/webp"
+  },
+  {
+    "path": "assets/af139/goop.webp",
+    "before": 685274,
+    "bytes": 658148,
+    "sha256": "033bc4851bb278d4df5d0aeb9e804f8d291b5fb1a5328a678253d7733fafa701",
+    "rgbaSha256": "bea2085cc25bf9c8f7322e1752fba1e717b80e8f14164c1bc053ecb0b0387f6f",
+    "size": [
+      1024,
+      1536
+    ],
+    "mime": "image/webp"
+  },
+  {
+    "path": "assets/af139/cinema.webp",
+    "before": 529454,
+    "bytes": 496336,
+    "sha256": "e9ffdab23f19588889ca28719f99267b353ad11de9e3c68c2531b747abf576d7",
+    "rgbaSha256": "2f6fac51830258f177a9d5551cb8cc1f097dbe066f01e913bc393ec2a54f9246",
+    "size": [
+      1024,
+      1024
+    ],
+    "mime": "image/webp"
+  },
+  {
+    "path": "assets/af139/bigchill.webp",
+    "before": 726494,
+    "bytes": 665614,
+    "sha256": "ab5b5875b298be1150c048b326df34f5fc424db8254e579b172ed9d848449503",
+    "rgbaSha256": "c6628a61565070be89124aece503215571c480dbc5e44d3b397b07c69b9e3c13",
+    "size": [
+      1024,
+      1536
+    ],
+    "mime": "image/webp"
+  },
+  {
+    "path": "assets/af139/holochill.webp",
+    "before": 117232,
+    "bytes": 114074,
+    "sha256": "c729fa8daaf8f64550c77acfca5b802cebdb70ef4a2effc1e2fc893d97b66656",
+    "rgbaSha256": "356c4687895eafeba1e0d1d84b4774a356916110ce9594c8ee8676691da77198",
+    "size": [
+      384,
+      576
+    ],
+    "mime": "image/webp"
+  },
+  {
+    "path": "assets/af139/hologoop.webp",
+    "before": 130376,
+    "bytes": 126318,
+    "sha256": "8362e3b3ff29e4d3b67a4b227a65c52d2a0bca1ed301a40d5677f56c79e8d315",
+    "rgbaSha256": "119f19628469c5663a3450e729bc4f34ca5053d7548b42bf8e3955e4f20309d5",
+    "size": [
+      384,
+      576
+    ],
+    "mime": "image/webp"
+  },
+  {
+    "path": "assets/echo118/vfx.webp",
+    "before": 857826,
+    "bytes": 828202,
+    "sha256": "e5bcc68dd5416e4bcc44c3488597afa736e9d2e5fa433efe42d89fe9fc585ff7",
+    "rgbaSha256": "0fefb916b994336855e2f2abc3bcd9bccfc8e8b0f70bbb62c8c9213966b4c98e",
+    "size": [
+      1536,
+      1024
+    ],
+    "mime": "image/webp"
+  },
+  {
+    "path": "assets/echo118/cinema.webp",
+    "before": 993610,
+    "bytes": 973806,
+    "sha256": "3704ce0739c3dc9c234d56f0f047770209e8bab237de4fbb67e57c1e54b7f162",
+    "rgbaSha256": "8bf72f551282cefe40c786cd1d6377194fd70a5b1edc2a2ca6f9db0b650921b0",
+    "size": [
+      1672,
+      941
+    ],
+    "mime": "image/webp"
+  },
+  {
+    "path": "assets/echo118/hologram-transparent119.webp",
+    "before": 499006,
+    "bytes": 485278,
+    "sha256": "48be542eb5717c97dfdbdc043049862c6a3fba767c867c52e594936a3217a0e1",
+    "rgbaSha256": "c3e73423759251924aa7f5933251cf7f59dac04a4160406c77957f622de1c779",
+    "size": [
+      1024,
+      1536
+    ],
+    "mime": "image/webp"
+  },
+  {
+    "path": "assets/echo118/attack.webp",
+    "before": 778756,
+    "bytes": 757598,
+    "sha256": "56fccce531f24921f7a0f133d876e59706bba9242a4e68cfb75c4b130941d85c",
+    "rgbaSha256": "bd28c230ca3bc6415db425702d184b35d55238f9cb88d6fede72af6a4e959d3e",
+    "size": [
+      1262,
+      1246
+    ],
+    "mime": "image/webp"
+  },
+  {
+    "path": "assets/echo118/sprites.webp",
+    "before": 864046,
+    "bytes": 844468,
+    "sha256": "35a07ac8768b2ec0e0ab9d4205cb5324299954ebb83ed50ef0ef98beb9296683",
+    "rgbaSha256": "7ff5d369ab3db1ec017c24bca2f64694a4e8932bd7f6c06f4209147dbe1b1e84",
+    "size": [
+      1024,
+      1536
+    ],
+    "mime": "image/webp"
+  },
+  {
+    "path": "assets/swamp116/vfx.webp",
+    "before": 921752,
+    "bytes": 898232,
+    "sha256": "b7d22a191ad367fb10c9f698e4b01a1b6391518b58aec14bc7131b5b82e2c2ad",
+    "rgbaSha256": "d7abd8fa34124258a828b3d85601ca6ade178f5dd7aebec47f1d8c3f1a6189d8",
+    "size": [
+      1536,
+      1024
+    ],
+    "mime": "image/webp"
+  },
+  {
+    "path": "assets/swamp116/attack.webp",
+    "before": 782684,
+    "bytes": 745260,
+    "sha256": "53bf1ea3ba657073a587bf54119b87ab87212a5524e256152687be6cc0b0931f",
+    "rgbaSha256": "be58c640d2a5d574846e09abc72cd1832764be555948872e1f7cf9d621202d40",
+    "size": [
+      1024,
+      1536
+    ],
+    "mime": "image/webp"
+  }
+]

@@ -1,0 +1,17 @@
+{
+  "baseVersion": "1.84.0",
+  "baseWebCommit": "575e1c1859a8d2f767d8cda972d65a3e4c154060",
+  "baseWebSha256": "b65aa63b3d749f906d80df78dc696f61f8d2dda01fa37176c01d033bf0eace6d",
+  "baseGame": "3fd5c6147cee7e052e98b4b43fb017180e43c7f8a25d0212e7c735b382632b67",
+  "gameSha256": "d1c9b1e373342358daded4bbe4d459699de029dae6927993dc82b5cfe67ed5a0",
+  "edits": [
+    [
+      "draw();readyLog23();",
+      "draw();window.OmniUpdates147?.contentReady189?.();readyLog23();"
+    ]
+  ],
+  "fullFiles": 1251,
+  "uniqueFiles": 1228,
+  "packs": 49,
+  "downloadBytes": 384492994
+}
