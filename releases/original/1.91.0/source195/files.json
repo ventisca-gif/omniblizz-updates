@@ -1,0 +1,23 @@
+{
+  "baseGame": "17f7d41f64424ac970cf5adbaf7da08159775275994626a58f50e98f6b1078b2",
+  "gameSha256": "41076428b510642854ed98e282a7ce82353bcffdebd5d9ce6e90a4d1c3f10651",
+  "newPack": "0eae4f289d2f7b30c8b7d42d05eaeddd7c781c1883c98b23e2b0e4b015a9c297",
+  "files": [
+    {
+      "path": "game.js",
+      "bytes": 3352963,
+      "sha256": "41076428b510642854ed98e282a7ce82353bcffdebd5d9ce6e90a4d1c3f10651",
+      "mime": "text/javascript",
+      "offset": 0,
+      "pack": "0eae4f289d2f7b30c8b7d42d05eaeddd7c781c1883c98b23e2b0e4b015a9c297"
+    },
+    {
+      "path": "game-entry147.html",
+      "bytes": 8264,
+      "sha256": "31e9282618312e80ca569ba6dc9e810faf3ae4d1fe481a2901ad88c87a94a548",
+      "mime": "text/html",
+      "offset": 3352963,
+      "pack": "0eae4f289d2f7b30c8b7d42d05eaeddd7c781c1883c98b23e2b0e4b015a9c297"
+    }
+  ]
+}

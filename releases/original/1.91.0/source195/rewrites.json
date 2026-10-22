@@ -1,0 +1,1 @@
+[{"before": "i<6&&((o.brainMaster154||0)<ALIENS[BRAIN154].skills[i].unlock||i>=4&&!o.brainLearned154?.[i-4])||", "after": "", "count": 1}]

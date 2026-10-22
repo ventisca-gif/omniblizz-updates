@@ -1,0 +1,13 @@
+{
+  "parts": [
+    "payload-000.txt",
+    "payload-001.txt",
+    "payload-002.txt",
+    "payload-003.txt",
+    "payload-004.txt",
+    "payload-005.txt",
+    "payload-006.txt"
+  ],
+  "signature": "ffYOqV8wg0zcMlMDWuS+U2MOc+OrqkT2ilPEMZ4rNfhifHUNdco0T7ZMVrn6lnRmifPWetT9LWnDz50DJwefrWljgPIpDFdmttn8NnDoufnS7bFZA6j85G5NLOpk21sQHyTe7QxbXbPRwSkb+oQCcjvCogbkkR7gcFSuHPDqdsRW3pWRhWAtjN15d+4DbRsKpdN2gfHYtU0cTC7UcYq1wWsPxXErs1ML4o+wH2Pq5DNo1rJ9zBRjmHUlw9L/2IJ6oVjOlh31YCpX+/G3hQgimOlS3XDUcTMAfCnIwLWXqiW1kMJSUYwyfyVGTbeOUgJpDDkLKPui1VRhuT4/0uEQZapAPM7BsPWH4bDKbxiJXFKpLE8vxcDv5AlltznaBZfm725ABUo7UIxr04R+nY21abRKyadfcizxqRgUoJ9wNiKm4wv36j8o2ScEIXLUDZqsCgr66tSZgAEgWd/RCcCQimbBERjhi9rkqlT23JQM9Tuji0HT36HI+ZPAtQZGFJB+",
+  "payloadSha256": "ebed60cdf025aae4153faaff75a519e73fe6e050b6f22908943895dae1b2d9c1"
+}
