@@ -14,6 +14,25 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Load verified Original 1.94 public source bundle
+        run: |
+          python3 - <<'PYCODE'
+          from pathlib import Path
+          import zipfile,json,hashlib
+          bundle=Path('OmniBlizz-Original-1.94-Para-GitHub.zip')
+          assert hashlib.sha256(bundle.read_bytes()).hexdigest()=='9a6410884167c3cbe12982970e05b444888329414dac69136bc706d49ab66875'
+          with zipfile.ZipFile(bundle) as z:
+              files=json.loads(z.read('files-sha256.json'))
+              for name,digest in files.items():
+                  p=Path(name)
+                  assert not p.is_absolute() and '..' not in p.parts
+                  assert name.startswith(('build-tools/','releases/original/','.github/workflows/'))
+                  data=z.read('repository/'+name)
+                  assert hashlib.sha256(data).hexdigest()==digest
+                  if name.startswith('.github/'):continue
+                  p.parent.mkdir(parents=True,exist_ok=True)
+                  p.write_bytes(data)
+          PYCODE
       - name: Reconstruct verified Original 1.75 resources
         run: python3 build-tools/assemble179.py
       - name: Reconstruct verified Original 1.76 artwork
@@ -46,6 +65,12 @@ jobs:
         run: python3 build-tools/assemble194.py
       - name: Reconstruct verified Original1.91 Anodite menu and Brainstorm fixes
         run: python3 build-tools/assemble195.py
+      - name: Reconstruct verified Original1.92 Plumber base and Fasttrack
+        run: python3 build-tools/assemble196.py
+      - name: Reconstruct verified Original1.93 Highbreed patrols and Fasttrack fixes
+        run: python3 build-tools/assemble197.py
+      - name: Reconstruct verified Original 1.94 floor and Omnipedia repairs
+        run: python3 build-tools/assemble198.py
       - name: Validate signature and prepare release
         id: prepare
         shell: bash
