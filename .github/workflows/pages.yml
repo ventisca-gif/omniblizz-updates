@@ -16,13 +16,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Load verified Original 1.94 public source bundle
+      - name: Load verified Original 1.95 public source bundle
         run: |
           python3 - <<'PYCODE'
           from pathlib import Path
           import zipfile,json,hashlib
-          bundle=Path('OmniBlizz-Original-1.94-Para-GitHub.zip')
-          assert hashlib.sha256(bundle.read_bytes()).hexdigest()=='9a6410884167c3cbe12982970e05b444888329414dac69136bc706d49ab66875'
+          bundle=Path('OmniBlizz-Original-1.95-Publico.zip')
+          assert hashlib.sha256(bundle.read_bytes()).hexdigest()=='d53fb51aab46000a203e99b57d11e605e2f6298b2eced6a4b2785db30ef941cd'
           with zipfile.ZipFile(bundle) as z:
               files=json.loads(z.read('files-sha256.json'))
               for name,digest in files.items():
@@ -73,6 +73,8 @@ jobs:
         run: python3 build-tools/assemble197.py
       - name: Reconstruct verified Original 1.94 floor and Omnipedia repairs
         run: python3 build-tools/assemble198.py
+      - name: Reconstruct verified Original 1.95 floor and Omnipedia repairs
+        run: python3 build-tools/assemble199.py
       - name: Download and verify the public web build
         run: python3 website/download.py
       - uses: actions/upload-pages-artifact@v3
