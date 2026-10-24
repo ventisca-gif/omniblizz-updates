@@ -21,8 +21,8 @@ jobs:
           python3 - <<'PYCODE'
           from pathlib import Path
           import zipfile,json,hashlib
-          bundle=Path('OmniBlizz-Original-1.99.1-Publico.zip')
-          assert hashlib.sha256(bundle.read_bytes()).hexdigest()=='8f17a48d84c407850b5178b3ac02f96312ec27959f212f88ac36a9902e29e63a'
+          bundle=Path('OmniBlizz-Original-1.99.2-Publico.zip')
+          assert hashlib.sha256(bundle.read_bytes()).hexdigest()=='9b18f9396958cc6f787d8a3911a8b2efddb1532c0231f112c6638c16518d443f'
           with zipfile.ZipFile(bundle) as z:
               files=json.loads(z.read('files-sha256.json'))
               for name,digest in files.items():
@@ -85,6 +85,8 @@ jobs:
         run: python3 build-tools/assemble203.py
       - name: Reconstruct and validate Original 1.99 updater compatibility
         run: python3 build-tools/assemble204.py
+      - name: Reconstruct and validate Original 1.99 updater compatibility
+        run: python3 build-tools/assemble205.py
       - name: Download and verify the public web build
         run: python3 website/download.py
       - uses: actions/upload-pages-artifact@v3
