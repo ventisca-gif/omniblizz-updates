@@ -21,8 +21,8 @@ jobs:
           python3 - <<'PYCODE'
           from pathlib import Path
           import zipfile,json,hashlib
-          bundle=Path('OmniBlizz-Original-2.00.0-Publico.zip')
-          assert hashlib.sha256(bundle.read_bytes()).hexdigest()=='9b6c7db8c7e68fc4dbe393bd6a2f55c3cd1e403404c92e9148bd6dde571882e4'
+          bundle=Path('OmniBlizz-Original-2.01.0-Publico.zip')
+          assert hashlib.sha256(bundle.read_bytes()).hexdigest()=='b551143078ae685b70fa82da75187303eedacec8253e278029ae6b12a8eb294c'
           with zipfile.ZipFile(bundle) as z:
               files=json.loads(z.read('files-sha256.json'))
               for name,digest in files.items():
@@ -91,6 +91,10 @@ jobs:
         run: python3 build-tools/assemble206.py
       - name: Reconstruct and verify Original 2.00.0 Rojo
         run: python3 build-tools/assemble207.py
+      - name: Reconstruct and verify Original 2.00.1 walkable flower bed
+        run: python3 build-tools/assemble208.py
+      - name: Reconstruct and verify Original 2.01.0 Flowey and Toriel opening
+        run: python3 build-tools/assemble209.py
       - name: Download and verify the public web build
         run: python3 website/download.py
       - uses: actions/upload-pages-artifact@v3
