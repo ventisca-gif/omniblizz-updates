@@ -19,8 +19,8 @@ jobs:
           python3 - <<'PYCODE'
           from pathlib import Path
           import zipfile,json,hashlib
-          bundle=Path('OmniBlizz-Original-2.00.0-Publico.zip')
-          assert hashlib.sha256(bundle.read_bytes()).hexdigest()=='9b6c7db8c7e68fc4dbe393bd6a2f55c3cd1e403404c92e9148bd6dde571882e4'
+          bundle=Path('OmniBlizz-Original-2.00.1-Publico.zip')
+          assert hashlib.sha256(bundle.read_bytes()).hexdigest()=='53812f38aa242126838257c065f278cb5a88d487ee54e72e9fd1404d8dad04c0'
           with zipfile.ZipFile(bundle) as z:
               files=json.loads(z.read('files-sha256.json'))
               for name,digest in files.items():
@@ -89,6 +89,8 @@ jobs:
         run: python3 build-tools/assemble206.py
       - name: Reconstruct and verify Original 2.00.0 Rojo
         run: python3 build-tools/assemble207.py
+      - name: Reconstruct and verify Original 2.00.1 walkable flower bed
+        run: python3 build-tools/assemble208.py
       - name: Validate signature and prepare release
         id: prepare
         shell: bash
