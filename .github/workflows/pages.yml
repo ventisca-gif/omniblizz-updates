@@ -16,13 +16,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Load verified Original 1.99.1 public source bundle
+      - name: Load verified Original 1.99.3 public source bundle
         run: |
           python3 - <<'PYCODE'
           from pathlib import Path
           import zipfile,json,hashlib
-          bundle=Path('OmniBlizz-Original-1.99.2-Publico.zip')
-          assert hashlib.sha256(bundle.read_bytes()).hexdigest()=='9b18f9396958cc6f787d8a3911a8b2efddb1532c0231f112c6638c16518d443f'
+          bundle=Path('OmniBlizz-Original-1.99.3-Publico.zip')
+          assert hashlib.sha256(bundle.read_bytes()).hexdigest()=='4a574162b4b3ac028c36e66768e0db7a202fb5de201fac8919c64a3866604767'
           with zipfile.ZipFile(bundle) as z:
               files=json.loads(z.read('files-sha256.json'))
               for name,digest in files.items():
@@ -87,6 +87,8 @@ jobs:
         run: python3 build-tools/assemble204.py
       - name: Reconstruct and validate Original 1.99 updater compatibility
         run: python3 build-tools/assemble205.py
+      - name: Reconstruct and verify Original 1.99.3 recovery
+        run: python3 build-tools/assemble206.py
       - name: Download and verify the public web build
         run: python3 website/download.py
       - uses: actions/upload-pages-artifact@v3
