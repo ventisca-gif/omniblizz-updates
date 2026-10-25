@@ -111,6 +111,25 @@ jobs:
                   p.parent.mkdir(parents=True,exist_ok=True)
                   p.write_bytes(data)
           PYCODE
+      - name: Load verified 2.06.1 delta source bundle
+        run: |
+          python3 - <<'PYCODE'
+          from pathlib import Path
+          import zipfile,json,hashlib
+          bundle=Path('OmniBlizz-Original-2.06.1-Delta-Publico.zip')
+          assert hashlib.sha256(bundle.read_bytes()).hexdigest()=='67fdf1a767193643094cbec1ef8bd78f4db0a158c6d7df584511cb30a56a4ea4'
+          with zipfile.ZipFile(bundle) as z:
+              files=json.loads(z.read('files-sha256.json'))
+              for name,digest in files.items():
+                  p=Path(name)
+                  assert not p.is_absolute() and '..' not in p.parts
+                  assert name.startswith(('build-tools/','releases/original/','.github/workflows/'))
+                  data=z.read('repository/'+name)
+                  assert hashlib.sha256(data).hexdigest()==digest
+                  if name.startswith('.github/'):continue
+                  p.parent.mkdir(parents=True,exist_ok=True)
+                  p.write_bytes(data)
+          PYCODE
       - name: Reconstruct verified Original 1.75 resources
         run: python3 build-tools/assemble179.py
       - name: Reconstruct verified Original 1.76 artwork
@@ -191,6 +210,8 @@ jobs:
         run: python3 build-tools/assemble218.py
       - name: Reconstruct and verify Original 2.06.0 remove mastery test grant
         run: python3 build-tools/assemble219.py
+      - name: Reconstruct and verify Original 2.06.1 remove mastery test grant
+        run: python3 build-tools/assemble220.py
       - name: Download and verify the public web build
         run: python3 website/download.py
       - uses: actions/upload-pages-artifact@v3
