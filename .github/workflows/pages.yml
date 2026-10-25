@@ -21,8 +21,8 @@ jobs:
           python3 - <<'PYCODE'
           from pathlib import Path
           import zipfile,json,hashlib
-          bundle=Path('OmniBlizz-Original-2.03.1-Publico.zip')
-          assert hashlib.sha256(bundle.read_bytes()).hexdigest()=='4962f702aeb8ba4d3defa1f1201276f538b6393b389a3d398642f6272426713c'
+          bundle=Path('OmniBlizz-Original-2.04.0-Publico.zip')
+          assert hashlib.sha256(bundle.read_bytes()).hexdigest()=='bd8d705bc6c15416942bdf1fc99ade9f518d92a04570aadcd281368c72e95c40'
           with zipfile.ZipFile(bundle) as z:
               files=json.loads(z.read('files-sha256.json'))
               for name,digest in files.items():
@@ -103,6 +103,8 @@ jobs:
         run: python3 build-tools/assemble212.py
       - name: Reconstruct and verify Original 2.03.1 circular dials without black rectangles
         run: python3 build-tools/assemble213.py
+      - name: Reconstruct and verify Original 2.04.0 independent combat mastery
+        run: python3 build-tools/assemble214.py
       - name: Download and verify the public web build
         run: python3 website/download.py
       - uses: actions/upload-pages-artifact@v3
