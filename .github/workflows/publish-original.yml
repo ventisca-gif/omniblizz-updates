@@ -33,6 +33,25 @@ jobs:
                   p.parent.mkdir(parents=True,exist_ok=True)
                   p.write_bytes(data)
           PYCODE
+      - name: Load verified 2.04.2 delta source bundle
+        run: |
+          python3 - <<'PYCODE'
+          from pathlib import Path
+          import zipfile,json,hashlib
+          bundle=Path('OmniBlizz-Original-2.04.2-Delta-Publico.zip')
+          assert hashlib.sha256(bundle.read_bytes()).hexdigest()=='32826f0e746468c703309d6389d5965095895ade2c3a764a8b9d003a3a32f56b'
+          with zipfile.ZipFile(bundle) as z:
+              files=json.loads(z.read('files-sha256.json'))
+              for name,digest in files.items():
+                  p=Path(name)
+                  assert not p.is_absolute() and '..' not in p.parts
+                  assert name.startswith(('build-tools/','releases/original/','.github/workflows/'))
+                  data=z.read('repository/'+name)
+                  assert hashlib.sha256(data).hexdigest()==digest
+                  if name.startswith('.github/'):continue
+                  p.parent.mkdir(parents=True,exist_ok=True)
+                  p.write_bytes(data)
+          PYCODE
       - name: Reconstruct verified Original 1.75 resources
         run: python3 build-tools/assemble179.py
       - name: Reconstruct verified Original 1.76 artwork
@@ -105,6 +124,8 @@ jobs:
         run: python3 build-tools/assemble214.py
       - name: Reconstruct and verify Original 2.04.1 visible combat mastery HUD
         run: python3 build-tools/assemble215.py
+      - name: Reconstruct and verify Original 2.04.2 mastery fixes
+        run: python3 build-tools/assemble216.py
       - name: Validate signature and prepare release
         id: prepare
         shell: bash
@@ -135,12 +156,6 @@ jobs:
           with open(os.environ['GITHUB_OUTPUT'],'a')as f:
               f.write(f'directory={directory}\ntag=v{version}\nversion={version}\n')
           PY
-      - name: Describe visible mastery HUD
-        run: |
-          python3 - <<'PYNOTES'
-          from pathlib import Path
-          Path("releases/original/2.04.1/release-notes.md").write_text("OmniBlizz Original 2.04.1\n\nBarra visible de Dominio de combate junto al árbol racial, con nivel 0–300, forma actual y experiencia para el siguiente nivel. Toca la barra para abrir los detalles. Recalibrado, Osmosiano, Anodita y Bendy. Textos en cuatro idiomas.\n\nVisible per-form Combat Mastery HUD showing level and next-level EXP. Tap for details. Existing progression and combat balance are preserved.\n",encoding="utf-8")
-          PYNOTES
       - name: Publish verified Original assets
         env:
           GH_TOKEN: ${{ github.token }}
