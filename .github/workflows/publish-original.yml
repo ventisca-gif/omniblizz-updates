@@ -19,8 +19,8 @@ jobs:
           python3 - <<'PYCODE'
           from pathlib import Path
           import zipfile,json,hashlib
-          bundle=Path('OmniBlizz-Original-2.04.0-Publico.zip')
-          assert hashlib.sha256(bundle.read_bytes()).hexdigest()=='bd8d705bc6c15416942bdf1fc99ade9f518d92a04570aadcd281368c72e95c40'
+          bundle=Path('OmniBlizz-Original-2.04.1-Publico.zip')
+          assert hashlib.sha256(bundle.read_bytes()).hexdigest()=='af4fe010998cc6385ab9a88f007df1afef4f43c8b2a9caade8923e2401403010'
           with zipfile.ZipFile(bundle) as z:
               files=json.loads(z.read('files-sha256.json'))
               for name,digest in files.items():
@@ -103,6 +103,8 @@ jobs:
         run: python3 build-tools/assemble213.py
       - name: Reconstruct and verify Original 2.04.0 independent combat mastery
         run: python3 build-tools/assemble214.py
+      - name: Reconstruct and verify Original 2.04.1 visible combat mastery HUD
+        run: python3 build-tools/assemble215.py
       - name: Validate signature and prepare release
         id: prepare
         shell: bash
@@ -133,11 +135,11 @@ jobs:
           with open(os.environ['GITHUB_OUTPUT'],'a')as f:
               f.write(f'directory={directory}\ntag=v{version}\nversion={version}\n')
           PY
-      - name: Describe the combat mastery release
+      - name: Describe visible mastery HUD
         run: |
           python3 - <<'PYNOTES'
           from pathlib import Path
-          Path("releases/original/2.04.0/release-notes.md").write_text("OmniBlizz Original 2.04.0\n\nDominio de combate independiente de 0 a 300 por alien del Recalibrado, absorción osmosiana y forma Anodita/Bendy. Cada nivel añade 1% de daño y 0,2% de vida. Uso activo inicial, combate y cinco etapas de progresión. Prototipo, Sistema, Saiyan, Pokémon y Rojo excluidos.\n\nIndependent combat mastery 0–300 per eligible form. Each level adds 1% damage and 0.2% HP. Active-use and combat XP, progressive costs, separate saves. Spanish, English, Portuguese and Turkish.\n",encoding="utf-8")
+          Path("releases/original/2.04.1/release-notes.md").write_text("OmniBlizz Original 2.04.1\n\nBarra visible de Dominio de combate junto al árbol racial, con nivel 0–300, forma actual y experiencia para el siguiente nivel. Toca la barra para abrir los detalles. Recalibrado, Osmosiano, Anodita y Bendy. Textos en cuatro idiomas.\n\nVisible per-form Combat Mastery HUD showing level and next-level EXP. Tap for details. Existing progression and combat balance are preserved.\n",encoding="utf-8")
           PYNOTES
       - name: Publish verified Original assets
         env:
