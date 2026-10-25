@@ -19,8 +19,8 @@ jobs:
           python3 - <<'PYCODE'
           from pathlib import Path
           import zipfile,json,hashlib
-          bundle=Path('OmniBlizz-Original-2.02.1-Publico.zip')
-          assert hashlib.sha256(bundle.read_bytes()).hexdigest()=='b1baa2c1a024c8dbed4d0aa35f59a33edcfcde35a5c5098cd7c7f2bd161a1a61'
+          bundle=Path('OmniBlizz-Original-2.03.0-Publico.zip')
+          assert hashlib.sha256(bundle.read_bytes()).hexdigest()=='8cd542f99876dab3c50da524aa7d84e0c1eb8a86eea144e38e11a980897ee35c'
           with zipfile.ZipFile(bundle) as z:
               files=json.loads(z.read('files-sha256.json'))
               for name,digest in files.items():
@@ -97,6 +97,8 @@ jobs:
         run: python3 build-tools/assemble210.py
       - name: Reconstruct and verify Original 2.02.1 Flowey and Toriel opening
         run: python3 build-tools/assemble211.py
+      - name: Reconstruct and verify Original 2.03.0 Recalibrated quick switch
+        run: python3 build-tools/assemble212.py
       - name: Validate signature and prepare release
         id: prepare
         shell: bash
