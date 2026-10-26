@@ -225,6 +225,25 @@ jobs:
                   p.parent.mkdir(parents=True,exist_ok=True)
                   p.write_bytes(data)
           PYCODE
+      - name: Load verified 2.12.0 delta source bundle
+        run: |
+          python3 - <<'PYCODE'
+          from pathlib import Path
+          import zipfile,json,hashlib
+          bundle=Path('OmniBlizz-Original-2.12.0-Delta-Publico.zip')
+          assert hashlib.sha256(bundle.read_bytes()).hexdigest()=='815bcda18a4bf1edae75475af2478c9252851a67a46c39ba0c65ccafe50b42b7'
+          with zipfile.ZipFile(bundle) as z:
+              files=json.loads(z.read('files-sha256.json'))
+              for name,digest in files.items():
+                  p=Path(name)
+                  assert not p.is_absolute() and '..' not in p.parts
+                  assert name.startswith(('build-tools/','releases/original/','.github/workflows/'))
+                  data=z.read('repository/'+name)
+                  assert hashlib.sha256(data).hexdigest()==digest
+                  if name.startswith('.github/'):continue
+                  p.parent.mkdir(parents=True,exist_ok=True)
+                  p.write_bytes(data)
+          PYCODE
       - name: Reconstruct verified Original 1.75 resources
         run: python3 build-tools/assemble179.py
       - name: Reconstruct verified Original 1.76 artwork
@@ -317,6 +336,8 @@ jobs:
         run: python3 build-tools/assemble224.py
       - name: Reconstruct and verify Original 2.11.0 credits and Rojo without music
         run: python3 build-tools/assemble225.py
+      - name: Reconstruct and verify Original 2.12.0 credits and Rojo without music
+        run: python3 build-tools/assemble226.py
       - name: Download and verify the public web build
         run: python3 website/download.py
       - uses: actions/upload-pages-artifact@v3
