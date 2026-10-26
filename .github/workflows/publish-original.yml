@@ -248,7 +248,7 @@ jobs:
           from pathlib import Path
           import zipfile,json,hashlib
           bundle=Path('OmniBlizz-Original-2.13.0-Delta-Publico.zip')
-          assert hashlib.sha256(bundle.read_bytes()).hexdigest()=='c8d595af777f6d4f62e4371b1e1236228021d3922b3c3ece3ade4470a581fefb'
+          assert hashlib.sha256(bundle.read_bytes()).hexdigest()=='d55b8037327eb5f6de55749404b49c89164c110ffe0f0d20ae34b35b4d13231b'
           with zipfile.ZipFile(bundle) as z:
               files=json.loads(z.read('files-sha256.json'))
               for name,digest in files.items():
