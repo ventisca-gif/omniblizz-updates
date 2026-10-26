@@ -244,6 +244,25 @@ jobs:
                   p.parent.mkdir(parents=True,exist_ok=True)
                   p.write_bytes(data)
           PYCODE
+      - name: Load verified 2.13.0 delta source bundle
+        run: |
+          python3 - <<'PYCODE'
+          from pathlib import Path
+          import zipfile,json,hashlib
+          bundle=Path('OmniBlizz-Original-2.13.0-Delta-Publico.zip')
+          assert hashlib.sha256(bundle.read_bytes()).hexdigest()=='c8d595af777f6d4f62e4371b1e1236228021d3922b3c3ece3ade4470a581fefb'
+          with zipfile.ZipFile(bundle) as z:
+              files=json.loads(z.read('files-sha256.json'))
+              for name,digest in files.items():
+                  p=Path(name)
+                  assert not p.is_absolute() and '..' not in p.parts
+                  assert name.startswith(('build-tools/','releases/original/','.github/workflows/'))
+                  data=z.read('repository/'+name)
+                  assert hashlib.sha256(data).hexdigest()==digest
+                  if name.startswith('.github/'):continue
+                  p.parent.mkdir(parents=True,exist_ok=True)
+                  p.write_bytes(data)
+          PYCODE
       - name: Reconstruct verified Original 1.75 resources
         run: python3 build-tools/assemble179.py
       - name: Reconstruct verified Original 1.76 artwork
@@ -338,6 +357,8 @@ jobs:
         run: python3 build-tools/assemble225.py
       - name: Reconstruct and verify Original 2.12.0 credits and Rojo without music
         run: python3 build-tools/assemble226.py
+      - name: Reconstruct and verify Original 2.13.0 Hatchery phone skin and update notices
+        run: python3 build-tools/assemble227.py
       - name: Download and verify the public web build
         run: python3 website/download.py
       - uses: actions/upload-pages-artifact@v3
