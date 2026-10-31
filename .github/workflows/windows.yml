@@ -1,0 +1,71 @@
+name: Build and test OmniBlizz Windows
+on:
+  push:
+    branches: [main]
+    paths: ['windows/**', '.github/workflows/windows.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  windows:
+    runs-on: windows-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+      - name: Unpack Windows source
+        shell: pwsh
+        run: Expand-Archive windows/OmniBlizz-Windows-1.0.0-Source.zip windows-build
+      - name: Build x64 client
+        shell: pwsh
+        run: dotnet build windows-build/app/OmniBlizz.Windows.csproj -c Release -o windows-bin
+      - name: Verify signed updater and transaction rules
+        shell: pwsh
+        run: |
+          $p = Start-Process -FilePath "$PWD/windows-bin/OmniBlizz.exe" -ArgumentList @('--test', "$PWD/windows-build/baseline-manifest.json") -PassThru
+          if (-not $p.WaitForExit(45000)) { $p.Kill(); throw 'Updater test timeout' }
+          if ($p.ExitCode -ne 0 -or -not (Test-Path test-ok.txt)) { if (Test-Path test-failure.txt) { Get-Content test-failure.txt }; throw 'Updater tests failed' }
+          Get-Content test-ok.txt
+      - name: Ensure official WebView2 Runtime
+        shell: pwsh
+        run: |
+          $keys = @('HKLM:\SOFTWARE\WOW6432Node\Microsoft\EdgeUpdate\Clients\{F3017226-FE2A-4295-8BDF-00C3A9A7E4C5}', 'HKLM:\SOFTWARE\Microsoft\EdgeUpdate\Clients\{F3017226-FE2A-4295-8BDF-00C3A9A7E4C5}', 'HKCU:\SOFTWARE\Microsoft\EdgeUpdate\Clients\{F3017226-FE2A-4295-8BDF-00C3A9A7E4C5}')
+          if (-not ($keys | Where-Object { Test-Path $_ })) {
+            Invoke-WebRequest 'https://go.microsoft.com/fwlink/p/?LinkId=2124703' -OutFile WebView2Setup.exe
+            $p = Start-Process .\WebView2Setup.exe -ArgumentList '/silent /install' -Wait -PassThru
+            if ($p.ExitCode -ne 0) { throw "WebView2 installer failed: $($p.ExitCode)" }
+          }
+      - name: Launch native Windows browser and test secure storage
+        shell: pwsh
+        run: |
+          $p = Start-Process -FilePath "$PWD/windows-bin/OmniBlizz.exe" -ArgumentList '--smoke-test' -PassThru
+          if (-not $p.WaitForExit(60000)) { $p.Kill(); throw 'Native WebView2 test timeout' }
+          if ($p.ExitCode -ne 0 -or -not (Test-Path smoke-ok.txt)) { if (Test-Path smoke-failure.txt) { Get-Content smoke-failure.txt }; throw 'Native WebView2 test failed' }
+          Get-Content smoke-ok.txt
+      - name: Package small launcher
+        shell: pwsh
+        run: |
+          New-Item package/OmniBlizz-Windows -ItemType Directory -Force
+          foreach ($name in @('OmniBlizz.exe','OmniBlizz.exe.config','Microsoft.Web.WebView2.Core.dll','Microsoft.Web.WebView2.WinForms.dll')) { Copy-Item "windows-bin/$name" package/OmniBlizz-Windows/ }
+          $loader = Get-ChildItem windows-bin -Recurse -Filter WebView2Loader.dll | Where-Object { $_.FullName -match 'win-x64' -or $_.Directory.FullName -eq "$PWD\windows-bin" } | Select-Object -First 1
+          if (-not $loader) { throw 'x64 WebView2 loader missing' }
+          Copy-Item $loader.FullName package/OmniBlizz-Windows/
+          Copy-Item windows-build/README.txt package/OmniBlizz-Windows/LEEME-README.txt
+          Copy-Item "$env:USERPROFILE/.nuget/packages/microsoft.web.webview2/1.0.4314.35/LICENSE.txt" package/OmniBlizz-Windows/WebView2-LICENSE.txt
+          Copy-Item "$env:USERPROFILE/.nuget/packages/microsoft.web.webview2/1.0.4314.35/NOTICE.txt" package/OmniBlizz-Windows/WebView2-NOTICE.txt
+          Compress-Archive package/OmniBlizz-Windows OmniBlizz-Windows-1.0.0-x64.zip
+          Get-FileHash OmniBlizz-Windows-1.0.0-x64.zip -Algorithm SHA256 | Format-List | Out-File SHA256-Windows.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: OmniBlizz-Windows-x64
+          path: |
+            OmniBlizz-Windows-1.0.0-x64.zip
+            SHA256-Windows.txt
+            test-ok.txt
+            test-failure.txt
+            smoke-ok.txt
+            smoke-failure.txt
+          if-no-files-found: error
