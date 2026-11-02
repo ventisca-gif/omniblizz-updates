@@ -1,0 +1,31 @@
+--- a/alienx280/public/game.js
++++ b/alienx280/public/game.js
+@@ -10502,7 +10502,7 @@
+ // The elapsed time is accumulated, rather than discarded or passed as a larger unsafe physics step.
+ loop=function(now){
+  // Keep the existing loop for races the device already runs smoothly.
+- if(race!=='omni'&&race!=='anodite'){pendingTime202=0;return loopBefore202(now);}
++ // All races share render-aligned simulation; elapsed time remains accumulated.
+  requestAnimationFrame(loop);const elapsed=Math.max(0,(now-last)/1000||0);last=now;countPlay56(elapsed);renderStats202.callbacks++;
+  if(!ready){pendingTime202=0;return;}
+  pendingTime202+=elapsed;const render=frameControl75.render(now,quality17);
+@@ -14774,5 +14774,19 @@
+ const updateBefore296=update;update=function(dt,...a){const out=updateBefore296(dt,...a);sweep296+=dt;if(sweep296>=2){sweep296=0;trimCanvases296(armorCache291,48);trimCanvases296(riderCache289,24);trimCanvases296(fittedCache278,48);trimCanvases296(suitCache285,48);}return out;};
+ if(location.search.includes('qa=1'))window.__v296={eval:s=>eval(s),stats:stats296};
+ 
++// Render transaction: retain safe physics steps and one final HUD refresh.
++const simulateBefore297=simulate75;
++simulate75=function(...args){
++ simulationDepth200++;
++ try{return simulateBefore297(...args);}
++ finally{
++  if(--simulationDepth200===0&&hudDirty200){
++   hudDirty200=false;
++   const now=performance.now(),key=hudKey200();
++   if(key!==lastKey200||now-lastHud200>=1000/(race==='anodite'?12:15))hud();
++  }
++ }
++};
++
+ initProgress();window.OmniUpdates147?.gameReady();if(window.__game)Object.assign(__game,{update,attack,greyPunch,transform,commitTransform,damageEnemy,defeat,enterZone,interact,hud,initProgress,avatarPacket,worldPacket,lanReceive,profileSnapshot,omnipedia17,drawScene,drawCinema,finishCinema,updateCinema,chaptersMenu,tenHub});
+ })();
