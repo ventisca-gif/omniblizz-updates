@@ -1,0 +1,11 @@
+{
+  "version": "2.36.5",
+  "revision": 297,
+  "files": 1597,
+  "publishedSignatureVerified": true,
+  "publishedPackVerified": true,
+  "changed": [
+    "game.js",
+    "game-entry147.html"
+  ]
+}
