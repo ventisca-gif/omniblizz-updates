@@ -25,5 +25,14 @@ simulate75=function(...args){
 '''
 at=s.rindex(marker)
 s=s[:at]+extension+chr(10)+s[at:]
-p.write_text(s)
 print('Patched render alignment and HUD transaction:',p)
+
+# Bound initial required artwork loading and retry a transient failure once.
+start='async function boot(){try{await Promise.all(['
+end=".map(([name,url])=>new Promise((resolve,reject)=>{let im=new Image();im.onload=()=>{art[name]=im;resolve();};im.onerror=()=>{reject(new Error(url));};im.src=url;})))"
+assert s.count(start)==1 and s.count(end)==1
+s=s.replace(start,'async function boot(){try{await loadBootArt297([').replace(end,')')
+helper="async function loadBootArt297(entries){\n let next=0,failure=null;\n async function loadOne(name,url){\n  for(let attempt=0;attempt<2;attempt++){\n   try{\n    const im=await new Promise((resolve,reject)=>{\n     const image=new Image();\n     image.onload=()=>{image.onload=image.onerror=null;resolve(image);};\n     image.onerror=()=>{image.onload=image.onerror=null;reject(new Error(url));};\n     image.src=url;\n    });\n    art[name]=im;return;\n   }catch(error){if(attempt===1)throw error;}\n  }\n }\n async function worker(){\n  while(!failure){const i=next++;if(i>=entries.length)return;\n   try{await loadOne(...entries[i]);}catch(error){failure=error;}\n  }\n }\n await Promise.all(Array.from({length:Math.min(6,entries.length)},()=>worker()));\n if(failure)throw failure;\n}\n"
+at=s.index('async function boot(){')
+s=s[:at]+helper+s[at:]
+p.write_text(s)
