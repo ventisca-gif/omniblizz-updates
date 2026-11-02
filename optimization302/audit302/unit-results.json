@@ -1,0 +1,5 @@
+{
+  "passed": 216,
+  "failed": 0,
+  "scope": "Includes105 AF301 regressions plus native side/back/front direction, level220/watch locks, armor HP percentage/preview isolation,6 damage budgets, turret mount/exit/timing, laser and turret frame independence, terrain/zone/death/pause, RGB-preserving cutout, exact dial slots, four languages, and bounded cached frames."
+}
