@@ -27,7 +27,7 @@ for name,m in manifests.items():
   t=Path(d);(t/'payload').write_bytes(raw);(t/'pub').write_bytes(pub);sig=subprocess.check_output(['openssl','dgst','-sha256','-sign',str(key),str(t/'payload')]);(t/'sig').write_bytes(sig);subprocess.run(['openssl','dgst','-sha256','-verify',str(t/'pub'),'-signature',str(t/'sig'),str(t/'payload')],check=True,capture_output=True)
  (out/name).write_text(json.dumps(dict(payload=base64.b64encode(raw).decode(),signature=base64.b64encode(sig).decode()),separators=(',',':')))
 (out/'release-notes.md').write_text(notes)
-info=dict(version='2.37.0',revision=301,resources=1604,changed=list(resources),incrementalBytes=sum(len(d) for d in resources.values()),checksPassed=612,signatureVerified=True,androidBenchmark=False,regressionFullyResolved=False,sha256={n:sha(d) for n,d in resources.items()});(out/'build-info.json').write_text(json.dumps(info,indent=2))
+info=dict(version='2.37.0',revision=301,resources=1604,changed=list(resources),incrementalBytes=sum(len(d) for d in resources.values()),checksPassed=516+json.loads((r/'audit301/unit-results.json').read_text())['passed'],signatureVerified=True,androidBenchmark=False,regressionFullyResolved=False,sha256={n:sha(d) for n,d in resources.items()});(out/'build-info.json').write_text(json.dumps(info,indent=2))
 with zipfile.ZipFile(oldout/'OmniBlizz-Original-2.36.8-Codigo-Publico.zip') as zin,zipfile.ZipFile(out/'OmniBlizz-Original-2.37.0-Codigo-Publico.zip','w',zipfile.ZIP_DEFLATED) as z:
  for name in zin.namelist():
   data=resources.get(name.removeprefix('alienx280/public/')) if name.startswith('alienx280/public/') else None
