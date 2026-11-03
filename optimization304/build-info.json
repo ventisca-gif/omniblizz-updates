@@ -1,0 +1,18 @@
+{
+  "version": "2.39.1",
+  "revision": 304,
+  "resources": 1629,
+  "changed": [
+    "game.js",
+    "game-entry147.html"
+  ],
+  "incrementalBytes": 5522353,
+  "checksPassed": 542,
+  "signatureVerified": true,
+  "androidBenchmark": false,
+  "regressionFullyResolved": false,
+  "sha256": {
+    "game.js": "0c592025314bffc65b8f2fb543dde953585d280288846a32d8e5d63ffee7f8ef",
+    "game-entry147.html": "d719aaa4c22004f3bcd71112f286a95ed7a4e0a7066f9526e1da8298a4e886e9"
+  }
+}
