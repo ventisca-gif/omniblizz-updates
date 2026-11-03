@@ -1,0 +1,30 @@
+{
+  "version": "2.40.0",
+  "revision": 305,
+  "resources": 1635,
+  "changed": [
+    "game.js",
+    "game-entry147.html",
+    "expansion305/cast.webp",
+    "expansion305/diamond.webp",
+    "expansion305/hologram.png",
+    "expansion305/park.webp",
+    "expansion305/vfx.webp",
+    "expansion305/vilgax.webp"
+  ],
+  "incrementalBytes": 9605934,
+  "checksPassed": 78,
+  "signatureVerified": true,
+  "androidBenchmark": false,
+  "regressionFullyResolved": false,
+  "sha256": {
+    "game.js": "d4a690d9c21a7d251c436ade568335d09c6a760a89c51437fc5289a2e837b66c",
+    "game-entry147.html": "d991b9bdd6e93ce76394435c8e68bc1d8a8b4e0c1adf366aaa4f9a4f8029725c",
+    "expansion305/cast.webp": "de39a559913936ac9acb5f8b6b7005c121cb03d49467481954775c814a8f7fd4",
+    "expansion305/diamond.webp": "e83ee22797e49462b7b080577d9440a9d62905ddd922284317cd94fc7611a900",
+    "expansion305/hologram.png": "fa7d721d6badea806ed5df45defc584df3147e7d4f7c4e5de8d0e59efbb69013",
+    "expansion305/park.webp": "5bb7d1d6b81a52657a82a173e803f00ae623a2b6bf51af982bbb39cdb107280a",
+    "expansion305/vfx.webp": "87dcc1115ef976ac32eb9d96ea11508afd5e3f69881fb9ae2704bdd2984cfaf7",
+    "expansion305/vilgax.webp": "4ffcff039ceba085403e5cfc426d5acd996a8eaf5ef18862b3b33044c3882dba"
+  }
+}
