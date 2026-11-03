@@ -1,0 +1,57 @@
+from pathlib import Path
+import base64, json, hashlib, subprocess, zipfile, urllib.request, concurrent.futures
+
+r=Path(__file__).resolve().parent
+out=Path('release308');out.mkdir(exist_ok=True)
+sha=lambda b:hashlib.sha256(b).hexdigest()
+with zipfile.ZipFile(r/'update308.zip') as z:
+    for n in z.namelist():
+        p=Path(n);assert not p.is_absolute() and '..' not in p.parts
+        z.extract(n,out)
+resources={n:(out/'candidate'/n).read_bytes() for n in json.loads((out/'build-info.json').read_text())['changed']}
+pack=b''.join(resources.values())
+(out/('content-'+sha(pack)+'.bin')).write_bytes(pack)
+for n,b in resources.items():(out/('original-'+sha(b)+'.bin')).write_bytes(b)
+manifests={}
+for n in ['original-manifest.json','original-content-manifest.json']:
+    env=json.loads((out/n).read_text());raw=base64.b64decode(env['payload']);sig=base64.b64decode(env['signature'])
+    (out/'payload').write_bytes(raw);(out/'signature').write_bytes(sig)
+    subprocess.run(['openssl','dgst','-sha256','-verify',str(r/'original-update-public.pem'),'-signature',str(out/'signature'),str(out/'payload')],check=True)
+    m=json.loads(raw);assert m['revision']==308 and m['version']=='2.41.1'
+    for f in m['files']:
+        if f['path'] in resources:assert sha(resources[f['path']])==f['sha256'] and len(resources[f['path']])==f['bytes']
+    manifests[n]=m
+oldurl='https://github.com/ventisca-gif/omniblizz-updates/releases/download/v2.41.0/OmniBlizz-Original-2.41.0-Codigo-Publico.zip'
+old=urllib.request.urlopen(oldurl,timeout=120).read()
+assert sha(old)=='f1f4b47b081949ca1fc0caac28544a075e468e59235ae92e240a5f02a3605bf5'
+import io
+with zipfile.ZipFile(io.BytesIO(old)) as a,zipfile.ZipFile(out/'OmniBlizz-Original-2.41.1-Codigo-Publico.zip','w',zipfile.ZIP_DEFLATED) as z:
+    seen=set()
+    for n in a.namelist():
+        k=n.removeprefix('alienx280/public/')
+        z.writestr(n,resources[k] if n.startswith('alienx280/public/') and k in resources else a.read(n));seen.add(n)
+    for k,b in resources.items():
+        n='alienx280/public/'+k
+        if n not in seen:z.writestr(n,b)
+    for n in ['original-manifest.json','original-content-manifest.json','build-info.json','release-notes.md']:z.write(out/n,'base2411/'+n)
+    for n in ['mission308.js','qa308.js','browser-results308.json']:z.write(out/n,'audit308/'+n)
+if '--web' in __import__('sys').argv:
+    stage=Path('_site/play');stage.mkdir(parents=True,exist_ok=True)
+    m=manifests['original-content-manifest.json']
+    def restore(p):
+        local=out/('content-'+p['sha256']+'.bin')
+        b=local.read_bytes() if local.exists() else urllib.request.urlopen(p['url'],timeout=120).read()
+        assert len(b)==p['bytes'] and sha(b)==p['sha256']
+        for f in m['files']:
+            if f['pack']!=p['sha256']:continue
+            data=b[f['offset']:f['offset']+f['bytes']];assert sha(data)==f['sha256']
+            target=stage/f['path'];target.parent.mkdir(parents=True,exist_ok=True);target.write_bytes(data)
+    with concurrent.futures.ThreadPoolExecutor(max_workers=10) as ex:list(ex.map(restore,m['packs']))
+    (Path('_site')/'index.html').write_text('<!doctype html><html lang="es"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>OmniBlizz · Ventisca and Sergio</title><style>html,body,iframe{margin:0;width:100%;height:100%;border:0;background:#041a12}body{overflow:hidden}</style><iframe src="play/game-entry147.html" title="OmniBlizz Original" allow="fullscreen;autoplay;gamepad" allowfullscreen></iframe></html>')
+    import shutil
+    shutil.copyfile(stage/'game-entry147.html',stage/'index.html')
+    shutil.copyfile(r/'landing307.html',Path('_site')/'index.html')
+    (Path('_site')/'gameplay').mkdir(exist_ok=True)
+    for n in ['night','refuge','smoothie','xlr8']:shutil.copyfile(r/(n+'307.jpg'),Path('_site')/'gameplay'/(n+'.jpg'))
+    print('Verified web resources:',len(m['files']))
+print('Release verified',len(resources),'changed resources')
