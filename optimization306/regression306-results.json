@@ -1,0 +1,21 @@
+{
+  "checks": [
+    "reference cast loaded",
+    "Psyphon handoff frame",
+    "shock warning1.8seconds",
+    "no shock impact in firstsecond",
+    "escape beyond visible horizontalradius",
+    "escape beyond visible verticalradius",
+    "center is inside actual hit area",
+    "target does not chase movement",
+    "postattack recovery window",
+    "second round remains600k",
+    "shattered actor culled before all render paths",
+    "badge handoff preserved",
+    "rebuild still starts Diamondround",
+    "domain restored after abort",
+    "no engine errors"
+  ],
+  "errors": [],
+  "done": true
+}

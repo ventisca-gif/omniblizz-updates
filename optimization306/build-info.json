@@ -1,0 +1,21 @@
+{
+  "version": "2.40.1",
+  "revision": 306,
+  "resources": 1636,
+  "legacyResources": 565,
+  "changed": [
+    "game.js",
+    "game-entry147.html",
+    "expansion306/cast.webp"
+  ],
+  "checksPassed": 93,
+  "signatureVerified": true,
+  "androidBenchmark": false,
+  "combatVictory": true,
+  "combatSeconds": 89.80000000000001,
+  "sha256": {
+    "game.js": "a5bd0fe75697af208800a6b3151f5454a712786415e2a3e55415d638394d2a17",
+    "game-entry147.html": "e8e4da55ba538f21ba073fe83f155e07ef96a98d0b7cd3cc21b54c151b811d8f",
+    "expansion306/cast.webp": "c99498bc9c8b9009aee4b88c87dea4d5e3fdd400f10af1c891bf259b16bb7569"
+  }
+}
