@@ -2,7 +2,10 @@ from pathlib import Path
 import hashlib
 
 root = Path(__file__).resolve().parent
-base = (root / 'base306-game.js').read_bytes()
+base_path = root / 'base306-game.js'
+if not base_path.exists():
+    base_path = root.parent / 'optimization306/candidate/game.js'
+base = base_path.read_bytes()
 assert hashlib.sha256(base).hexdigest() == 'a5bd0fe75697af208800a6b3151f5454a712786415e2a3e55415d638394d2a17'
 source = base.decode()
 marker = 'const drawFrameBefore299=draw;'
