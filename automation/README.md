@@ -18,14 +18,14 @@
 3. Consulta la **release Latest real** de GitHub, NO el último commit de `main`.
 4. Descarga ambos manifiestos de la release pública y verifica sus firmas RSA/SHA-256 con `original-update-public.pem`.
 5. Valida versión, revisión, edición, rutas, hashes y referencias de recursos; verifica los SHA-256 de todos los archivos `.bin` **de la última release**. No descarga/verifica exhaustivamente todos los packs históricos que referencian los manifiestos.
-6. Si hay candidato de código nuevo, valida sintaxis JS y que versión/revisión crezcan, y genera un ZIP **sin firma** como artefacto de prueba con caducidad de 7 días.
+6. Ejecuta pruebas unitarias sin red que garantizan conservación de recursos. En un **entorno privado**, también puede validar un nuevo game.js y crear BINs nuevos junto a borradores **sin firma** de ambos manifiestos. Ninguna clave privada se usa.
 7. **No crea releases, no cambia `main`, no despliega Pages, no accede a secretos, no publica APK.**
 
-## Cómo preparar una actualización futura (aún no se publica)
+## Cómo preparar una actualización futura (solo en entorno PRIVADO)
 
-En una rama de propuesta, añadir:
+**IMPORTANTE: NO subir el código editable completo de OmniBlizz a este repositorio público, ni siquiera dentro de una rama o Pull Request.** Las reglas .gitignore y los controles de CI ayudan, pero no sustituyen la revisión antes de cada commit.\n\nEn un directorio de trabajo local o en un futuro repositorio realmente privado, preparar:
 
-- `candidate/game.js`: versión **nueva** del código completo; este repositorio es público, por lo tanto ese archivo también sería público.
+- `candidate/game.js`: versión **nueva** del código completo, mantenida de manera privada.
 - `candidate/release.json`:
 
 ```json
@@ -36,9 +36,17 @@ En una rama de propuesta, añadir:
 }
 ```
 
-Los números son **solo un ejemplo**: consultar siempre Latest antes de escogerlos. El script rechazará versiones o revisiones no superiores, y rechazará un `game.js` idéntico al actual.
+Los números son **solo un ejemplo**: consultar siempre Latest antes de escogerlos. El script rechazará versiones o revisiones no superiores, un `game.js` idéntico al actual o un archivo sospechosamente pequeño.
 
-Tras las verificaciones, GitHub Actions permitirá descargar un ZIP denominado `OmniBlizz-Candidato-SIN-FIRMA.zip`. **No es una actualización OTA instalable.** Para generar una OTA real se necesita reconstruir los manifiestos/paquetes según el protocolo actual, firmarlos con la misma clave OTA original, comprobar firmas y hashes, y recibir autorización explícita de publicación. Nada de eso ocurre en esta propuesta.
+En el entorno privado, con un Python 3, Node.js y OpenSSL disponibles, ejecutar:
+
+```bash
+python3 automation/validate_and_stage.py --candidate-dir candidate --output-dir dist
+```
+
+El resultado `OmniBlizz-Candidato-SIN-FIRMA.zip` contiene los BIN nuevos de `game.js`, borradores de los dos payloads JSON y un informe de integridad. **No contiene los manifiestos firmados necesarios para que una OTA sea instalable**. El workflow público de GitHub verifica la última release real y ejecuta las pruebas sin recibir el código privado.
+
+Para publicar una OTA real, se necesita firmar los borradores con la **clave OTA original**, validarlos y obtener una autorización explícita separada. Nunca subir la clave al repositorio público; el keystore de Android para compilar APK es distinto.
 
 **Firmas y seguridad:** la clave OTA privada se conserva fuera del repositorio y no se incluye en GitHub Actions, variables, artefactos ni logs de este Pull Request. Si más adelante se diseña un flujo de firma online, será una propuesta separada con aislamiento/protección de credenciales, aprobación humana y prueba contra el APK instalado. La firma Android de APK requiere además el keystore Android original; la clave OTA es distinta.
 
