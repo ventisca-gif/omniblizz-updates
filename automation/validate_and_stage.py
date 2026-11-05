@@ -158,6 +158,19 @@ def verify_current_release():
         payload = get(asset["browser_download_url"])
         require(checksum(payload) == expected, "SHA-256 incorrecto: " + name)
         require(len(payload) == asset["size"], "Tamano incorrecto: " + name)
+        if name == f"original-{base_files['game.js']['sha256']}.bin":
+            require(len(payload) == base_files["game.js"]["bytes"],
+                    "Tamano de game.js difiere del manifiesto")
+            # El codigo vigente se analiza, pero NO se ejecuta.
+            with tempfile.TemporaryDirectory() as temp_dir:
+                game_path = Path(temp_dir) / "game.js"
+                game_path.write_bytes(payload)
+                result = subprocess.run(
+                    ["node", "--check", str(game_path)],
+                    capture_output=True, text=True, check=False)
+                require(result.returncode == 0,
+                        "Sintaxis invalida en Latest game.js: " + result.stderr[:350])
+            print("OK: sintaxis de game.js publicado en Latest")
         binary_count += 1
     require(binary_count > 0, "La release no contiene assets OTA")
     print(f"OK: release {tag} revision {manifest['revision']}; "
