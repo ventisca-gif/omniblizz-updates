@@ -23,7 +23,9 @@
 
 ## Cómo preparar una actualización futura (solo en entorno PRIVADO)
 
-**IMPORTANTE: NO subir el código editable completo de OmniBlizz a este repositorio público, ni siquiera dentro de una rama o Pull Request.** Las reglas .gitignore y los controles de CI ayudan, pero no sustituyen la revisión antes de cada commit.\n\nEn un directorio de trabajo local o en un futuro repositorio realmente privado, preparar:
+**IMPORTANTE: NO subir el código editable completo de OmniBlizz a este repositorio público, ni siquiera dentro de una rama o Pull Request.** Las reglas .gitignore y los controles de CI ayudan, pero no sustituyen la revisión antes de cada commit.
+
+En un directorio de trabajo local o en un futuro repositorio realmente privado, preparar:
 
 - `candidate/game.js`: versión **nueva** del código completo, mantenida de manera privada.
 - `candidate/release.json`:
