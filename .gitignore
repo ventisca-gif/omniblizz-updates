@@ -16,3 +16,9 @@
 dist/
 __pycache__/
 *.pyc
+
+# Desarrollo privado: NUNCA añadir codigo completo editable a este repo publico
+candidate/game.js
+candidate/release.json
+codigo/game.js
+OmniBlizz-Original-*-Continuidad*.zip
