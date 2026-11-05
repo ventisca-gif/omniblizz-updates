@@ -29,7 +29,7 @@ jobs:
       - name: Rechazar nombres de archivos privados en la propuesta
         if: github.event_name == 'pull_request'
         env:
-          BASE_SHA: \${{ github.event.pull_request.base.sha }}
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
         shell: bash
         run: |
           git diff --name-only --diff-filter=ACMR "$BASE_SHA"...HEAD > /tmp/omniblizz-changed.txt
@@ -48,7 +48,7 @@ jobs:
         run: python3 automation/validate_and_stage.py
 
       - name: Subir SOLO artefacto de prueba sin firmar, si hay candidato
-        if: \${{ hashFiles('dist/OmniBlizz-Candidato-SIN-FIRMA.zip') != '' }}
+        if: ${{ hashFiles('dist/OmniBlizz-Candidato-SIN-FIRMA.zip') != '' }}
         uses: actions/upload-artifact@v4
         with:
           name: OmniBlizz-Original-Candidato-SIN-FIRMA
