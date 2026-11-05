@@ -44,6 +44,9 @@ jobs:
           print('OK: no se encontraron nombres de claves/respaldos privados en los cambios')
           PY
 
+      - name: Probar generacion OTA SIN FIRMA y conservacion de recursos
+        run: python3 -m unittest discover -s automation -p 'test_*.py' -v
+
       - name: Verificar firmas originales, version y hashes de ultima release
         run: python3 automation/validate_and_stage.py
 
