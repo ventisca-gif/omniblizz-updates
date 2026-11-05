@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Preflight de OmniBlizz Original: solo lectura, sin claves privadas ni publicación."""
 import argparse
+import copy
 import base64
 import hashlib
 import json
@@ -162,10 +163,64 @@ def verify_current_release():
     print(f"OK: release {tag} revision {manifest['revision']}; "
           f"{len(base_files)} archivos Original, {len(full_files)} archivos content; "
           f"{binary_count} BIN verificados; firmas validas.")
-    return manifest, base_files
+    return manifest, content, base_files, full_files
 
 
-def stage_candidate(manifest, files, candidate_dir, out_dir):
+def prepare_unsigned_payloads(manifest, content, candidate, game_bytes):
+    """Copia el estado vigente; solo game.js y los metadatos de version cambian.
+
+    NO firma, NO publica, NO crea un manifest instalable.
+    """
+    original = copy.deepcopy(manifest)
+    full = copy.deepcopy(content)
+    sha = checksum(game_bytes)
+    version, revision, notes = (candidate["version"], candidate["revision"],
+                                candidate["notes"])
+    require(sha != next(f["sha256"] for f in manifest["files"]
+                        if f["path"] == "game.js"), "Sin cambios en game.js")
+    for payload in (original, full):
+        payload["version"] = version
+        payload["revision"] = revision
+        payload["notes"] = notes
+
+    game_original = next(f for f in original["files"] if f["path"] == "game.js")
+    game_original.update({
+        "sha256": sha,
+        "bytes": len(game_bytes),
+        "url": f"{DOWNLOAD_PREFIX}{version}/original-{sha}.bin",
+    })
+    game_full = next(f for f in full["files"] if f["path"] == "game.js")
+    old_pack = game_full["pack"]
+    game_full.update({
+        "sha256": sha, "bytes": len(game_bytes), "pack": sha, "offset": 0
+    })
+    require(sha not in {p["sha256"] for p in full["packs"]},
+            "Colision con pack ya existente")
+    if not any(f["pack"] == old_pack for f in full["files"]):
+        full["packs"] = [p for p in full["packs"] if p["sha256"] != old_pack]
+    full["packs"].append({
+        "sha256": sha, "bytes": len(game_bytes),
+        "url": f"{DOWNLOAD_PREFIX}{version}/content-{sha}.bin"
+    })
+    # Garantia: los recursos no editados mantienen exactamente su metadata.
+    for previous, updated in ((manifest, original), (content, full)):
+        old_other = {f["path"]: f for f in previous["files"] if f["path"] != "game.js"}
+        new_other = {f["path"]: f for f in updated["files"] if f["path"] != "game.js"}
+        require(old_other == new_other,
+                "Se alteraron recursos ajenos a game.js")
+        require(len(previous["files"]) == len(updated["files"]),
+                "El candidato pierde recursos")
+    validate_manifest_files(original)
+    validate_manifest_files(full, is_content=True)
+    require(next(f["sha256"] for f in original["files"]
+                 if f["path"] == "game.js")
+            == next(f["sha256"] for f in full["files"]
+                    if f["path"] == "game.js"),
+            "SHA de game.js no coincide en los borradores")
+    return original, full
+
+
+def stage_candidate(manifest, full_manifest, files, candidate_dir, out_dir):
     game = candidate_dir / "game.js"
     release_file = candidate_dir / "release.json"
     if not game.exists() and not release_file.exists():
@@ -184,6 +239,9 @@ def stage_candidate(manifest, files, candidate_dir, out_dir):
     require(isinstance(candidate["notes"], str) and candidate["notes"].strip()
             and len(candidate["notes"]) <= 2000, "Faltan notas de la version")
     require(game.stat().st_size <= 24 * 1024 * 1024, "game.js demasiado grande")
+    # Reduce el riesgo de cargar un archivo de prueba o codigo de otra version.
+    require(game.stat().st_size >= files["game.js"]["bytes"] * 0.90,
+            "game.js demasiado pequeno: parece incompleto o de una version antigua")
     result = subprocess.run(["node", "--check", str(game)],
                             capture_output=True, text=True, check=False)
     require(result.returncode == 0, "JavaScript invalido: " + result.stderr[:500])
@@ -191,6 +249,8 @@ def stage_candidate(manifest, files, candidate_dir, out_dir):
     sha = checksum(contents)
     require(sha != files["game.js"]["sha256"],
             "El candidato es identico a game.js de la release vigente")
+    original_payload, content_payload = prepare_unsigned_payloads(
+        manifest, full_manifest, candidate, contents)
     out_dir.mkdir(parents=True, exist_ok=True)
     report = {
         "status": "UNSIGNED_NOT_PUBLISHED",
@@ -202,12 +262,23 @@ def stage_candidate(manifest, files, candidate_dir, out_dir):
         "notes": candidate["notes"],
         "game_js_sha256": sha,
         "game_js_bytes": len(contents),
+        "original_file_count": len(original_payload["files"]),
+        "content_file_count": len(content_payload["files"]),
+        "ota_assets_draft": [f"original-{sha}.bin", f"content-{sha}.bin"],
         "warning": "NO ES OTA FIRMADA NI APK. Requiere revision, firma original y autorizacion."
     }
     metadata = json.dumps(report, ensure_ascii=False, indent=2) + "\n"
     output = out_dir / "OmniBlizz-Candidato-SIN-FIRMA.zip"
     with zipfile.ZipFile(output, "w", compression=zipfile.ZIP_DEFLATED) as zip_out:
         zip_out.writestr("game.js", contents)
+        zip_out.writestr(f"original-{sha}.bin", contents)
+        zip_out.writestr(f"content-{sha}.bin", contents)
+        zip_out.writestr("original-manifest.PAYLOAD-SIN-FIRMA.json",
+                         json.dumps(original_payload, ensure_ascii=False,
+                                    separators=(",", ":"), sort_keys=True) + "\n")
+        zip_out.writestr("original-content-manifest.PAYLOAD-SIN-FIRMA.json",
+                         json.dumps(content_payload, ensure_ascii=False,
+                                    separators=(",", ":"), sort_keys=True) + "\n")
         zip_out.writestr("candidate-report.json", metadata)
     (out_dir / "candidate-report.json").write_text(metadata, encoding="utf-8")
     print(f"Candidato validado y empaquetado SIN FIRMA: {output}")
@@ -218,8 +289,9 @@ def main():
     parser.add_argument("--candidate-dir", default="candidate", type=Path)
     parser.add_argument("--output-dir", default="dist", type=Path)
     args = parser.parse_args()
-    manifest, files = verify_current_release()
-    stage_candidate(manifest, files, args.candidate_dir, args.output_dir)
+    manifest, full_manifest, files, _ = verify_current_release()
+    stage_candidate(manifest, full_manifest, files,
+                    args.candidate_dir, args.output_dir)
 
 
 if __name__ == "__main__":
