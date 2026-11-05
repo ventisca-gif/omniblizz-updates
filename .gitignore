@@ -1,0 +1,18 @@
+# OmniBlizz: nunca commitear firmas ni respaldos confidenciales
+**/private/
+**/private-signing*/
+**/update-signing.pem
+**/*.jks
+**/*.keystore
+**/*.p12
+**/*.pfx
+**/.env
+**/.env.*
+*PRIVADA*.zip
+*privada*.zip
+*PRIVATE*.zip
+*private*.zip
+# Artefactos locales de la automatizacion
+dist/
+__pycache__/
+*.pyc
