@@ -1,0 +1,59 @@
+name: OmniBlizz Original - preflight seguro (NO publica)
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "automation/**"
+      - "candidate/**"
+      - ".github/workflows/omniblizz-automation.yml"
+      - ".gitignore"
+  workflow_dispatch:
+
+# Nunca conceder permisos para escribir releases, paginas o repositorio.
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Verificar OTA y preparar candidato SIN FIRMA
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - name: Checkout en modo solo lectura
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Rechazar nombres de archivos privados en la propuesta
+        if: github.event_name == 'pull_request'
+        env:
+          BASE_SHA: \${{ github.event.pull_request.base.sha }}
+        shell: bash
+        run: |
+          git diff --name-only --diff-filter=ACMR "$BASE_SHA"...HEAD > /tmp/omniblizz-changed.txt
+          python3 - <<'PY'
+          from pathlib import Path
+          files=Path('/tmp/omniblizz-changed.txt').read_text().splitlines()
+          forbidden=('.jks','.keystore','update-signing.pem',
+                     'private-signing','.env','-privada.zip','-private.zip')
+          bad=[f for f in files if any(v in f.lower() for v in forbidden)]
+          if bad:
+              raise SystemExit('Bloqueado: archivo privado detectado en PR: '+', '.join(bad))
+          print('OK: no se encontraron nombres de claves/respaldos privados en los cambios')
+          PY
+
+      - name: Verificar firmas originales, version y hashes de ultima release
+        run: python3 automation/validate_and_stage.py
+
+      - name: Subir SOLO artefacto de prueba sin firmar, si hay candidato
+        if: \${{ hashFiles('dist/OmniBlizz-Candidato-SIN-FIRMA.zip') != '' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: OmniBlizz-Original-Candidato-SIN-FIRMA
+          path: |
+            dist/OmniBlizz-Candidato-SIN-FIRMA.zip
+            dist/candidate-report.json
+          if-no-files-found: error
+          retention-days: 7
