@@ -1,9 +1,10 @@
-# Candidatos OmniBlizz Original: desarrollo PRIVADO
+# Candidatos: solo desarrollo privado
 
-Este repositorio `ventisca-gif/omniblizz-updates` es **PUBLICO**. No subas aqui `candidate/game.js`, `codigo/game.js`, un ZIP de continuidad con codigo editable, claves OTA, keystore ni credenciales.
+En el repositorio privado o en un directorio local: `candidate/game.js`,
+`candidate/release.json` y, opcionalmente, `candidate/assets/` con recursos nuevos
+o reemplazos usando las rutas finales del juego. Los archivos omitidos se conservan.
 
-El script `automation/validate_and_stage.py` puede ejecutarse en un directorio **local** o un futuro repositorio de desarrollo realmente **privado** con `candidate/game.js` y `candidate/release.json`. Compara con Latest, valida el candidato y produce borradores SIN FIRMA para revision, **sin publicarlos**. En este repositorio publico, GitHub Actions solo ejecuta pruebas y verifica la release vigente.
+No subir candidatos, claves ni respaldos a este repositorio público.
+Solo se envía la carpeta de release con manifiestos firmados y BIN verificados.
 
-Los nombres de version de ejemplo no son una version nueva real. No copiar codigo ni privados en este directorio del repositorio publico.
-
-Consulta [instrucciones](../automation/README.md).
+Consulta [automation/README.md](../automation/README.md).

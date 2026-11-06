@@ -13,7 +13,7 @@ import tempfile
 
 from validate_and_stage import (
     checksum, get, json_bytes, prepare_unsigned_payloads, require, semver,
-    validate_manifest_files, verify_current_release
+    validate_manifest_files, verify_current_release, candidate_inputs, release_binaries
 )
 
 
@@ -57,35 +57,11 @@ def signed_envelope(payload, key, public_key):
 
 def prepare_release(candidate_dir, out_root, key_file, public_key):
     current, full, previous_files, _ = verify_current_release()
-    game = candidate_dir / "game.js"
-    metadata = candidate_dir / "release.json"
-    require(game.is_file() and metadata.is_file(),
-            "Candidato incompleto: faltan game.js y release.json")
-    candidate = json_bytes(metadata.read_bytes())
-    require(set(candidate) == {"version", "revision", "notes"},
-            "release.json debe contener version, revision y notes")
-    require(semver(candidate["version"]) > semver(current["version"]),
-            "Se intento reutilizar una version ya publicada o anterior")
-    require(type(candidate["revision"]) is int
-            and candidate["revision"] > current["revision"], "Revision obsoleta")
-    require(isinstance(candidate["notes"], str) and
-            candidate["notes"].strip() and len(candidate["notes"]) <= 2000,
-            "Las notas deben ser un texto no vacio de menos de 2000 caracteres")
-    game_bytes = game.read_bytes()
-    require(len(game_bytes) <= 24 * 1024 * 1024 and
-            len(game_bytes) >= previous_files["game.js"]["bytes"] * 0.90,
-            "El codigo parece incompleto o demasiado grande")
-    js = subprocess.run(["node", "--check", str(game)], check=False,
-                        capture_output=True, text=True)
-    require(js.returncode == 0, "Codigo JavaScript invalido")
-    sha = checksum(game_bytes)
-    require(sha != previous_files["game.js"]["sha256"],
-            "No hubo cambios en game.js")
+    candidate, game_bytes, assets = candidate_inputs(candidate_dir, current, previous_files)
     check_private_key(key_file, public_key)
-    original, content = prepare_unsigned_payloads(current, full, candidate,
-                                                   game_bytes)
-    validate_manifest_files(original)
-    validate_manifest_files(content, is_content=True)
+    original, content = prepare_unsigned_payloads(current, full, candidate, game_bytes, assets)
+    binaries = release_binaries(original, content, current, full,
+                                dict(assets, **{"game.js": game_bytes}))
     version = candidate["version"]
     dest = out_root / version
     require(not dest.exists(), f"No se sobrescribe una carpeta existente: {dest}")
@@ -97,8 +73,8 @@ def prepare_release(candidate_dir, out_root, key_file, public_key):
             signed_envelope(original, key_file, public_key))
         (stage / "original-content-manifest.json").write_bytes(
             signed_envelope(content, key_file, public_key))
-        (stage / f"original-{sha}.bin").write_bytes(game_bytes)
-        (stage / f"content-{sha}.bin").write_bytes(game_bytes)
+        for name, blob in binaries.items():
+            (stage / name).write_bytes(blob)
         (stage / "release-notes.md").write_text(
             "# OmniBlizz Original " + version + "\n\n" +
             candidate["notes"] + "\n", encoding="utf-8")
@@ -130,3 +106,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

@@ -9,7 +9,8 @@ import re
 
 from validate_and_stage import (
     DOWNLOAD_PREFIX, checksum, require, semver,
-    validate_manifest_files, verify_current_release, verify_envelope
+    validate_manifest_files, verify_current_release, verify_envelope,
+    prepare_unsigned_payloads, release_binaries, MAX_ASSET_BYTES
 )
 
 VERSION = re.compile(r"[0-9]+\.[0-9]+\.[0-9]+\Z")
@@ -57,57 +58,35 @@ def validate_stage(folder: Path, baseline, old_full, old_files):
             original["notes"].strip(), "Notas incoherentes")
     new_files = validate_manifest_files(original)
     content_files = validate_manifest_files(full, is_content=True)
-    require(set(new_files) == set(old_files),
-            "Se han añadido/eliminado rutas; este flujo admite SOLO game.js")
-    require(set(content_files) == {x["path"] for x in old_full["files"]},
-            "Se han añadido/eliminado rutas en contenido completo")
-    require(new_files["game.js"]["sha256"] ==
-            content_files["game.js"]["sha256"],
-            "Game.js tiene hashes distintos entre manifiestos")
-    newsha = new_files["game.js"]["sha256"]
-    require(newsha != old_files["game.js"]["sha256"],
-            "Game.js no cambió")
-    for item in original["files"]:
-        if item["path"] != "game.js":
-            require(item == old_files[item["path"]],
-                    "Un recurso Original anterior fue alterado: " + item["path"])
-    prev_content = {x["path"]: x for x in old_full["files"]}
-    for item in full["files"]:
-        if item["path"] != "game.js":
-            require(item == prev_content[item["path"]],
-                    "Un recurso de contenido anterior fue alterado")
-    require(new_files["game.js"]["url"] ==
-            f"{DOWNLOAD_PREFIX}{version}/original-{newsha}.bin",
-            "URL Original nueva incorrecta")
-    require(content_files["game.js"]["pack"] == newsha and
-            content_files["game.js"]["offset"] == 0,
-            "Game.js no está en su pack propio")
-    pack = next((p for p in full["packs"] if p["sha256"] == newsha), None)
-    require(pack is not None and
-            pack["url"] == f"{DOWNLOAD_PREFIX}{version}/content-{newsha}.bin",
-            "Falta pack content nuevo")
-    # El pack de game.js previo se elimina solamente si nadie más lo usa.
-    old_pack = prev_content["game.js"]["pack"]
-    expected_packs = [
-        p for p in old_full["packs"]
-        if p["sha256"] != old_pack or
-        any(f["pack"] == old_pack and f["path"] != "game.js"
-            for f in old_full["files"])
-    ]
-    new_packs = [p for p in full["packs"] if p["sha256"] != newsha]
-    require(new_packs == expected_packs,
-            "Se alteraron otros packs que pertenecen a versiones anteriores")
-    expected_bin = {f"original-{newsha}.bin", f"content-{newsha}.bin"}
-    present_bin = {f for f in payloads if f.endswith(".bin")}
-    require(present_bin == expected_bin,
-            "BIN faltantes o inesperados; solo game.js puede cambiar")
-    for name in expected_bin:
-        require(checksum(payloads[name]) == newsha,
-                "BIN nuevo no coincide con hash de game.js")
-        require(len(payloads[name]) == new_files["game.js"]["bytes"],
-                "Tamano de BIN no coincide con manifest")
-    require(pack["bytes"] == new_files["game.js"]["bytes"],
-            "Tamano de pack no coincide con game.js")
+    old_content = {f["path"]: f for f in old_full["files"]}
+    require(set(old_files) <= set(new_files) and set(old_content) <= set(content_files),
+            "Se han eliminado recursos previos")
+    # Recover only changed blobs, then independently rebuild both manifests from
+    # the verified previous release. This rejects unrelated edits, lost packs,
+    # divergent schemas, path escapes and forged offsets/MIME/URLs.
+    changed = {}
+    for path, f in content_files.items():
+        if f == old_content.get(path):
+            continue
+        name = f"original-{f['sha256']}.bin"
+        require(name in payloads, "Falta BIN para recurso: " + path)
+        blob = payloads[name]
+        require(checksum(blob) == f["sha256"] and len(blob) == f["bytes"],
+                "Hash/tamano incorrecto: " + path)
+        require(len(blob) <= MAX_ASSET_BYTES, "Recurso incompatible con paquetes de 8 MiB")
+        changed[path] = blob
+    meta = {k: original[k] for k in ("version", "revision", "notes")}
+    game = changed.pop("game.js", None)
+    expected_original, expected_full = prepare_unsigned_payloads(
+        baseline, old_full, meta, game, changed)
+    require(original == expected_original and full == expected_full,
+            "Manifiestos no corresponden al overlay aditivo verificado")
+    data = dict(changed)
+    if game is not None:
+        data["game.js"] = game
+    expected_bin = release_binaries(expected_original, expected_full, baseline, old_full, data)
+    present_bin = {f: blob for f, blob in payloads.items() if f.endswith(".bin")}
+    require(present_bin == expected_bin, "BIN faltantes, alterados o adicionales")
     text = payloads["release-notes.md"].decode("utf-8")
     require(text.startswith("# OmniBlizz Original " + version + "\n"),
             "Notas de release no coinciden con version")
@@ -115,10 +94,10 @@ def validate_stage(folder: Path, baseline, old_full, old_files):
     actual = {n: {"sha256": checksum(v), "bytes": len(v)}
               for n, v in payloads.items() if n != "SHA256SUMS.json"}
     require(hashes == actual, "SHA256SUMS.json inconsistente")
-    require(set(payloads) == required | expected_bin,
+    require(set(payloads) == required | set(expected_bin),
             "Archivo adicional inesperado en carpeta de publicacion")
     print(f"OK: v{version} rev{original['revision']}; "
-          f"ambas firmas verificadas; solo game.js cambia; "
+          f"ambas firmas verificadas; codigo y recursos verificados; "
           f"{len(original['files'])} entradas Original conservadas.")
     return version
 
@@ -157,3 +136,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

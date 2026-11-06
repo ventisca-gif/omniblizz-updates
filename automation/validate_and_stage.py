@@ -179,122 +179,186 @@ def verify_current_release():
     return manifest, content, base_files, full_files
 
 
-def prepare_unsigned_payloads(manifest, content, candidate, game_bytes):
-    """Copia el estado vigente; solo game.js y los metadatos de version cambian.
+# Limits and path grammar accepted by the deployed schema-2 updater (shell 189).
+MAX_ASSET_BYTES = 8 * 1024 * 1024
+MAX_CONTENT_BYTES = 1024 * 1024 * 1024
+MIMES = {".js": "text/javascript", ".json": "application/json",
+         ".html": "text/html", ".css": "text/css", ".txt": "text/plain",
+         ".png": "image/png", ".webp": "image/webp", ".jpg": "image/jpeg",
+         ".jpeg": "image/jpeg", ".svg": "image/svg+xml", ".gif": "image/gif",
+         ".mp3": "audio/mpeg", ".m4a": "audio/mp4", ".ogg": "audio/ogg",
+         ".wav": "audio/wav", ".mp4": "video/mp4", ".webm": "video/webm",
+         ".ttf": "font/ttf", ".otf": "font/otf", ".woff": "font/woff",
+         ".woff2": "font/woff2"}
 
-    NO firma, NO publica, NO crea un manifest instalable.
-    """
-    original = copy.deepcopy(manifest)
-    full = copy.deepcopy(content)
-    sha = checksum(game_bytes)
-    version, revision, notes = (candidate["version"], candidate["revision"],
-                                candidate["notes"])
-    require(sha != next(f["sha256"] for f in manifest["files"]
-                        if f["path"] == "game.js"), "Sin cambios en game.js")
+
+def content_path(path):
+    safe_path(path)
+    require(len(path) < 240 and re.fullmatch(r"[a-zA-Z0-9_./@ -]+", path),
+            "Ruta incompatible con la APK: " + path)
+    parts = path.lower().split("/")
+    require(not any(p.startswith(".") for p in parts)
+            and parts[0] not in {"update147", "meta-inf", "private", "android"}
+            and path.lower() != "index.html"
+            and not any(x in path.lower() for x in
+                        ("update-signing", "private-key", "signing-key", "keystore")),
+            "Ruta reservada o privada: " + path)
+    require(Path(path).suffix.lower() in MIMES,
+            "Tipo de recurso no soportado: " + path)
+    return MIMES[Path(path).suffix.lower()]
+
+
+def validate_blob(path, data):
+    mime = content_path(path)
+    require(isinstance(data, bytes) and 0 < len(data) <= MAX_ASSET_BYTES,
+            "Cada recurso debe ocupar entre 1 byte y 8 MiB: " + path)
+    # Secrets and APK/native files must never be disguised as normal content.
+    require(b"PRIVATE KEY-----" not in data and not data.startswith(b"PK\x03\x04"),
+            "Credencial o archivo empaquetado no permitido: " + path)
+    if Path(path).suffix.lower() in {".js", ".json", ".html", ".css", ".txt", ".svg"}:
+        data.decode("utf-8")
+    if Path(path).suffix.lower() == ".json":
+        json_bytes(data)
+    if Path(path).suffix.lower() == ".js":
+        with tempfile.TemporaryDirectory() as d:
+            f = Path(d) / "check.js"
+            f.write_bytes(data)
+            r = subprocess.run(["node", "--check", str(f)], capture_output=True)
+            require(r.returncode == 0, "JavaScript invalido: " + path)
+    return mime
+
+
+def candidate_inputs(directory, current, previous_files):
+    require(directory.is_dir() and not directory.is_symlink(), "Candidato inseguro")
+    require({p.name for p in directory.iterdir()} <= {"game.js", "release.json", "assets", "README.md"},
+            "Archivos inesperados en candidato; recursos deben ir en assets/")
+    metadata = directory / "release.json"
+    game = directory / "game.js"
+    require(metadata.is_file() and game.is_file()
+            and not metadata.is_symlink() and not game.is_symlink(), "Candidato incompleto")
+    meta = json_bytes(metadata.read_bytes())
+    require(set(meta) == {"version", "revision", "notes"}, "Metadatos de candidato invalidos")
+    require(semver(meta["version"]) > semver(current["version"]), "Version obsoleta")
+    require(type(meta["revision"]) is int and meta["revision"] > current["revision"], "Revision obsoleta")
+    require(isinstance(meta["notes"], str) and meta["notes"].strip()
+            and len(meta["notes"]) <= 2000, "Notas invalidas")
+    require(game.stat().st_size <= MAX_ASSET_BYTES, "game.js supera 8 MiB")
+    game_bytes = game.read_bytes()
+    require(len(game_bytes) >= previous_files["game.js"]["bytes"] * 0.90,
+            "game.js parece incompleto")
+    validate_blob("game.js", game_bytes)
+    assets = read_asset_overlay(directory / "assets")
+    return meta, game_bytes, assets
+
+
+def read_asset_overlay(root):
+    assets, total = {}, 0
+    if root.exists() or root.is_symlink():
+        require(root.is_dir() and not root.is_symlink(), "assets/ no puede ser symlink")
+        for p in sorted(root.rglob("*")):
+            require(not p.is_symlink(), "No se permiten symlinks en assets/")
+            if p.is_dir():
+                continue
+            require(p.is_file(), "Recurso no regular")
+            name = p.relative_to(root).as_posix()
+            require(name != "game.js", "game.js debe estar en codigo/ o raiz del candidato")
+            require(p.stat().st_size <= MAX_ASSET_BYTES, "Recurso supera 8 MiB: " + name)
+            data = p.read_bytes()
+            validate_blob(name, data)
+            total += len(data)
+            require(total <= MAX_CONTENT_BYTES and len(assets) < 19999, "Candidato demasiado grande")
+            assets[name] = data
+    return assets
+
+
+def prepare_unsigned_payloads(manifest, content, candidate, game_bytes, assets=None):
+    """Overlay aditivo: mantiene todo lo no editado; nunca borra contenido previo."""
+    original, full = copy.deepcopy(manifest), copy.deepcopy(content)
+    old_raw = validate_manifest_files(manifest)
+    old_full = validate_manifest_files(content, is_content=True)
+    changes = dict(assets or {})
+    if game_bytes is not None:
+        changes["game.js"] = game_bytes
+    raw = {f["path"]: f for f in original["files"]}
+    packed = {f["path"]: f for f in full["files"]}
+    packs = {p["sha256"]: p for p in full["packs"]}
+    touched = []
+    case_paths = {p.casefold(): p for p in set(raw) | set(packed)}
+    for path, data in sorted(changes.items()):
+        mime = validate_blob(path, data)
+        require(path.casefold() not in case_paths or case_paths[path.casefold()] == path,
+                "Rutas ambiguas por mayusculas: " + path)
+        case_paths[path.casefold()] = path
+        sha = checksum(data)
+        previous = old_full.get(path)
+        if previous and previous["sha256"] == sha and previous["bytes"] == len(data):
+            continue
+        touched.append(path)
+        base = {"path": path, "sha256": sha, "bytes": len(data), "mime": mime}
+        raw[path] = dict(base, url=f"{DOWNLOAD_PREFIX}{candidate['version']}/original-{sha}.bin")
+        packed[path] = dict(base, pack=sha, offset=0)
+        if sha not in packs:
+            packs[sha] = {"sha256": sha, "bytes": len(data),
+                          "url": f"{DOWNLOAD_PREFIX}{candidate['version']}/content-{sha}.bin"}
+        require(packs[sha]["bytes"] == len(data), "Colision de pack")
+    require(touched, "Sin cambios de contenido")
+    used = {f["pack"] for f in packed.values()}
+    full["packs"] = [p for sha, p in packs.items() if sha in used]
+    original["files"], full["files"] = list(raw.values()), list(packed.values())
     for payload in (original, full):
-        payload["version"] = version
-        payload["revision"] = revision
-        payload["notes"] = notes
-
-    game_original = next(f for f in original["files"] if f["path"] == "game.js")
-    game_original.update({
-        "sha256": sha,
-        "bytes": len(game_bytes),
-        "url": f"{DOWNLOAD_PREFIX}{version}/original-{sha}.bin",
-    })
-    game_full = next(f for f in full["files"] if f["path"] == "game.js")
-    old_pack = game_full["pack"]
-    game_full.update({
-        "sha256": sha, "bytes": len(game_bytes), "pack": sha, "offset": 0
-    })
-    require(sha not in {p["sha256"] for p in full["packs"]},
-            "Colision con pack ya existente")
-    if not any(f["pack"] == old_pack for f in full["files"]):
-        full["packs"] = [p for p in full["packs"] if p["sha256"] != old_pack]
-    full["packs"].append({
-        "sha256": sha, "bytes": len(game_bytes),
-        "url": f"{DOWNLOAD_PREFIX}{version}/content-{sha}.bin"
-    })
-    # Garantia: los recursos no editados mantienen exactamente su metadata.
-    for previous, updated in ((manifest, original), (content, full)):
-        old_other = {f["path"]: f for f in previous["files"] if f["path"] != "game.js"}
-        new_other = {f["path"]: f for f in updated["files"] if f["path"] != "game.js"}
-        require(old_other == new_other,
-                "Se alteraron recursos ajenos a game.js")
-        require(len(previous["files"]) == len(updated["files"]),
-                "El candidato pierde recursos")
+        for key in ("version", "revision", "notes"):
+            payload[key] = candidate[key]
+    require(len(full["files"]) <= 20000 and len(full["packs"]) <= 2000
+            and sum(f["bytes"] for f in full["files"]) <= MAX_CONTENT_BYTES,
+            "Contenido supera los limites de la APK")
+    require(len(base64.b64encode(json.dumps(full, separators=(",", ":"), sort_keys=True,
+                                           ensure_ascii=False).encode("utf-8"))) <= 3 * 1024 * 1024,
+            "Manifiesto supera el limite de la APK (3 MiB de payload base64)")
+    # Includes paths only present in the full manifest, without dropping them.
+    require(set(old_raw) <= set(raw) and set(old_full) <= set(packed), "Se pierden recursos previos")
     validate_manifest_files(original)
     validate_manifest_files(full, is_content=True)
-    require(next(f["sha256"] for f in original["files"]
-                 if f["path"] == "game.js")
-            == next(f["sha256"] for f in full["files"]
-                    if f["path"] == "game.js"),
-            "SHA de game.js no coincide en los borradores")
     return original, full
 
 
+def release_binaries(manifest, full, previous, old_full, data):
+    """Return exactly the changed/new BIN files; deduplicate identical content."""
+    result = {}
+    raw_old = {f["path"]: f for f in previous["files"]}
+    packed_old = {f["path"]: f for f in old_full["files"]}
+    old_packs = {p["sha256"] for p in old_full["packs"]}
+    for f in manifest["files"]:
+        if f != raw_old.get(f["path"]):
+            blob = data[f["path"]]
+            require(checksum(blob) == f["sha256"], "BIN Original incorrecto")
+            result[f"original-{f['sha256']}.bin"] = blob
+    for f in full["files"]:
+        if f != packed_old.get(f["path"]) and f["pack"] not in old_packs:
+            result[f"content-{f['pack']}.bin"] = data[f["path"]]
+    return result
+
+
 def stage_candidate(manifest, full_manifest, files, candidate_dir, out_dir):
-    game = candidate_dir / "game.js"
-    release_file = candidate_dir / "release.json"
-    if not game.exists() and not release_file.exists():
-        print("Sin candidato: se verifico la release vigente, sin crear ni publicar otra.")
+    if not (candidate_dir / "game.js").exists() and not (candidate_dir / "release.json").exists():
+        print("Sin candidato; no se publica nada.")
         return
-    require(game.is_file() and release_file.is_file(),
-            "Un candidato requiere candidate/game.js y candidate/release.json")
-    candidate = json_bytes(release_file.read_bytes())
-    require(set(candidate) == {"version", "revision", "notes"},
-            "release.json debe contener solo version, revision y notes")
-    require(semver(candidate["version"]) > semver(manifest["version"]),
-            "La nueva version debe superar la ultima release")
-    require(type(candidate["revision"]) is int
-            and candidate["revision"] > manifest["revision"],
-            "La nueva revision debe aumentar")
-    require(isinstance(candidate["notes"], str) and candidate["notes"].strip()
-            and len(candidate["notes"]) <= 2000, "Faltan notas de la version")
-    require(game.stat().st_size <= 24 * 1024 * 1024, "game.js demasiado grande")
-    # Reduce el riesgo de cargar un archivo de prueba o codigo de otra version.
-    require(game.stat().st_size >= files["game.js"]["bytes"] * 0.90,
-            "game.js demasiado pequeno: parece incompleto o de una version antigua")
-    result = subprocess.run(["node", "--check", str(game)],
-                            capture_output=True, text=True, check=False)
-    require(result.returncode == 0, "JavaScript invalido: " + result.stderr[:500])
-    contents = game.read_bytes()
-    sha = checksum(contents)
-    require(sha != files["game.js"]["sha256"],
-            "El candidato es identico a game.js de la release vigente")
-    original_payload, content_payload = prepare_unsigned_payloads(
-        manifest, full_manifest, candidate, contents)
+    meta, game, assets = candidate_inputs(candidate_dir, manifest, files)
+    original, full = prepare_unsigned_payloads(manifest, full_manifest, meta, game, assets)
+    blobs = release_binaries(original, full, manifest, full_manifest, dict(assets, **{"game.js": game}))
+    report = {"status": "UNSIGNED_NOT_PUBLISHED", "edition": "original",
+              "base_version": manifest["version"], "candidate_version": meta["version"],
+              "candidate_revision": meta["revision"], "ota_assets_draft": sorted(blobs),
+              "original_file_count": len(original["files"]), "content_file_count": len(full["files"])}
     out_dir.mkdir(parents=True, exist_ok=True)
-    report = {
-        "status": "UNSIGNED_NOT_PUBLISHED",
-        "edition": "original",
-        "base_version": manifest["version"],
-        "base_revision": manifest["revision"],
-        "candidate_version": candidate["version"],
-        "candidate_revision": candidate["revision"],
-        "notes": candidate["notes"],
-        "game_js_sha256": sha,
-        "game_js_bytes": len(contents),
-        "original_file_count": len(original_payload["files"]),
-        "content_file_count": len(content_payload["files"]),
-        "ota_assets_draft": [f"original-{sha}.bin", f"content-{sha}.bin"],
-        "warning": "NO ES OTA FIRMADA NI APK. Requiere revision, firma original y autorizacion."
-    }
-    metadata = json.dumps(report, ensure_ascii=False, indent=2) + "\n"
-    output = out_dir / "OmniBlizz-Candidato-SIN-FIRMA.zip"
-    with zipfile.ZipFile(output, "w", compression=zipfile.ZIP_DEFLATED) as zip_out:
-        zip_out.writestr("game.js", contents)
-        zip_out.writestr(f"original-{sha}.bin", contents)
-        zip_out.writestr(f"content-{sha}.bin", contents)
-        zip_out.writestr("original-manifest.PAYLOAD-SIN-FIRMA.json",
-                         json.dumps(original_payload, ensure_ascii=False,
-                                    separators=(",", ":"), sort_keys=True) + "\n")
-        zip_out.writestr("original-content-manifest.PAYLOAD-SIN-FIRMA.json",
-                         json.dumps(content_payload, ensure_ascii=False,
-                                    separators=(",", ":"), sort_keys=True) + "\n")
-        zip_out.writestr("candidate-report.json", metadata)
-    (out_dir / "candidate-report.json").write_text(metadata, encoding="utf-8")
-    print(f"Candidato validado y empaquetado SIN FIRMA: {output}")
+    with zipfile.ZipFile(out_dir / "OmniBlizz-Candidato-SIN-FIRMA.zip", "w", zipfile.ZIP_DEFLATED) as z:
+        z.writestr("game.js", game)
+        for name, data in blobs.items():
+            z.writestr(name, data)
+        for name, payload in (("original-manifest", original), ("original-content-manifest", full)):
+            z.writestr(name + ".PAYLOAD-SIN-FIRMA.json", json.dumps(payload, ensure_ascii=False))
+        z.writestr("candidate-report.json", json.dumps(report))
+    (out_dir / "candidate-report.json").write_text(json.dumps(report, indent=2) + "\n")
+    print("Candidato de codigo y recursos SIN FIRMA, NO PUBLICADO")
 
 
 def main():
@@ -309,3 +373,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
