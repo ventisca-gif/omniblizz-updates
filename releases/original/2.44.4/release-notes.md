@@ -1,0 +1,3 @@
+# OmniBlizz Original 2.44.4
+
+Raids ADN, Highbreed, Halloween, Petropia y todos los planetas: +10 dominio (70%), +15 (25%) o +20 (5%) para la última forma utilizada; una recompensa por victoria, máximo 300. Nuevo microchip +10 por 10 de chatarra y chatarra garantizada de enemigos. Dominio nativo para Sistema. Avisos temporales y textos en cuatro idiomas. Nombres del ranking legibles y lectura de niveles públicos hasta 250; pendiente corregir el servidor antiguo si solo devuelve nivel 150. Guardados y formato de recuperación conservados; pruebas automatizadas con datos sintéticos, sin validación de partidas reales en APK o nube remota.
