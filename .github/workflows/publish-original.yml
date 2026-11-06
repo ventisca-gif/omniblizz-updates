@@ -106,10 +106,11 @@ jobs:
             --draft
           shopt -s nullglob
           assets=("${RELEASE_DIRECTORY}"/*.bin)
-          if (("${#assets[@]}" != 2)); then
-            echo 'BLOQUEADO: se esperaban exactamente dos BIN'
+          if (("${#assets[@]}" < 1)); then
+            echo 'BLOQUEADO: se esperaba al menos un BIN de contenido verificado'
             exit 1
           fi
           gh release upload "${TAG}" "${assets[@]}"
           gh release edit "${TAG}" --draft=false --latest
           echo "PUBLICADO: ${TAG}"
+

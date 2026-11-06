@@ -41,7 +41,7 @@ jobs:
           forbidden=('.jks','.keystore','update-signing.pem',
                      'private-signing','.env','-privada.zip','-private.zip',
                      'continuidad.zip','continuidad-privada.zip',
-                     'candidate/game.js', 'codigo/game.js')
+                     'candidate/game.js', 'candidate/assets/', 'codigo/game.js')
           bad=[f for f in files if any(v in f.lower() for v in forbidden)]
           if bad:
               raise SystemExit('Bloqueado: archivo privado detectado en PR: '+', '.join(bad))
@@ -64,3 +64,4 @@ jobs:
             dist/candidate-report.json
           if-no-files-found: error
           retention-days: 7
+
