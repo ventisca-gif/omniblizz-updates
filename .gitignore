@@ -1,0 +1,24 @@
+# OmniBlizz: nunca commitear firmas ni respaldos confidenciales
+**/private/
+**/private-signing*/
+**/update-signing.pem
+**/*.jks
+**/*.keystore
+**/*.p12
+**/*.pfx
+**/.env
+**/.env.*
+*PRIVADA*.zip
+*privada*.zip
+*PRIVATE*.zip
+*private*.zip
+# Artefactos locales de la automatizacion
+dist/
+__pycache__/
+*.pyc
+
+# Desarrollo privado: NUNCA añadir codigo completo editable a este repo publico
+candidate/game.js
+candidate/release.json
+codigo/game.js
+OmniBlizz-Original-*-Continuidad*.zip

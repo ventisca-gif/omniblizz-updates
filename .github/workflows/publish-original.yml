@@ -1,471 +1,115 @@
-name: Publish Original content
+name: Publish approved OmniBlizz Original OTA
+
 on:
   push:
     branches: [main]
-    paths: ['releases/original/**', 'build-tools/**', '.github/workflows/publish-original.yml']
+    paths:
+      - 'releases/original/**'
+      - '.github/workflows/publish-original.yml'
   workflow_dispatch:
-permissions:
-  contents: write
+    inputs:
+      version:
+        description: 'Version firmada a publicar (ej. 2.43.27); vacio selecciona la unica pendiente'
+        required: false
+        type: string
+
 concurrency:
-  group: publish-original
+  group: omniblizz-original-publish
   cancel-in-progress: false
+
+permissions:
+  contents: read
+
 jobs:
-  publish:
+  verify:
+    name: Revisar release firmada (solo lectura)
     runs-on: ubuntu-latest
+    timeout-minutes: 25
+    outputs:
+      ready: ${{ steps.signed.outputs.ready }}
+      version: ${{ steps.signed.outputs.version }}
+      directory: ${{ steps.signed.outputs.directory }}
     steps:
-      - uses: actions/checkout@v4
-      - name: Load verified Original 1.99.3 public source bundle
-        run: |
-          python3 - <<'PYCODE'
-          from pathlib import Path
-          import zipfile,json,hashlib
-          bundle=Path('OmniBlizz-Original-2.04.1-Publico.zip')
-          assert hashlib.sha256(bundle.read_bytes()).hexdigest()=='af4fe010998cc6385ab9a88f007df1afef4f43c8b2a9caade8923e2401403010'
-          with zipfile.ZipFile(bundle) as z:
-              files=json.loads(z.read('files-sha256.json'))
-              for name,digest in files.items():
-                  p=Path(name)
-                  assert not p.is_absolute() and '..' not in p.parts
-                  assert name.startswith(('build-tools/','releases/original/','.github/workflows/'))
-                  data=z.read('repository/'+name)
-                  assert hashlib.sha256(data).hexdigest()==digest
-                  if name.startswith('.github/'):continue
-                  p.parent.mkdir(parents=True,exist_ok=True)
-                  p.write_bytes(data)
-          PYCODE
-      - name: Load verified 2.04.2 delta source bundle
-        run: |
-          python3 - <<'PYCODE'
-          from pathlib import Path
-          import zipfile,json,hashlib
-          bundle=Path('OmniBlizz-Original-2.04.2-Delta-Publico.zip')
-          assert hashlib.sha256(bundle.read_bytes()).hexdigest()=='32826f0e746468c703309d6389d5965095895ade2c3a764a8b9d003a3a32f56b'
-          with zipfile.ZipFile(bundle) as z:
-              files=json.loads(z.read('files-sha256.json'))
-              for name,digest in files.items():
-                  p=Path(name)
-                  assert not p.is_absolute() and '..' not in p.parts
-                  assert name.startswith(('build-tools/','releases/original/','.github/workflows/'))
-                  data=z.read('repository/'+name)
-                  assert hashlib.sha256(data).hexdigest()==digest
-                  if name.startswith('.github/'):continue
-                  p.parent.mkdir(parents=True,exist_ok=True)
-                  p.write_bytes(data)
-          PYCODE
-      - name: Load verified 2.05.0 delta source bundle
-        run: |
-          python3 - <<'PYCODE'
-          from pathlib import Path
-          import zipfile,json,hashlib
-          bundle=Path('OmniBlizz-Original-2.05.0-Delta-Publico.zip')
-          assert hashlib.sha256(bundle.read_bytes()).hexdigest()=='2f82d675afdee440e3f3b9eb7e0699a312b186551edc1176ff2897ccfcf2dc7d'
-          with zipfile.ZipFile(bundle) as z:
-              files=json.loads(z.read('files-sha256.json'))
-              for name,digest in files.items():
-                  p=Path(name)
-                  assert not p.is_absolute() and '..' not in p.parts
-                  assert name.startswith(('build-tools/','releases/original/','.github/workflows/'))
-                  data=z.read('repository/'+name)
-                  assert hashlib.sha256(data).hexdigest()==digest
-                  if name.startswith('.github/'):continue
-                  p.parent.mkdir(parents=True,exist_ok=True)
-                  p.write_bytes(data)
-          PYCODE
-      - name: Load verified 2.05.1 delta source bundle
-        run: |
-          python3 - <<'PYCODE'
-          from pathlib import Path
-          import zipfile,json,hashlib
-          bundle=Path('OmniBlizz-Original-2.05.1-Delta-Publico.zip')
-          assert hashlib.sha256(bundle.read_bytes()).hexdigest()=='a915b1d72c0ba5c446ef4257d51a664f5a79c948cae74695682854d70d5196b3'
-          with zipfile.ZipFile(bundle) as z:
-              files=json.loads(z.read('files-sha256.json'))
-              for name,digest in files.items():
-                  p=Path(name)
-                  assert not p.is_absolute() and '..' not in p.parts
-                  assert name.startswith(('build-tools/','releases/original/','.github/workflows/'))
-                  data=z.read('repository/'+name)
-                  assert hashlib.sha256(data).hexdigest()==digest
-                  if name.startswith('.github/'):continue
-                  p.parent.mkdir(parents=True,exist_ok=True)
-                  p.write_bytes(data)
-          PYCODE
-      - name: Load verified 2.06.0 delta source bundle
-        run: |
-          python3 - <<'PYCODE'
-          from pathlib import Path
-          import zipfile,json,hashlib
-          bundle=Path('OmniBlizz-Original-2.06.0-Delta-Publico.zip')
-          assert hashlib.sha256(bundle.read_bytes()).hexdigest()=='f20521d2bfa2b6bd585867428df98486fbc4bd72e163077878f9a2b11c414b84'
-          with zipfile.ZipFile(bundle) as z:
-              files=json.loads(z.read('files-sha256.json'))
-              for name,digest in files.items():
-                  p=Path(name)
-                  assert not p.is_absolute() and '..' not in p.parts
-                  assert name.startswith(('build-tools/','releases/original/','.github/workflows/'))
-                  data=z.read('repository/'+name)
-                  assert hashlib.sha256(data).hexdigest()==digest
-                  if name.startswith('.github/'):continue
-                  p.parent.mkdir(parents=True,exist_ok=True)
-                  p.write_bytes(data)
-          PYCODE
-      - name: Load verified 2.06.1 delta source bundle
-        run: |
-          python3 - <<'PYCODE'
-          from pathlib import Path
-          import zipfile,json,hashlib
-          bundle=Path('OmniBlizz-Original-2.06.1-Delta-Publico.zip')
-          assert hashlib.sha256(bundle.read_bytes()).hexdigest()=='67fdf1a767193643094cbec1ef8bd78f4db0a158c6d7df584511cb30a56a4ea4'
-          with zipfile.ZipFile(bundle) as z:
-              files=json.loads(z.read('files-sha256.json'))
-              for name,digest in files.items():
-                  p=Path(name)
-                  assert not p.is_absolute() and '..' not in p.parts
-                  assert name.startswith(('build-tools/','releases/original/','.github/workflows/'))
-                  data=z.read('repository/'+name)
-                  assert hashlib.sha256(data).hexdigest()==digest
-                  if name.startswith('.github/'):continue
-                  p.parent.mkdir(parents=True,exist_ok=True)
-                  p.write_bytes(data)
-          PYCODE
-      - name: Load verified 2.07.0 delta source bundle
-        run: |
-          python3 - <<'PYCODE'
-          from pathlib import Path
-          import zipfile,json,hashlib
-          bundle=Path('OmniBlizz-Original-2.07.0-Delta-Publico.zip')
-          assert hashlib.sha256(bundle.read_bytes()).hexdigest()=='3b7fecd512552938a7549e6834630998316fa83d182cf35cbb53869c27103fe6'
-          with zipfile.ZipFile(bundle) as z:
-              files=json.loads(z.read('files-sha256.json'))
-              for name,digest in files.items():
-                  p=Path(name)
-                  assert not p.is_absolute() and '..' not in p.parts
-                  assert name.startswith(('build-tools/','releases/original/','.github/workflows/'))
-                  data=z.read('repository/'+name)
-                  assert hashlib.sha256(data).hexdigest()==digest
-                  if name.startswith('.github/'):continue
-                  p.parent.mkdir(parents=True,exist_ok=True)
-                  p.write_bytes(data)
-          PYCODE
-      - name: Load verified 2.08.0 delta source bundle
-        run: |
-          python3 - <<'PYCODE'
-          from pathlib import Path
-          import zipfile,json,hashlib
-          bundle=Path('OmniBlizz-Original-2.08.0-Delta-Publico.zip')
-          assert hashlib.sha256(bundle.read_bytes()).hexdigest()=='81b1895b9ff4fb268132ae1d4c2ecc213962e02dc97a0c52303d764dfa8a46dd'
-          with zipfile.ZipFile(bundle) as z:
-              files=json.loads(z.read('files-sha256.json'))
-              for name,digest in files.items():
-                  p=Path(name)
-                  assert not p.is_absolute() and '..' not in p.parts
-                  assert name.startswith(('build-tools/','releases/original/','.github/workflows/'))
-                  data=z.read('repository/'+name)
-                  assert hashlib.sha256(data).hexdigest()==digest
-                  if name.startswith('.github/'):continue
-                  p.parent.mkdir(parents=True,exist_ok=True)
-                  p.write_bytes(data)
-          PYCODE
-      - name: Load verified 2.09.0 delta source bundle
-        run: |
-          python3 - <<'PYCODE'
-          from pathlib import Path
-          import zipfile,json,hashlib
-          bundle=Path('OmniBlizz-Original-2.09.0-Delta-Publico.zip')
-          assert hashlib.sha256(bundle.read_bytes()).hexdigest()=='e72898594a7ad946bf633f31b678380037f056be9a150de6af32d7daabd3ec1f'
-          with zipfile.ZipFile(bundle) as z:
-              files=json.loads(z.read('files-sha256.json'))
-              for name,digest in files.items():
-                  p=Path(name)
-                  assert not p.is_absolute() and '..' not in p.parts
-                  assert name.startswith(('build-tools/','releases/original/','.github/workflows/'))
-                  data=z.read('repository/'+name)
-                  assert hashlib.sha256(data).hexdigest()==digest
-                  if name.startswith('.github/'):continue
-                  p.parent.mkdir(parents=True,exist_ok=True)
-                  p.write_bytes(data)
-          PYCODE
-      - name: Load verified 2.10.0 delta source bundle
-        run: |
-          python3 - <<'PYCODE'
-          from pathlib import Path
-          import zipfile,json,hashlib
-          bundle=Path('OmniBlizz-Original-2.10.0-Delta-Publico.zip')
-          assert hashlib.sha256(bundle.read_bytes()).hexdigest()=='6bce4b36371c941f9f9fcc6a5ba38b446b9261e382d2e3c07f897918edd612e4'
-          with zipfile.ZipFile(bundle) as z:
-              files=json.loads(z.read('files-sha256.json'))
-              for name,digest in files.items():
-                  p=Path(name)
-                  assert not p.is_absolute() and '..' not in p.parts
-                  assert name.startswith(('build-tools/','releases/original/','.github/workflows/'))
-                  data=z.read('repository/'+name)
-                  assert hashlib.sha256(data).hexdigest()==digest
-                  if name.startswith('.github/'):continue
-                  p.parent.mkdir(parents=True,exist_ok=True)
-                  p.write_bytes(data)
-          PYCODE
-      - name: Load verified 2.11.0 delta source bundle
-        run: |
-          python3 - <<'PYCODE'
-          from pathlib import Path
-          import zipfile,json,hashlib
-          bundle=Path('OmniBlizz-Original-2.11.0-Delta-Publico.zip')
-          assert hashlib.sha256(bundle.read_bytes()).hexdigest()=='2a55ba7499326221e8f11eb9797de002e3427eadbf783811b4e9164e0bd5b16e'
-          with zipfile.ZipFile(bundle) as z:
-              files=json.loads(z.read('files-sha256.json'))
-              for name,digest in files.items():
-                  p=Path(name)
-                  assert not p.is_absolute() and '..' not in p.parts
-                  assert name.startswith(('build-tools/','releases/original/','.github/workflows/'))
-                  data=z.read('repository/'+name)
-                  assert hashlib.sha256(data).hexdigest()==digest
-                  if name.startswith('.github/'):continue
-                  p.parent.mkdir(parents=True,exist_ok=True)
-                  p.write_bytes(data)
-          PYCODE
-      - name: Load verified 2.12.0 delta source bundle
-        run: |
-          python3 - <<'PYCODE'
-          from pathlib import Path
-          import zipfile,json,hashlib
-          bundle=Path('OmniBlizz-Original-2.12.0-Delta-Publico.zip')
-          assert hashlib.sha256(bundle.read_bytes()).hexdigest()=='815bcda18a4bf1edae75475af2478c9252851a67a46c39ba0c65ccafe50b42b7'
-          with zipfile.ZipFile(bundle) as z:
-              files=json.loads(z.read('files-sha256.json'))
-              for name,digest in files.items():
-                  p=Path(name)
-                  assert not p.is_absolute() and '..' not in p.parts
-                  assert name.startswith(('build-tools/','releases/original/','.github/workflows/'))
-                  data=z.read('repository/'+name)
-                  assert hashlib.sha256(data).hexdigest()==digest
-                  if name.startswith('.github/'):continue
-                  p.parent.mkdir(parents=True,exist_ok=True)
-                  p.write_bytes(data)
-          PYCODE
-      - name: Load verified 2.13.0 delta source bundle
-        run: |
-          python3 - <<'PYCODE'
-          from pathlib import Path
-          import zipfile,json,hashlib
-          bundle=Path('OmniBlizz-Original-2.13.0-Delta-Publico.zip')
-          assert hashlib.sha256(bundle.read_bytes()).hexdigest()=='d55b8037327eb5f6de55749404b49c89164c110ffe0f0d20ae34b35b4d13231b'
-          with zipfile.ZipFile(bundle) as z:
-              files=json.loads(z.read('files-sha256.json'))
-              for name,digest in files.items():
-                  p=Path(name)
-                  assert not p.is_absolute() and '..' not in p.parts
-                  assert name.startswith(('build-tools/','releases/original/','.github/workflows/'))
-                  data=z.read('repository/'+name)
-                  assert hashlib.sha256(data).hexdigest()==digest
-                  if name.startswith('.github/'):continue
-                  p.parent.mkdir(parents=True,exist_ok=True)
-                  p.write_bytes(data)
-          PYCODE
-      - name: Load verified 2.14.0 delta source bundle
-        run: |
-          python3 - <<'PYCODE'
-          from pathlib import Path
-          import zipfile,json,hashlib
-          bundle=Path('OmniBlizz-Original-2.14.0-Delta-Publico.zip')
-          assert hashlib.sha256(bundle.read_bytes()).hexdigest()=='aaed8e09a980fd62e45c0329d4961e7d4af9730f3220cab992dabc325ff38d42'
-          with zipfile.ZipFile(bundle) as z:
-              files=json.loads(z.read('files-sha256.json'))
-              for name,digest in files.items():
-                  p=Path(name)
-                  assert not p.is_absolute() and '..' not in p.parts
-                  assert name.startswith(('build-tools/','releases/original/','.github/workflows/'))
-                  data=z.read('repository/'+name)
-                  assert hashlib.sha256(data).hexdigest()==digest
-                  if name.startswith('.github/'):continue
-                  p.parent.mkdir(parents=True,exist_ok=True)
-                  p.write_bytes(data)
-          PYCODE
-      - name: Load verified 2.15.0 delta source bundle
-        run: |
-          python3 - <<'PYCODE'
-          from pathlib import Path
-          import zipfile,json,hashlib
-          bundle=Path('OmniBlizz-Original-2.15.0-Delta-Publico.zip')
-          assert hashlib.sha256(bundle.read_bytes()).hexdigest()=='3cf4ffea8ca09df008235a3567faada954521c7e6800afc09d721c935f842367'
-          with zipfile.ZipFile(bundle) as z:
-              files=json.loads(z.read('files-sha256.json'))
-              for name,digest in files.items():
-                  p=Path(name)
-                  assert not p.is_absolute() and '..' not in p.parts
-                  assert name.startswith(('build-tools/','releases/original/','.github/workflows/'))
-                  data=z.read('repository/'+name)
-                  assert hashlib.sha256(data).hexdigest()==digest
-                  if name.startswith('.github/'):continue
-                  p.parent.mkdir(parents=True,exist_ok=True)
-                  p.write_bytes(data)
-          PYCODE
-      - name: Load verified 2.15.1 delta source bundle
-        run: |
-          python3 - <<'PYCODE'
-          from pathlib import Path
-          import zipfile,json,hashlib
-          bundle=Path('OmniBlizz-Original-2.15.1-Delta-Publico.zip')
-          assert hashlib.sha256(bundle.read_bytes()).hexdigest()=='2e62461e7e8922ff7e8edbfb6de731e039f139d03358105477a47a5c8a4cb6e4'
-          with zipfile.ZipFile(bundle) as z:
-              files=json.loads(z.read('files-sha256.json'))
-              for name,digest in files.items():
-                  p=Path(name)
-                  assert not p.is_absolute() and '..' not in p.parts
-                  assert name.startswith(('build-tools/','releases/original/','.github/workflows/'))
-                  data=z.read('repository/'+name)
-                  assert hashlib.sha256(data).hexdigest()==digest
-                  if name.startswith('.github/'):continue
-                  p.parent.mkdir(parents=True,exist_ok=True)
-                  p.write_bytes(data)
-          PYCODE
-      - name: Reconstruct verified Original 1.75 resources
-        run: python3 build-tools/assemble179.py
-      - name: Reconstruct verified Original 1.76 artwork
-        run: python3 build-tools/assemble180.py
-      - name: Reconstruct verified Original 1.77 city
-        run: python3 build-tools/assemble181.py
-      - name: Install pinned lossless image encoder
-        run: 'python3 -m pip install --only-binary=:all: Pillow==12.3.0'
-      - name: Derive verified Original 1.78 from public 1.77
-        run: python3 build-tools/assemble182.py
-      - name: Reconstruct verified Original1.79 Saiyan and Capsule City
-        run: python3 build-tools/assemble183.py
-      - name: Reconstruct verified Original1.80 Kaioken and Namek preparations
-        run: python3 build-tools/assemble184.py
-      - name: Reconstruct verified Original1.81 training fixes
-        run: python3 build-tools/assemble185.py
-      - name: Reconstruct verified Original1.82 Namek
-        run: python3 build-tools/assemble186.py
-      - name: Reconstruct verified Original1.83 Anodite and Four Arms AF
-        run: python3 build-tools/assemble187.py
-      - name: Derive verified Original 1.84 lossless optimization
-        run: python3 build-tools/assemble188.py
-      - name: Reconstruct verified Original 1.85 full downloadable content
-        run: python3 build-tools/assemble189.py
-      - name: Reconstruct verified Original 1.88 HUD and Four Arms fixes
-        run: python3 build-tools/assemble192.py
-      - name: Reconstruct verified Original1.89 performance fixes
-        run: python3 build-tools/assemble193.py
-      - name: Reconstruct verified Original1.90 deep performance fixes
-        run: python3 build-tools/assemble194.py
-      - name: Reconstruct verified Original1.91 Anodite menu and Brainstorm fixes
-        run: python3 build-tools/assemble195.py
-      - name: Reconstruct verified Original1.92 Plumber base and Fasttrack
-        run: python3 build-tools/assemble196.py
-      - name: Reconstruct verified Original1.93 Highbreed patrols and Fasttrack fixes
-        run: python3 build-tools/assemble197.py
-      - name: Reconstruct verified Original 1.94 floor and Omnipedia repairs
-        run: python3 build-tools/assemble198.py
-      - name: Reconstruct verified Original 1.95 floor and Omnipedia repairs
-        run: python3 build-tools/assemble199.py
-      - name: Reconstruct verified Original 1.96 performance repair
-        run: python3 build-tools/assemble200.py
-      - name: Reconstruct and validate Original 1.97 updater compatibility
-        run: python3 build-tools/assemble201.py
-      - name: Reconstruct and validate Original 1.98 updater compatibility
-        run: python3 build-tools/assemble202.py
-      - name: Reconstruct and validate Original 1.99 updater compatibility
-        run: python3 build-tools/assemble203.py
-      - name: Reconstruct and validate Original 1.99 updater compatibility
-        run: python3 build-tools/assemble204.py
-      - name: Reconstruct and validate Original 1.99 updater compatibility
-        run: python3 build-tools/assemble205.py
-      - name: Reconstruct and verify Original 1.99.3 recovery
-        run: python3 build-tools/assemble206.py
-      - name: Reconstruct and verify Original 2.00.0 Rojo
-        run: python3 build-tools/assemble207.py
-      - name: Reconstruct and verify Original 2.00.1 walkable flower bed
-        run: python3 build-tools/assemble208.py
-      - name: Reconstruct and verify Original 2.01.0 Flowey and Toriel opening
-        run: python3 build-tools/assemble209.py
-      - name: Reconstruct and verify Original 2.02.0 Flowey and Toriel opening
-        run: python3 build-tools/assemble210.py
-      - name: Reconstruct and verify Original 2.02.1 Flowey and Toriel opening
-        run: python3 build-tools/assemble211.py
-      - name: Reconstruct and verify Original 2.03.0 Recalibrated quick switch
-        run: python3 build-tools/assemble212.py
-      - name: Reconstruct and verify Original 2.03.1 circular dials without black rectangles
-        run: python3 build-tools/assemble213.py
-      - name: Reconstruct and verify Original 2.04.0 independent combat mastery
-        run: python3 build-tools/assemble214.py
-      - name: Reconstruct and verify Original 2.04.1 visible combat mastery HUD
-        run: python3 build-tools/assemble215.py
-      - name: Reconstruct and verify Original 2.04.2 mastery fixes
-        run: python3 build-tools/assemble216.py
-      - name: Reconstruct and verify Original 2.05.0 form trees and inventory
-        run: python3 build-tools/assemble217.py
-      - name: Reconstruct and verify Original 2.05.1 remove mastery test grant
-        run: python3 build-tools/assemble218.py
-      - name: Reconstruct and verify Original 2.06.0 remove mastery test grant
-        run: python3 build-tools/assemble219.py
-      - name: Reconstruct and verify Original 2.06.1 remove mastery test grant
-        run: python3 build-tools/assemble220.py
-      - name: Reconstruct and verify Original 2.07.0 shared Rojo battles
-        run: python3 build-tools/assemble221.py
-      - name: Reconstruct and verify Original 2.08.0 racial interface redesign
-        run: python3 build-tools/assemble222.py
-      - name: Reconstruct and verify Original 2.09.0 illustrated menus and custom avatars
-        run: python3 build-tools/assemble223.py
-      - name: Reconstruct and verify Original 2.10.0 credits and Rojo without music
-        run: python3 build-tools/assemble224.py
-      - name: Reconstruct and verify Original 2.11.0 credits and Rojo without music
-        run: python3 build-tools/assemble225.py
-      - name: Reconstruct and verify Original 2.12.0 credits and Rojo without music
-        run: python3 build-tools/assemble226.py
-      - name: Reconstruct and verify Original 2.13.0 Hatchery phone skin and update notices
-        run: python3 build-tools/assemble227.py
-      - name: Reconstruct and verify Original 2.14.0 Omnipedia and raid intermission skip
-        run: python3 build-tools/assemble228.py
-      - name: Reconstruct and verify Original 2.15.0 live portraits, drop guide and crafting apps
-        run: python3 build-tools/assemble229.py
-      - name: Reconstruct and verify Original 2.15.1 mission dialog visibility hotfix
-        run: python3 build-tools/assemble230.py
-      - name: Validate signature and prepare release
-        id: prepare
+      - name: Checkout sin credenciales
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Probar reglas de firmas y no regresion
+        run: python3 -m unittest discover -s automation -p 'test_*.py' -v
+
+      - name: Verificar unica nueva version, firmas y recursos
+        id: signed
+        env:
+          REQUESTED_VERSION: ${{ inputs.version }}
         shell: bash
         run: |
-          python3 - <<'PY'
-          import base64,json,os,pathlib,re,subprocess,tempfile,hashlib
-          root=pathlib.Path('releases/original')
-          releases=[]
-          for path in root.glob('*/original-manifest.json'):
-              envelope=json.loads(path.read_text())
-              raw=base64.b64decode(envelope['payload'],validate=True)
-              signature=base64.b64decode(envelope['signature'],validate=True)
-              with tempfile.TemporaryDirectory() as d:
-                  p=pathlib.Path(d);(p/'payload').write_bytes(raw);(p/'signature').write_bytes(signature)
-                  subprocess.run(['openssl','dgst','-sha256','-verify','original-update-public.pem','-signature',str(p/'signature'),str(p/'payload')],check=True)
-              m=json.loads(raw)
-              assert m['edition']=='original' and m['schema']==1
-              assert re.fullmatch(r'[0-9]+\.[0-9]+\.[0-9]+',m['version'])
-              assert isinstance(m['revision'],int) and m['revision']>=147
-              assert path.parent.name==m['version']
-              for f in m['files']:
-                  expected=f"https://github.com/ventisca-gif/omniblizz-updates/releases/download/v{m['version']}/original-{f['sha256']}.bin"
-                  assert f['url']==expected
-                  data=(path.parent/('original-'+f['sha256']+'.bin')).read_bytes()
-                  assert len(data)==f['bytes'] and hashlib.sha256(data).hexdigest()==f['sha256']
-              releases.append((m['revision'],path.parent,m['version']))
-          _,directory,version=max(releases)
-          with open(os.environ['GITHUB_OUTPUT'],'a')as f:
-              f.write(f'directory={directory}\ntag=v{version}\nversion={version}\n')
-          PY
-      - name: Publish verified Original assets
+          python3 automation/verify_staged_release.py \
+            --root releases/original \
+            --version "${REQUESTED_VERSION}" \
+            --output "${GITHUB_OUTPUT}"
+
+  publish:
+    name: Publicar solamente con autorizacion activada
+    needs: verify
+    if: needs.verify.outputs.ready == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    environment:
+      name: original-release
+    permissions:
+      contents: write
+    steps:
+      - name: Comprobar autorizacion explicita del entorno
+        env:
+          ENABLED: ${{ vars.OMNIBLIZZ_RELEASES_ENABLED }}
+        run: |
+          if [ "${ENABLED}" != "true" ]; then
+            echo "BLOQUEADO: Settings > Environments > original-release > OMNIBLIZZ_RELEASES_ENABLED debe ser true"
+            exit 1
+          fi
+
+      - name: Checkout sin credenciales persistidas
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Revalidar firmas y contenido antes de publicar
+        env:
+          RELEASE_VERSION: ${{ needs.verify.outputs.version }}
+        run: |
+          python3 automation/verify_staged_release.py \
+            --root releases/original \
+            --version "${RELEASE_VERSION}"
+
+      - name: Crear Release como borrador, subir BIN y publicar
+        shell: bash
         env:
           GH_TOKEN: ${{ github.token }}
-          RELEASE_DIRECTORY: ${{ steps.prepare.outputs.directory }}
-          RELEASE_TAG: ${{ steps.prepare.outputs.tag }}
-          RELEASE_VERSION: ${{ steps.prepare.outputs.version }}
-        shell: bash
+          RELEASE_VERSION: ${{ needs.verify.outputs.version }}
+          RELEASE_DIRECTORY: ${{ needs.verify.outputs.directory }}
         run: |
-          if gh release view "$RELEASE_TAG" >/dev/null 2>&1; then
-            echo 'Release already exists; immutable publication is left unchanged.'
-            exit 0
+          set -euo pipefail
+          TAG="v${RELEASE_VERSION}"
+          if gh release view "${TAG}" >/dev/null 2>&1; then
+            echo "BLOQUEADO: la release ${TAG} ya existe (publicada o borrador); no se modifica"
+            exit 1
           fi
-          gh release create "$RELEASE_TAG" "$RELEASE_DIRECTORY/original-manifest.json" "$RELEASE_DIRECTORY/original-content-manifest.json" "$RELEASE_DIRECTORY/release-notes.md" --target "$GITHUB_SHA" --title "OmniBlizz Original $RELEASE_VERSION" --notes-file "$RELEASE_DIRECTORY/release-notes.md" --draft
+          gh release create "${TAG}" \
+            "${RELEASE_DIRECTORY}/original-manifest.json" \
+            "${RELEASE_DIRECTORY}/original-content-manifest.json" \
+            "${RELEASE_DIRECTORY}/release-notes.md" \
+            "${RELEASE_DIRECTORY}/SHA256SUMS.json" \
+            --target "${GITHUB_SHA}" \
+            --title "OmniBlizz Original ${RELEASE_VERSION}" \
+            --notes-file "${RELEASE_DIRECTORY}/release-notes.md" \
+            --draft
           shopt -s nullglob
-          assets=("$RELEASE_DIRECTORY"/*.bin)
-          if ((${#assets[@]})); then
-            gh release upload "$RELEASE_TAG" "${assets[@]}"
+          assets=("${RELEASE_DIRECTORY}"/*.bin)
+          if (("${#assets[@]}" != 2)); then
+            echo 'BLOQUEADO: se esperaban exactamente dos BIN'
+            exit 1
           fi
-          gh release edit "$RELEASE_TAG" --draft=false --latest
+          gh release upload "${TAG}" "${assets[@]}"
+          gh release edit "${TAG}" --draft=false --latest
+          echo "PUBLICADO: ${TAG}"
