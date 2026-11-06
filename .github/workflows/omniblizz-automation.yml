@@ -5,6 +5,8 @@ on:
     branches: [main]
     paths:
       - "automation/**"
+      - ".github/workflows/publish-original.yml"
+      - "releases/original/**"
       - "candidate/**"
       - ".github/workflows/omniblizz-automation.yml"
       - ".gitignore"
