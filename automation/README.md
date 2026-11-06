@@ -1,6 +1,6 @@
 # Automatización segura de OmniBlizz Original
 
-**Estado:** propuesta de Pull Request. No publica contenido, no modifica la web y no firma actualizaciones.
+**Estado:** propuesta de Pull Request. El flujo de validación es de solo lectura. Hay un nuevo publicador de Releases que únicamente se habilitará cuando el propietario apruebe el PR y active el entorno protegido; no modifica la web ni compila APK.
 
 ## Punto de partida confirmado (5 de noviembre de 2026)
 
@@ -54,10 +54,14 @@ Para publicar una OTA real, se necesita firmar los borradores con la **clave OTA
 
 ## Cosas que deliberadamente no se modifican
 
-- Los workflows existentes `pages.yml`, `publish-original.yml` y `windows.yml`.
+- Los workflows existentes `pages.yml` y `windows.yml`. **Sí se reemplaza en este PR `publish-original.yml`**, cuyo anterior proceso de reconstrucción está desactualizado: el nuevo publicador verifica una carpeta de OTA ya firmada y solo publica si se activa explícitamente el entorno `original-release`.
 - Los manifiestos ya firmados y todos los releases publicados.
 - La edición Creator.
 - Guardado de jugadores, dominio, pity, misiones, interfaces ni la aplicación Android.
+
+## Publicación con aprobación
+
+El nuevo sistema de firma local, verificación de Release y publicación en GitHub está descrito en [PUBLICACION.md](PUBLICACION.md). La firma se hace fuera de GitHub público. El flujo de publicación espera archivos firmados de `releases/original/VERSION/` y requiere `OMNIBLIZZ_RELEASES_ENABLED=true` en el entorno `original-release`; sin ello no publica nada.
 
 ## Para aprobar este Pull Request
 
