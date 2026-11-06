@@ -17667,6 +17667,8 @@ let toastSerial343=0;
 function notify343(k,n){const serial=++toastSerial343;toast(T343('Dominio de combate','Combat mastery','Domínio de combate','Savaş ustalığı')+' · '+label343(k)+' +'+n+' · '+level343(k)+'/300');setTimeout(()=>{if(serial===toastSerial343&&$('#toast').textContent.includes(label343(k)+' +'+n))$('#toast').classList.remove('show');},4000);}
 function roll343(rng=Math.random){const r=rng();return r<.70?10:r<.95?15:20;}
 function award343(q,rng=Math.random){if(!q||q.status!=='won'||typeof q.token!=='string'||!q.token||!eligible343())return false;const s=ledger343(),id='raid:'+q.token;if(s.receipts.includes(id))return false;const k=target343();if(!k)return false;s.receipts.push(id);s.receipts=s.receipts.slice(-256);const rolled=roll343(rng),gained=grant343(k,rolled);q.mastery343={key:k,rolled,gained};persistGame();hud();if(gained)notify343(k,gained);return true;}
+// Petropia cards show the guaranteed minimum; the detailed card explains the rolls.
+for(const d of Object.values(RAID274))d.domain=10;
 // Replace the old Petropia +3/+5, rather than stacking two grants.
 let replacingPetro343=false;const rewardBefore343=domainReward274;domainReward274=function(n,k){return replacingPetro343?0:rewardBefore343(n,k);};
 const claimBefore343=claimRaid225;claimRaid225=function(q,...a){observe343();const prior=replacingPetro343;replacingPetro343=!!q?.petro274;let out;try{out=claimBefore343(q,...a);}finally{replacingPetro343=prior;}if(out===true){award343(q);if(q.petro274)q.domainGranted274=q.mastery343?.gained||0;}return out;};
@@ -17690,6 +17692,7 @@ function appendRaidInfo343(){if(!$('#raid-mastery343')){const p=document.createE
 const menuBefore343=raidPanel239;raidPanel239=function(...a){const out=menuBefore343(...a);appendRaidInfo343();return out;};
 const hwBefore343=menu237;menu237=function(...a){const out=hwBefore343(...a);appendRaidInfo343();return out;};
 const infoBefore343=raidInfo281;raidInfo281=function(...a){const out=infoBefore343(...a);appendRaidInfo343();return out;};
+const pMenuBefore343=pMenu274;pMenu274=function(...a){const out=pMenuBefore343(...a);const card=document.querySelector('#p274 .loot274');if(card)card.title=raidInfo343();return out;};
 const petroMenuBefore343=rewards274;rewards274=function(...a){const out=petroMenuBefore343(...a);appendRaidInfo343();return out;};
 const rankStyle343=document.createElement('style');rankStyle343.textContent='#dialogbody [data-profile106]{background:#123737!important;color:#e5ffd1!important;border:1px solid #65ae8c!important;padding:5px 10px!important;min-height:30px!important;border-radius:5px!important;text-shadow:none!important;opacity:1!important}#dialogbody [data-profile106]:focus-visible{outline:2px solid #b5ee65!important}';document.head.append(rankStyle343);
 // Only authoritative public profile data may raise another player's displayed level.
