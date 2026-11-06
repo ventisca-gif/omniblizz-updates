@@ -1,0 +1,22 @@
+{
+  "original-fe82fe2311cdb6d509ae448130865d554feac6c4714ef6c199b5079f188262f5.bin": {
+    "sha256": "fe82fe2311cdb6d509ae448130865d554feac6c4714ef6c199b5079f188262f5",
+    "bytes": 5743028
+  },
+  "original-content-manifest.json": {
+    "sha256": "fd6c33d0f639372f768c52546c4e0367248b8ae32742a4bda489bb6c5f6ef178",
+    "bytes": 609554
+  },
+  "release-notes.md": {
+    "sha256": "9dcec5b213330eb1c96eddac1b796a8f070cfec203b054ac7073c1f4b9f80840",
+    "bytes": 444
+  },
+  "original-manifest.json": {
+    "sha256": "f71f7271a53dd6b3483fda8c08b441ca3b34c1ac3e881764449f6e49663d44e5",
+    "bytes": 257786
+  },
+  "content-fe82fe2311cdb6d509ae448130865d554feac6c4714ef6c199b5079f188262f5.bin": {
+    "sha256": "fe82fe2311cdb6d509ae448130865d554feac6c4714ef6c199b5079f188262f5",
+    "bytes": 5743028
+  }
+}
