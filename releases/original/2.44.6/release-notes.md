@@ -1,0 +1,3 @@
+# OmniBlizz Original 2.44.6
+
+Corrige el botón ATAQUES V–VI que permanecía oculto al pasar de cualquiera de las siete variantes a un alien normal. Corrige el índice de segunda página en Cerebrón, Fasttrack y los aliens acuáticos de la ampliación301. Conserva habilidades aprendidas, maestrías, dominios e inventarios; sin cambios al formato de guardado local o recuperación de nube. Cambio puntual de interfaz sin temporizadores ni nuevos recorridos por fotograma. 34 pruebas automáticas aprobadas, incluidos cambio rápido, regreso a primera página y persistencia. Pendiente validación visual en APK y recuperación contra nube real.
