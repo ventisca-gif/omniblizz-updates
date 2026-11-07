@@ -1,0 +1,30 @@
+{
+  "passed": 4,
+  "failed": 0,
+  "scenarios": [
+    {
+      "mode": "success",
+      "entries": 212,
+      "peak": 6,
+      "requests": 212
+    },
+    {
+      "mode": "once",
+      "entries": 212,
+      "peak": 6,
+      "requests": 424
+    },
+    {
+      "mode": "always",
+      "entries": 212,
+      "peak": 6,
+      "requests": 12
+    },
+    {
+      "mode": "success",
+      "entries": 0,
+      "peak": 0,
+      "requests": 0
+    }
+  ]
+}

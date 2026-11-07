@@ -1,0 +1,1 @@
+2.36.6: consulta notes.md. Comparacion publica 2.28.0 frente a 2.36.5 y 326 comprobaciones. No se ha demostrado recuperar los FPS de Android. No se borran objetos. Codigo publicado: alienx280/public/game.js en el ZIP adjunto a v2.36.6.
