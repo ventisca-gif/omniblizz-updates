@@ -1,0 +1,3 @@
+# OmniBlizz Original 2.44.7
+
+Corrige el desplazamiento del árbol de pasivas y mejoras: arrastre independiente en árbol y detalle, flechas arriba/abajo para ambas columnas y altura acotada con pie accesible. Aplica al árbol compartido de todos los aliens del Recalibrado, incluido Highbreed AF. No cambia compras, costes, rangos ni formato de guardado local/nube. 38 pruebas DOM aprobadas: desplazamiento, compra y conservación de puntos, pasivas, inventario y dominio al recargar y serializar recuperación. Sin temporizadores ni nuevos recorridos por fotograma. Pendiente validación visual/táctil en Android y recuperación contra nube real.
