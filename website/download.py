@@ -85,7 +85,16 @@ def build():
     old_script = b'game.js?v=316'
     if html.count(old_script) != 1:
         raise ValueError('Missing Original web entry script')
-    html = html.replace(old_script, f'game.js?v={REVISION}'.encode())
+    # Update the web labels after verifying the unmodified signed resources.
+    old_version = b'2.43.4'
+    version = RELEASE.encode()
+    game = PLAY / 'game.js'
+    script = game.read_bytes()
+    if script.count(old_version) != 2 or html.count(old_version) != 2:
+        raise ValueError('Unexpected Original version label')
+    game.write_bytes(script.replace(old_version, version))
+    html = html.replace(old_version, version)
+    html = html.replace(old_script, f'game.js?v={REVISION}.1'.encode())
     entry.write_bytes(html)
     (PLAY / 'index.html').write_bytes(html)
     shutil.copyfile(ROOT / 'landing307.html', SITE / 'index.html')
