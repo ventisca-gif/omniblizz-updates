@@ -13,9 +13,10 @@ from zipfile import ZipFile
 ROOT = Path(__file__).resolve().parents[1]
 SITE = ROOT / '_site'
 PLAY = SITE / 'play'
-RELEASE = '2.44.15'
-REVISION = 354
-BUNDLE = ROOT / 'website' / f'original-web-{RELEASE}.zip'
+RELEASE = '2.44.17'
+REVISION = 356
+BUNDLE = ROOT / 'website' / 'original-web-2.44.15.zip'
+RELEASES = ROOT / 'releases' / 'original'
 MANIFEST = 'original-content-manifest.json'
 
 
@@ -23,8 +24,8 @@ def digest(data):
     return hashlib.sha256(data).hexdigest()
 
 
-def load_manifest(bundle):
-    envelope = json.loads(bundle.read(MANIFEST))
+def load_manifest():
+    envelope = json.loads((RELEASES / RELEASE / MANIFEST).read_bytes())
     payload = base64.b64decode(envelope['payload'], validate=True)
     with TemporaryDirectory() as directory:
         signature = Path(directory) / 'signature'
@@ -45,8 +46,13 @@ def restore_pack(pack, files, bundled):
     if sha in bundled:
         data = bundled[sha]
     else:
-        with urlopen(pack['url'], timeout=120) as response:
-            data = response.read()
+        version = pack['url'].split('/')[-2].removeprefix('v')
+        local = RELEASES / version / f'content-{sha}.bin'
+        if local.is_file():
+            data = local.read_bytes()
+        else:
+            with urlopen(pack['url'], timeout=120) as response:
+                data = response.read()
     if len(data) != pack['bytes'] or digest(data) != sha:
         raise ValueError(f'Invalid content pack {sha}')
 
@@ -65,9 +71,9 @@ def restore_pack(pack, files, bundled):
 
 
 def build():
+    manifest = load_manifest()
+    packs = {pack['sha256']: pack for pack in manifest['packs']}
     with ZipFile(BUNDLE) as bundle:
-        manifest = load_manifest(bundle)
-        packs = {pack['sha256']: pack for pack in manifest['packs']}
         bundled = {
             sha: bundle.read(f'content-{sha}.bin')
             for sha in packs if f'content-{sha}.bin' in bundle.namelist()
