@@ -9,6 +9,7 @@ from pathlib import Path
 import re
 import subprocess
 import tempfile
+import urllib.error
 import urllib.request
 import zipfile
 
@@ -28,13 +29,37 @@ def require(condition, message):
 
 def get(url):
     require(url.startswith(("https://api.github.com/", DOWNLOAD_PREFIX)), "URL no autorizada")
-    request = urllib.request.Request(
-        url, headers={"User-Agent": "OmniBlizz-Original-Preflight/1.0",
-                      "Accept": "application/vnd.github+json"})
-    with urllib.request.urlopen(request, timeout=120) as response:
-        data = response.read(24 * 1024 * 1024 + 1)
-    require(len(data) <= 24 * 1024 * 1024, "Descarga demasiado grande")
-    return data
+    asset = re.fullmatch(
+        re.escape(DOWNLOAD_PREFIX)
+        + r"([0-9]+\.[0-9]+\.[0-9]+)/(original-(?:content-)?manifest\.json|"
+          r"(?:original|content)-[0-9a-f]{64}\.bin)",
+        url,
+    )
+
+    def download(source, timeout):
+        request = urllib.request.Request(
+            source, headers={"User-Agent": "OmniBlizz-Original-Preflight/1.0",
+                             "Accept": "application/vnd.github+json"})
+        with urllib.request.urlopen(request, timeout=timeout) as response:
+            data = response.read(24 * 1024 * 1024 + 1)
+        require(len(data) <= 24 * 1024 * 1024, "Descarga demasiado grande")
+        return data
+
+    try:
+        return download(url, timeout=20 if asset else 120)
+    except urllib.error.HTTPError as error:
+        if not asset or error.code not in {500, 502, 503, 504}:
+            raise
+    except (urllib.error.URLError, TimeoutError):
+        if not asset:
+            raise
+
+    # New releases commit the signed bytes at the same tag. The caller still
+    # verifies the signature or the expected SHA-256 and length of every file.
+    version, filename = asset.groups()
+    mirror = f"https://raw.githubusercontent.com/{REPO}/v{version}/releases/original/{version}/{filename}"
+    print(f"Descarga temporalmente indisponible: {filename}. Verificando los bytes del tag v{version}.")
+    return download(mirror, timeout=20)
 
 
 def json_bytes(data):
