@@ -13,8 +13,8 @@ from zipfile import ZipFile
 ROOT = Path(__file__).resolve().parents[1]
 SITE = ROOT / '_site'
 PLAY = SITE / 'play'
-RELEASE = '2.44.17'
-REVISION = 356
+RELEASE = '2.44.18'
+REVISION = 357
 BUNDLE = ROOT / 'website' / 'original-web-2.44.15.zip'
 RELEASES = ROOT / 'releases' / 'original'
 MANIFEST = 'original-content-manifest.json'
