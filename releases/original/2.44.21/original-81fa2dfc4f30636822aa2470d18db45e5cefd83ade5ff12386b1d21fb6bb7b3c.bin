@@ -1,0 +1,9 @@
+{
+  "revision":339,
+  "status":"development-not-published",
+  "attackGrid":[12,4],
+  "walkGrid":[4,4],
+  "designGrid":[4,3],
+  "fusionGrid":[8,4],
+  "directions":["front","back","right","left"]
+}
