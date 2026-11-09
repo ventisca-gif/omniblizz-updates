@@ -1,0 +1,30 @@
+{
+  "original-f6585c22495a97686cf3a0a316cd48e5e26709c4c7ba696e91bc13f386c09258.bin": {
+    "sha256": "f6585c22495a97686cf3a0a316cd48e5e26709c4c7ba696e91bc13f386c09258",
+    "bytes": 5879415
+  },
+  "release-notes.md": {
+    "sha256": "0d3d1458b755ce34fb4c93316d71496123e46fee08e5ee4d6b565c6be3072138",
+    "bytes": 246
+  },
+  "content-dd0d8f55e0db3050b808b01d658f729ae46ae1763cf99a70fc61374fac4ebd88.bin": {
+    "sha256": "dd0d8f55e0db3050b808b01d658f729ae46ae1763cf99a70fc61374fac4ebd88",
+    "bytes": 1183620
+  },
+  "content-f6585c22495a97686cf3a0a316cd48e5e26709c4c7ba696e91bc13f386c09258.bin": {
+    "sha256": "f6585c22495a97686cf3a0a316cd48e5e26709c4c7ba696e91bc13f386c09258",
+    "bytes": 5879415
+  },
+  "original-manifest.json": {
+    "sha256": "f8b6780a51ca8cd8debafc013b96b9806903bdc1481494add7f4dd40a3aad360",
+    "bytes": 277062
+  },
+  "original-dd0d8f55e0db3050b808b01d658f729ae46ae1763cf99a70fc61374fac4ebd88.bin": {
+    "sha256": "dd0d8f55e0db3050b808b01d658f729ae46ae1763cf99a70fc61374fac4ebd88",
+    "bytes": 1183620
+  },
+  "original-content-manifest.json": {
+    "sha256": "728582f4ba9dcdb0dcae00f0fee52a47749cae6133bf2141a39c224af061e1cb",
+    "bytes": 639922
+  }
+}
