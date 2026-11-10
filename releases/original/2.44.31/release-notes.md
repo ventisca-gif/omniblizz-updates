@@ -1,0 +1,3 @@
+# OmniBlizz Original 2.44.31
+
+TheRealWorld Bellwood: ampliacion urbana sin mover edificios existentes. Bouman y Mr. Smoothie conectados a sus tiendas originales; casa de Ten con historias y mejoras; concierto, acuario, casino y arcade con sus minijuegos. Nuevo pantano al oeste con texturas discretas, Carnivoro y ADN Wildvine con pity original de 15 intentos; Dr. Animo y mutantes cuentan para la historia de Ten. Mapa ilustrado con lugares, niveles y puntos por categoria; textos ES/EN/PT/TR. Conserva carga por sectores y cache limitada a 32, colisiones espaciales e interiores bajo demanda. Recuperacion al morir en campamento sin mezclar enemigos ni perder progreso. Pruebas completas aprobadas sobre cd20068. OTA Original; no requiere nueva APK. FPS Android no medidos.
