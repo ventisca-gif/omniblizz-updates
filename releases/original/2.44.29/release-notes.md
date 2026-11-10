@@ -1,0 +1,3 @@
+# OmniBlizz Original 2.44.29
+
+Renovacion visual de Nuevo Bellwood basada en las referencias: pasto, tierra, asfalto, veredas y agua con texturas pixel art; fogata, bancos, crater con capsula y dos puentes de madera detallados. Ciudad ampliada de 13 a 61 edificios con 12 fachadas, grupos mas juntos y entradas despejadas; conserva 13 viviendas visitables. Cuatro interiores decorados y 20 ciudadanos en reposo con dialogos ES/EN/PT/TR. Mantiene terreno por sectores con cache limitada y solo dibuja objetos cercanos; recursos nuevos comprimidos de unos 6 MB mas el codigo. No requiere nueva APK. FPS Android pendientes de medir.
