@@ -1,0 +1,3 @@
+# OmniBlizz Original 2.44.27
+
+Primera region Nuevo Bellwood: boton Mapa mundial debajo del Omnitrix en el telefono con cualquier skin, atlas regional ES/EN/PT/TR y mundo continuo con bosque, campamento de Max, Rustbucket con interior existente, hoguera, capsula, arroyo con dos puentes, calles, viviendas exteriores, parque y centro. Patrulla de Max: seis drones y un comandante, progreso guardado y regreso al mapa anterior. Terreno por sectores con cache limitada y objetos cercanos a la camara. Conserva los mapas y guardados existentes. Primera etapa: interiores residenciales y mas NPC pendientes; Saiyan y Pokemon mantienen sus motores separados. Pruebas Chromium de viaje, combate, guardado, recorrido y skins aprobadas; FPS en telefono aun sin medir.
