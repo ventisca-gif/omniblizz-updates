@@ -1,0 +1,11 @@
+{
+  "version": "2.36.6",
+  "revision": 298,
+  "signatureVerified": true,
+  "publicPackVerified": true,
+  "sourceMatchesPublished": true,
+  "resources": 1597,
+  "checksPassed": 326,
+  "androidBenchmark": false,
+  "regressionFullyResolved": false
+}
